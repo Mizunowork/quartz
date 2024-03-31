@@ -1,8 +1,14 @@
-## To watch
+#moc 
+
+## To Consume
 
 [[What Have Namespaces Done for You Lately?]]
 
 # Notes
+
+## Containers
+
+[[User Space and Kernel Space]]
 
 [[Containerized applications can do syscalls directly to the Linux Kernel]]
 
@@ -12,19 +18,19 @@
 
 [[Podman and docker commands are exactly the same]]
 
-# Networking
+## Networking
 
 [[Network Policies]]
 
 [[Generating TLS certificate for testing on Kubernetes]]
 
 
+
+## Other
+
 [[CKS Tips from Sander]]
 
-
-
-
-## Content
+## Content Generated
 
 [[I'm better at Network Policies than I thought]]
 

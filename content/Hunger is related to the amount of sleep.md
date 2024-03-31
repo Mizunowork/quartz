@@ -5,6 +5,6 @@ I've always struggled with feeling hungry all the time, even during the past cou
 
 ## Links:
 
-**related to**:: [[hunger-and-suffering]], [[caloric restriction]], [[weight-loss]]
+**related to**:: [[Disentangling Hunger and Suffering]], [[caloric restriction]], [[weight-loss]]
 
 202403290856
