@@ -2,7 +2,7 @@
 
 ## Links:
 
-**supports**:: [[Sleep]], [[Oura ring]]
+**supports**:: [[Sleep]], [[Oura Ring]]
 
 [[Matthew Walker]]
 

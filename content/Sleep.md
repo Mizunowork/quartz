@@ -9,9 +9,8 @@
 
 ## Sleep Tracking
 
-[[Matthew Walker uses an Oura ring]]
+[[Oura Ring]]
 
-[[Received my Oura ring today]]
 
 Links:
 

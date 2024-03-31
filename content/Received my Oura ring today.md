@@ -5,6 +5,5 @@ Been setting up a new, better sleep rhythm these past few days and it will be a 
 
 ## Links:
 
-[[Oura ring]]
 
 202403291938
