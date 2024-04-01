@@ -4,6 +4,7 @@
 
 [[Making sleep the number one priority in life]]
 
+[[Use the bed only for sleep]]
 
 [[Magnesium supplementation for sleep is not supported by evidence]]
 
