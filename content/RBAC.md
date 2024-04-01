@@ -5,6 +5,10 @@
 
 [[RBAC permissions are additive]]
 
+[[ServiceAccounts are only used by non-humans]]
+
+[[Users do not live in the cluster as resources]]
+
 ## Links:
 
 
