@@ -14,12 +14,13 @@ If you wish to get in touch with me, take a look at https://mischavandenburg.com
 
 # Topics
 
-[[Sleep]]
+* [[Health]]
+	* [[Sleep]]
+	* [[Blood Tests in the Netherlands]]
 
-[[Zettelkasten]]
+* PKM & Productivity
+	* [[Zettelkasten]]
 
-## Work
-
-[[Kubernetes]]
-
-[[Containers]]
+* Work
+	* [[Kubernetes]]
+	* [[Containers]]
