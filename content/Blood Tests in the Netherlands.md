@@ -1,6 +1,12 @@
+# Bloedwaardentest.nl
+
 This blood test provider seems to get the most attention in our WhatsApp group. They enable you to upload the metrics to InsideTracker:
 
 https://www.bloedwaardentest.nl/
+
+However, the test does not include uploading to InsideTracker. You need to pay a separate subscription fee for that, but the test comes with a discount. The price for uploading to InsideTracker is €84.36 after the discount.
+
+## Others
 
 Another comprehensive blood test, which also can include stool testing.
 
