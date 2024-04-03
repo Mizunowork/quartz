@@ -24,6 +24,9 @@
 
 [[Generating TLS certificate for testing on Kubernetes]]
 
+## Certificates
+
+[[Kubernetes users are simply holders of TLS Certificates]]
 
 
 ## Other
