@@ -8,7 +8,7 @@ Publishing my writing to the world started with my [tech blog](https://mischavan
 
 Quartz seems like a fun way to publish my personal Zettelkasten to the world. I think the publication aspect will help me to keep a more strict Zettelkasten methodology. My notetaking system has always been based on Niklas Luhmann's method of Zettelkasten, but after recently re-reading [How to Take Smart Notes](https://amzn.to/49Pcimg) I realized I had drifted farther than I liked. Publishing my Zettels will also force me to start keeping an index or maintaining Maps of Content, because they will be the only way to provide some useful initial structure to the reader. I don't really need them for my own notetaking and retrieval experience, but Luhmann kept elaborate indexes of his Zettelkasten, mainly because he didn't have the luxury of digital search like I have. (See [[How Luhmann Organized his Zettelkasten]])
 
-However, if you are interesed in following me I suggest you [add this blog to your preferred RSS reader ](https://zettelkasten.mischavandenburg.net/index.xml) instead so you get regular updates. That's how I follow the people I'm most interested in.
+However, if you are interesed in following me I suggest you [add this website to your preferred RSS reader ](https://zettelkasten.mischavandenburg.net/index.xml) instead so you get regular updates. That's how I follow the people I'm most interested in.
 
 If you wish to get in touch with me, take a look at https://mischavandenburg.com
 
@@ -25,3 +25,5 @@ If you wish to get in touch with me, take a look at https://mischavandenburg.com
 * Work
 	* [[Kubernetes]]
 	* [[Containers]]
+	* [[Consultancy]]
+	
