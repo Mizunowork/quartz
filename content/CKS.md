@@ -26,6 +26,10 @@
 	- [[Service Accounts]]
 		- [[ServiceAccounts are only used by non-humans]]
 		- [[Service Account Tokens & Mounting]]
+		
+	- [[Admission Controller]]
+		- [[NodeRestriction]]
+
 	
 ## Other
 
