@@ -12,7 +12,7 @@ However, if you are interesed in following me I suggest you [add this website to
 
 If you wish to get in touch with me, take a look at https://mischavandenburg.com
 
-# Topics
+# Topics - Entry points for Exploration
 
 * [[Health]]
 	* [[Sleep]]
@@ -26,4 +26,6 @@ If you wish to get in touch with me, take a look at https://mischavandenburg.com
 	* [[Kubernetes]]
 	* [[Containers]]
 	* [[Consultancy]]
+	* [[Infrastructure as Code]]
+	
 	
