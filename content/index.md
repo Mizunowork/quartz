@@ -18,6 +18,9 @@ If you wish to get in touch with me, take a look at https://mischavandenburg.com
 	* [[Sleep]]
 	* [[Blood Tests in the Netherlands]]
 	* [[Olive Oil Suppliers for NL - EU]]
+	* [[Blueprint]]
+		* [[Paying 400 euros a month for the Blueprint Stack]]
+	
 
 * PKM & Productivity
 	* [[Zettelkasten]]
