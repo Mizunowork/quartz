@@ -2,6 +2,8 @@
 
 [[Making sleep the number one priority in life]]
 
+[[Having active days leads to better sleep]]
+
 ## Sleep Tracking
 
 [[Oura Ring]]
