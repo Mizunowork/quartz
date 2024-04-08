@@ -30,7 +30,8 @@
 	- [[Admission Controller]]
 		- [[NodeRestriction]]
 
-	
+
+- [[CKS Scenarios to repeat]]
 ## Other
 
 [[CKS Tips from Sander]]
