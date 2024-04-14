@@ -29,6 +29,7 @@
 		
 	- [[Admission Controller]]
 		- [[NodeRestriction]]
+	- [[AppArmor]]
 
 
 - [[CKS Scenarios to repeat]]
