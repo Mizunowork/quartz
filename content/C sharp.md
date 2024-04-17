@@ -7,6 +7,10 @@
 - [[C sharp Code Style]]
 	- [[if statements]]
 
+- Learning Resources
+- 
+	- [[Advanced Csharp course freeCodeCamp]]
+
 
 ## Links:
 
