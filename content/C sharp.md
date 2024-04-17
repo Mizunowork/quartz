@@ -6,9 +6,9 @@
 - [[Verbatim string literal]]
 - [[C sharp Code Style]]
 	- [[if statements]]
+- [[The reason for types in programming languages]]
 
 - Learning Resources
-- 
 	- [[Advanced Csharp course freeCodeCamp]]
 
 
