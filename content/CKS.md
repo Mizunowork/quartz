@@ -33,6 +33,9 @@
 
 
 - [[CKS Scenarios to repeat]]
+
+[[Post exam notes]]
+
 ## Other
 
 [[CKS Tips from Sander]]
