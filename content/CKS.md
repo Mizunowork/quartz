@@ -33,6 +33,7 @@
 
 
 - [[CKS Scenarios to repeat]]
+- [[CKS Killer.sh notes]]
 
 [[Post exam notes]]
 
