@@ -28,7 +28,7 @@ If you wish to get in touch with me, take a look at https://mischavandenburg.com
 * PKM & Productivity
 	* [[Zettelkasten]]
 
-* Work
+* Tech
 	* [[Kubernetes]]
 	* [[Containers]]
 	* [[Consultancy]]
@@ -37,6 +37,7 @@ If you wish to get in touch with me, take a look at https://mischavandenburg.com
 	* [[Linux]]
 	* [[Azure]]
 	* [[Career]]
+	* [[Hardware]]
 
 - Workflow
 	-  [[i3]]
