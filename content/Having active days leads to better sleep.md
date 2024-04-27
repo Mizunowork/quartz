@@ -5,6 +5,8 @@ I think the Oura ring is helping me to find a proper balance between rest and ac
 
 ## Links:
 
+**supported by**:: https://youtu.be/fEoX8RFSw70?si=hP4CJc8pGXVDiY54, [[Be more physically active for good sleep]]
+
 
 
 202404070723
