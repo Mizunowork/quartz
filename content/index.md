@@ -27,6 +27,7 @@ If you wish to get in touch with me, take a look at https://mischavandenburg.com
 
 * PKM & Productivity
 	* [[Zettelkasten]]
+	* [[Listening to audiobooks on double speed all the time]]
 
 * Tech
 	* [[Kubernetes]]
