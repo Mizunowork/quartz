@@ -1,5 +1,5 @@
 Actions
-- [[Building multiple docker images from a monorepo with github actions]]
+- [[Building multiple Docker images using automatic versioning using GitHub Actions]]
 
 
 ## Links:
