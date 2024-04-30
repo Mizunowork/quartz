@@ -39,6 +39,7 @@ If you wish to get in touch with me, take a look at https://mischavandenburg.com
 	* [[Azure]]
 	* [[Career]]
 	* [[Hardware]]
+	* [[GitHub]]
 
 - Workflow
 	-  [[i3]]
