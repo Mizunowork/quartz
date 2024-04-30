@@ -1,5 +1,5 @@
 Actions
-- [[Building multiple Docker images using automatic versioning using GitHub Actions]]
+- [[Building multiple Docker images using automatic versioning using GitHub Actions - index]]
 
 
 ## Links:

@@ -1,5 +1,11 @@
 
+[[Creating tags based on conventional commits with github actions]]
+
+[[Managing permissions for GitHub Actions to create packages]]
+
 [[Using matrix - matrices in GitHub Actions for looping jobs]]
+
+
 
 ## Links:
 
