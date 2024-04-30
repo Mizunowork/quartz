@@ -11,6 +11,8 @@ Operations jobs allow you to kick back a bit more.
 
 [[Working in operations is like being a firefighter]]
 
+[[rwxrob enjoyed his years as a software engineer the least]]
+
 ## Links:
 
 
