@@ -40,6 +40,7 @@ If you wish to get in touch with me, take a look at https://mischavandenburg.com
 	* [[Career]]
 	* [[Hardware]]
 	* [[GitHub]]
+	* [[Monitoring]]
 
 - Workflow
 	-  [[i3]]
