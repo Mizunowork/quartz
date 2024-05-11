@@ -22,14 +22,13 @@
 	- [[ClusterRoles can be applied to one or more namespaces]]
 	- [[RBAC permissions are additive]]
 	- [[Users do not live in the cluster as resources]]
-	
 	- [[Service Accounts]]
 		- [[ServiceAccounts are only used by non-humans]]
 		- [[Service Account Tokens & Mounting]]
 		
-	- [[Admission Controller]]
-		- [[NodeRestriction]]
-	- [[AppArmor]]
+- [[Admission Controller]]
+	- [[NodeRestriction]]
+- [[AppArmor]]
 
 
 - [[CKS Scenarios to repeat]]
