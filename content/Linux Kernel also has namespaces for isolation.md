@@ -12,7 +12,7 @@ User IDs can be different between namespaces. The root user (0) can be different
 ## Links:
 
 **from**:: [[CKS Video Course]]
-**related research**:: [[What Have Namespaces Done for You Lately?]]
+**related research**:: [[What Have Namespaces Done for You Lately qm]]
 **related to**:: [[Container Isolation]]
 
 202403241155

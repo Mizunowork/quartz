@@ -2,7 +2,7 @@
 
 ## To Consume
 
-[[What Have Namespaces Done for You Lately?]]
+[[What Have Namespaces Done for You Lately qm]]
 
 # Notes
 

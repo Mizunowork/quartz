@@ -9,7 +9,7 @@ If there are security bugs in the kernel, these can be exploited by the containe
 **from**:: [[CKS Video Course]]
 
 **contributes to**:: [[Container Isolation]]
-**related research**:: [[What Have Namespaces Done for You Lately?]]
+**related research**:: [[What Have Namespaces Done for You Lately qm]]
 
 [[security]]
 
