@@ -2,7 +2,7 @@
 
 [[Nix is much more powerful than I thought]]
 
-[[Installing packages with Nix]]
+[[Installing packages in Devcontainers with Nix]]
 
 ## Links:
 
