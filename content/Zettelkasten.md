@@ -8,6 +8,7 @@
 - [[Notes should always be linked to at least one note]]
 - [[Linking notes trains your mind to see patterns]]
 - [[Don't make highlights while reading, take literature notes instead]]
+- [[Tools for creating a Zettelkasten]]
 
 
 
