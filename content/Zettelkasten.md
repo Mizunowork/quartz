@@ -9,6 +9,7 @@
 - [[Linking notes trains your mind to see patterns]]
 - [[Don't make highlights while reading, take literature notes instead]]
 - [[Tools for creating a Zettelkasten]]
+- [[Make caputuring notes easy]]
 
 
 
