@@ -10,6 +10,9 @@
 - [[Don't make highlights while reading, take literature notes instead]]
 - [[Tools for creating a Zettelkasten]]
 - [[Make caputuring notes easy]]
+- [[Zettelkasten as a communication partner]]
+- [[Zettelkasten as a second memory]]
+- [[It takes a few years for the Zettelkasten to reach critical mass]]
 
 
 
