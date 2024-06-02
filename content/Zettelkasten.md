@@ -2,7 +2,13 @@
 
 >"The slip box can become a haven for our restless minds"
 
-[[What is a Zettelkasten qm]]
+- [[What is a Zettelkasten qm]]
+- [[The Zettelkasten is fun to work with]]
+- [[Zettelkasten requires effort]]
+- 
+
+
+
 ## Links: 
 
 202301041437
