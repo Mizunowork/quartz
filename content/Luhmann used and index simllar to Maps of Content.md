@@ -1,4 +1,3 @@
-
 Luhmann used Maps of Content! They are referred to as indexes in the book. The MoC's were entry points to strings of notes (thought).
 
 The index of the Zettelkasten is very insightful in how he created structure and divided things up in subtopics.
