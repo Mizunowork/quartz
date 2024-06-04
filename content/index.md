@@ -43,6 +43,9 @@ If you wish to get in touch with me, take a look at https://mischavandenburg.com
 	* [[Monitoring]]
 	* [[Nix]]
 	* [[Things to try]]
+	
+- [[Public Speaking]]
 
 - Workflow
 	-  [[i3]]
+
