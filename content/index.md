@@ -42,6 +42,7 @@ If you wish to get in touch with me, take a look at https://mischavandenburg.com
 	* [[GitHub]]
 	* [[Monitoring]]
 	* [[Nix]]
+	* [[Things to try]]
 
 - Workflow
 	-  [[i3]]
