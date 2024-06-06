@@ -13,6 +13,8 @@ A masterful lecture about [[Public Speaking]]
 
 - ![[Slides]]
 
+- [[Inspire by being passionate]]
+- [[Framework for becoming famous]]
 
 
 https://youtu.be/Unzc731iCUY?si=6LpRnh5F9to2wkq0
