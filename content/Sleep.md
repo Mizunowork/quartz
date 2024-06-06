@@ -18,6 +18,8 @@
 
 [[Magnesium supplementation for sleep is not supported by evidence]]
 
+[[Meditate until tired]]
+
 
 Links:
 
