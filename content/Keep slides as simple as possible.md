@@ -1,6 +1,6 @@
 # Keep slides as simple as possible
 
-Constant simplification. They should not distract. Keep the attention on you.
+When creating slides, engage in constant simplification. Slides should not distract. Strive to keep the attention on you.
 
 There needs to be air in the slides. Spacious. 
 
