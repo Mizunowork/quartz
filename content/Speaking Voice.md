@@ -1,3 +1,6 @@
 # Speaking Voice
 
-- [[Art of manliness vid]]
+- [[Art of Manliness - Speaking Voice]]
+- [[Speaking from the Mask]]
+- [[Speaking from the diaphragm]]
+- [[Drop your jaw]]
