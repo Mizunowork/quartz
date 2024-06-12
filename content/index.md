@@ -32,6 +32,7 @@ If you wish to get in touch with me, take a look at https://mischavandenburg.com
 * Tech
 	* [[Kubernetes]]
 	* [[Containers]]
+	* [[WASM]]
 	* [[Consultancy]]
 	* [[Infrastructure as Code]]
 	* [[Software Development]]
