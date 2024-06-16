@@ -1,6 +1,7 @@
 # Having good language input makes one more articulate
 
-#publish 
+#publish/long 
+
 
 I'm consuming content about learning how to speak better, and I realize I miss
 having sophisticated language input. Technical writing is always technical and mechanic, as it should be. But it is rare to hear someone speak eloquently and articulate about Kubernetes. 
