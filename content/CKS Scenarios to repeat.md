@@ -1,14 +1,10 @@
-
 - Apiserver troubleshooting
-	- this was a fun one, must do this on stream too
+  - this was a fun one, must do this on stream too
 - ETCD encryption
-	- There are a couple of things I oversaw, good to repeat
+  - There are a couple of things I oversaw, good to repeat
 - Apparmor
 
-
-
-## Links:
-
-
+## Links
 
 202404080956
+
