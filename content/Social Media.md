@@ -1,7 +1,8 @@
 # Social Media
 
-- [[Use a content waterfall system]]
+
 - [[Twitter]]
+- [[Social Media Content]]
 
 #consume
 - [[Founder OS - Social Media Growth pdf.pdf]]
