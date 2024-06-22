@@ -2,6 +2,7 @@
 
 
 - [[Twitter]]
+- [[LinkedIn]]
 - [[Social Media Content]]
 
 
