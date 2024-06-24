@@ -4,7 +4,7 @@
 - [[Twitter]]
 - [[LinkedIn]]
 - [[Social Media Content]]
-- [[Software for Social Media management]]
+- [[Software for Social Media management tools]]
 
 
 
