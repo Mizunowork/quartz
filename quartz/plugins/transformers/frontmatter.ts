@@ -139,6 +139,7 @@ declare module "vfile" {
         publish: boolean | string
         draft: boolean | string
         lang: string
+        noRSS: boolean
         enableToc: string
         cssclasses: string[]
         socialImage: string
