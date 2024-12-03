@@ -1,4 +1,5 @@
 import { Root } from "hast"
+import { DateTime } from "luxon"
 import { GlobalConfiguration } from "../../cfg"
 import { getDate } from "../../components/Date"
 import { escapeHTML } from "../../util/escape"
@@ -16,7 +17,7 @@ export type ContentDetails = {
   tags: string[]
   content: string
   richContent?: string
-  date?: Date
+  date?: DateTime
   description?: string
 }
 
@@ -40,7 +41,7 @@ function generateSiteMap(cfg: GlobalConfiguration, idx: ContentIndex): string {
   const base = cfg.baseUrl ?? ""
   const createURLEntry = (slug: SimpleSlug, content: ContentDetails): string => `<url>
     <loc>https://${joinSegments(base, encodeURI(slug))}</loc>
-    ${content.date && `<lastmod>${content.date.toISOString()}</lastmod>`}
+    ${content.date && `<lastmod>${content.date.toISO()}</lastmod>`}
   </url>`
   const urls = Array.from(idx)
     .map(([slug, content]) => createURLEntry(simplifySlug(slug), content))
@@ -56,13 +57,12 @@ function generateRSSFeed(cfg: GlobalConfiguration, idx: ContentIndex, limit?: nu
     <link>https://${joinSegments(base, encodeURI(slug))}</link>
     <guid>https://${joinSegments(base, encodeURI(slug))}</guid>
     <description>${content.richContent ?? content.description}</description>
-    <pubDate>${content.date?.toUTCString()}</pubDate>
+    <pubDate>${content.date?.toRFC2822()}</pubDate>
   </item>`
-
   const items = Array.from(idx)
     .sort(([_, f1], [__, f2]) => {
       if (f1.date && f2.date) {
-        return f2.date.getTime() - f1.date.getTime()
+        return f2.date.toMillis() - f1.date.toMillis()
       } else if (f1.date && !f2.date) {
         return -1
       } else if (!f1.date && f2.date) {
@@ -119,7 +119,7 @@ export const ContentIndex: QuartzEmitterPlugin<Partial<Options>> = (opts) => {
       const linkIndex: ContentIndex = new Map()
       for (const [tree, file] of content) {
         const slug = file.data.slug!
-        const date = getDate(ctx.cfg.configuration, file.data) ?? new Date()
+        const date = getDate(ctx.cfg.configuration, file.data) ?? DateTime.now()
         if (opts?.includeEmptyFiles || (file.data.text && file.data.text !== "")) {
           linkIndex.set(slug, {
             title: file.data.frontmatter?.title!,

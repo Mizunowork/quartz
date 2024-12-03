@@ -1,5 +1,6 @@
 import fs from "fs"
 import path from "path"
+import { DateTime, DateTimeOptions } from "luxon"
 import { Repository } from "@napi-rs/simple-git"
 import { QuartzTransformerPlugin } from "../types"
 import chalk from "chalk"
@@ -12,23 +13,51 @@ const defaultOptions: Options = {
   priority: ["frontmatter", "git", "filesystem"],
 }
 
-function coerceDate(fp: string, d: any): Date {
-  const dt = new Date(d)
-  const invalidDate = isNaN(dt.getTime()) || dt.getTime() === 0
-  if (invalidDate && d !== undefined) {
+function parseDateString(
+  fp: string,
+  d?: string | number | unknown,
+  opts?: DateTimeOptions,
+): DateTime<true> | undefined {
+  if (d == null) return
+  // handle cases where frontmatter property is a number (e.g. YYYYMMDD or even just YYYY)
+  if (typeof d === "number") d = d.toString()
+  if (typeof d !== "string") {
+    console.log(
+      chalk.yellow(`\nWarning: unexpected type (${typeof d}) for date "${d}" in \`${fp}\`.`),
+    )
+    return
+  }
+
+  const dt = [
+    // ISO 8601 format, e.g. "2024-09-09T00:00:00[Africa/Algiers]", "2024-09-09T00:00+01:00", "2024-09-09"
+    DateTime.fromISO,
+    // RFC 2822 (used in email & RSS) format, e.g. "Mon, 09 Sep 2024 00:00:00 +0100"
+    DateTime.fromRFC2822,
+    // Luxon is stricter about the format of the datetime string than `Date`
+    // fallback to `Date` constructor iff Luxon fails to parse datetime
+    (s: string, o: DateTimeOptions) => DateTime.fromJSDate(new Date(s), o),
+  ]
+    .values()
+    .map((f) => f(d, opts))
+    // find the first valid parse result
+    .find((dt) => dt != null && dt.isValid)
+
+  if (dt == null) {
     console.log(
       chalk.yellow(
         `\nWarning: found invalid date "${d}" in \`${fp}\`. Supported formats: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date#date_time_string_format`,
       ),
     )
+    return
   }
-
-  return invalidDate ? new Date() : dt
+  return dt
 }
 
-type MaybeDate = undefined | string | number
 export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
+  const parseOpts = {
+    setZone: true,
+  }
   return {
     name: "CreatedModifiedDate",
     markdownPlugins() {
@@ -36,23 +65,23 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
         () => {
           let repo: Repository | undefined = undefined
           return async (_tree, file) => {
-            let created: MaybeDate = undefined
-            let modified: MaybeDate = undefined
-            let published: MaybeDate = undefined
+            let created: DateTime | undefined = undefined
+            let modified: DateTime | undefined = undefined
+            let published: DateTime | undefined = undefined
 
             const fp = file.data.filePath!
             const fullFp = path.isAbsolute(fp) ? fp : path.posix.join(file.cwd, fp)
             for (const source of opts.priority) {
               if (source === "filesystem") {
                 const st = await fs.promises.stat(fullFp)
-                created ||= st.birthtimeMs
-                modified ||= st.mtimeMs
+                created ||= DateTime.fromMillis(st.birthtimeMs)
+                modified ||= DateTime.fromMillis(st.mtimeMs)
               } else if (source === "frontmatter" && file.data.frontmatter) {
-                created ||= file.data.frontmatter.date as MaybeDate
-                modified ||= file.data.frontmatter.lastmod as MaybeDate
-                modified ||= file.data.frontmatter.updated as MaybeDate
-                modified ||= file.data.frontmatter["last-modified"] as MaybeDate
-                published ||= file.data.frontmatter.publishDate as MaybeDate
+                created ||= parseDateString(fp, file.data.frontmatter.date, parseOpts)
+                modified ||= parseDateString(fp, file.data.frontmatter.lastmod, parseOpts)
+                modified ||= parseDateString(fp, file.data.frontmatter.updated, parseOpts)
+                modified ||= parseDateString(fp, file.data.frontmatter["last-modified"], parseOpts)
+                published ||= parseDateString(fp, file.data.frontmatter.publishDate, parseOpts)
               } else if (source === "git") {
                 if (!repo) {
                   // Get a reference to the main git repo.
@@ -62,7 +91,9 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
                 }
 
                 try {
-                  modified ||= await repo.getFileLatestModifiedDateAsync(file.data.filePath!)
+                  modified ||= DateTime.fromMillis(
+                    await repo.getFileLatestModifiedDateAsync(file.data.filePath!),
+                  )
                 } catch {
                   console.log(
                     chalk.yellow(
@@ -75,9 +106,9 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
             }
 
             file.data.dates = {
-              created: coerceDate(fp, created),
-              modified: coerceDate(fp, modified),
-              published: coerceDate(fp, published),
+              created: created ?? DateTime.now(),
+              modified: modified ?? DateTime.now(),
+              published: published ?? DateTime.now(),
             }
           }
         },
@@ -89,9 +120,9 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
 declare module "vfile" {
   interface DataMap {
     dates: {
-      created: Date
-      modified: Date
-      published: Date
+      created: DateTime
+      modified: DateTime
+      published: DateTime
     }
   }
 }
