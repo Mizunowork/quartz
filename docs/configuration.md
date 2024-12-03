@@ -40,6 +40,7 @@ This part of the configuration concerns anything that can affect the whole site.
   - Note that Quartz 4 will avoid using this as much as possible and use relative URLs whenever it can to make sure your site works no matter _where_ you end up actually deploying it.
 - `ignorePatterns`: a list of [glob](<https://en.wikipedia.org/wiki/Glob_(programming)>) patterns that Quartz should ignore and not search through when looking for files inside the `content` folder. See [[private pages]] for more details.
 - `defaultDateType`: whether to use created, modified, or published as the default date to display on pages and page listings.
+  - Can be a list (e.g. `["created", "modified"]`) to define fallbacks (highest priority first).
 - `theme`: configure how the site looks.
   - `cdnCaching`: If `true` (default), use Google CDN to cache the fonts. This will generally will be faster. Disable (`false`) this if you want Quartz to download the fonts to be self-contained.
   - `typography`: what fonts to use. Any font available on [Google Fonts](https://fonts.google.com/) works here.
