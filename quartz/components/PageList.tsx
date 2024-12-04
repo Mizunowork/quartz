@@ -8,13 +8,15 @@ export type SortFn = (f1: QuartzPluginData, f2: QuartzPluginData) => number
 
 export function byDateAndAlphabetical(cfg: GlobalConfiguration): SortFn {
   return (f1, f2) => {
-    if (f1.dates && f2.dates) {
+    const f1Date = getDate(cfg, f1)
+    const f2Date = getDate(cfg, f2)
+    if (f1Date && f2Date) {
       // sort descending
-      return getDate(cfg, f2)!.toMillis() - getDate(cfg, f1)!.toMillis()
-    } else if (f1.dates && !f2.dates) {
+      return f2Date.toMillis() - f1Date.toMillis()
+    } else if (f1Date && !f2Date) {
       // prioritize files with dates
       return -1
-    } else if (!f1.dates && f2.dates) {
+    } else if (!f1Date && f2Date) {
       return 1
     }
 
@@ -32,23 +34,19 @@ type Props = {
 
 export const PageList: QuartzComponent = ({ cfg, fileData, allFiles, limit, sort }: Props) => {
   const sorter = sort ?? byDateAndAlphabetical(cfg)
-  let list = allFiles.sort(sorter)
-  if (limit) {
-    list = list.slice(0, limit)
-  }
+  const list = allFiles.toSorted(sorter).slice(0, limit ?? allFiles.length)
 
   return (
     <ul class="section-ul">
       {list.map((page) => {
         const title = page.frontmatter?.title
         const tags = page.frontmatter?.tags ?? []
+        const date = getDate(cfg, page)
 
         return (
           <li class="section-li">
             <div class="section">
-              <p class="meta">
-                {page.dates && <Date date={getDate(cfg, page)!} locale={cfg.locale} />}
-              </p>
+              <p class="meta">{date && <Date date={date} locale={cfg.locale} />}</p>
               <div class="desc">
                 <h3>
                   <a href={resolveRelative(fileData.slug!, page.slug!)} class="internal">

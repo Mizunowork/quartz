@@ -74,7 +74,8 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
             for (const source of opts.priority) {
               if (source === "filesystem") {
                 const st = await fs.promises.stat(fullFp)
-                created ||= DateTime.fromMillis(st.birthtimeMs)
+                // birthtime can be 0 on some filesystems, so default to the earlier of ctime/mtime
+                created ||= DateTime.fromMillis(st.birthtimeMs || Math.min(st.ctimeMs, st.mtimeMs))
                 modified ||= DateTime.fromMillis(st.mtimeMs)
               } else if (source === "frontmatter" && file.data.frontmatter) {
                 created ||= parseDateString(fp, file.data.frontmatter.date, parseOpts)
@@ -106,9 +107,9 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
             }
 
             file.data.dates = {
-              created: created ?? DateTime.now(),
-              modified: modified ?? DateTime.now(),
-              published: published ?? DateTime.now(),
+              created: created,
+              modified: modified,
+              published: published,
             }
           }
         },
@@ -119,10 +120,10 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
 
 declare module "vfile" {
   interface DataMap {
-    dates: {
+    dates: Partial<{
       created: DateTime
       modified: DateTime
       published: DateTime
-    }
+    }>
   }
 }
