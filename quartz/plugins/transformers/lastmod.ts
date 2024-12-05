@@ -7,10 +7,17 @@ import chalk from "chalk"
 
 export interface Options {
   priority: ("frontmatter" | "git" | "filesystem")[]
+  /**
+   * The default timezone used when parsing datetime strings which lack an offset/timezone
+   * Valid options are "system" (default), "utc", an IANA string, or a UTC offset
+   * https://moment.github.io/luxon/#/zones?id=specifying-a-zone
+   */
+  defaultTimezone: "system" | string
 }
 
 const defaultOptions: Options = {
   priority: ["frontmatter", "git", "filesystem"],
+  defaultTimezone: "system",
 }
 
 function parseDateString(
@@ -55,8 +62,9 @@ function parseDateString(
 
 export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
-  const parseOpts = {
+  const parseOpts: DateTimeOptions = {
     setZone: true,
+    zone: opts.defaultTimezone,
   }
   return {
     name: "CreatedModifiedDate",
