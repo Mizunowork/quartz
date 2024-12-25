@@ -5,7 +5,7 @@ title: Homepage
 
 Here, you’ll find reflections around my main interests: data, critical thinking, personal finance, software, cognitivism, and mathematics.
 
-I primarily write for myself: improving your writing [helps](https://paulgraham.com/writes.html)improve your thinking. However, I’ll be glad if some of my content proves useful to you as well.    
+I primarily write for myself: improving your writing [helps](https://paulgraham.com/writes.html)improve your thinking. However, I’ll be glad if some of my content proves useful to you as well.     a
 
 The folder structure is heavily inspired by [[Jacky Zhao| JZhao]] [website](https://jzhao.xyz/) (Even though my personal Obsidian is following the [PARA Method](https://fortelabs.com/blog/para/), and I like the idea of living documents: I might one day shift the blog to this different structure):
 - In [Essays](/essays/) you will find my most curated posts.
