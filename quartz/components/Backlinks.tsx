@@ -9,7 +9,7 @@ interface BacklinksOptions {
 }
 
 const defaultOptions: BacklinksOptions = {
-  hideWhenEmpty: false,
+  hideWhenEmpty: true,
 }
 
 export default ((opts?: Partial<BacklinksOptions>) => {
