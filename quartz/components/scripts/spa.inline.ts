@@ -52,7 +52,7 @@ function startLoading() {
 
   setTimeout(() => {
     loadingBar.style.width = "80%"
-  }, 100);
+  }, 100)
 }
 
 let p: DOMParser
