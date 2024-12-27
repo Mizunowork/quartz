@@ -58,7 +58,6 @@ function startLoading() {
 let p: DOMParser
 async function navigate(url: URL, isBack: boolean = false) {
   startLoading()
-  // await new Promise((resolve) => setTimeout(resolve, 500))
   p = p || new DOMParser()
   const contents = await fetch(`${url}`)
     .then((res) => {
