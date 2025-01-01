@@ -53,12 +53,6 @@ export function pageResources(
         script: contentIndexScript,
       },
       ...staticResources.js,
-      {
-        src: joinSegments(baseDir, "postscript.js"),
-        loadTime: "afterDOMReady",
-        moduleType: "module",
-        contentType: "external",
-      },
     ],
   }
 
@@ -71,6 +65,14 @@ export function pageResources(
     })
     resources.css.push({ content: mermaidStyle, inline: true })
   }
+
+  // NOTE: we have to put this last to make sure spa.inline.ts is the last item.
+  resources.js.push({
+    src: joinSegments(baseDir, "postscript.js"),
+    loadTime: "afterDOMReady",
+    moduleType: "module",
+    contentType: "external",
+  })
 
   return resources
 }
