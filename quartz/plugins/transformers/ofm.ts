@@ -820,6 +820,6 @@ declare module "vfile" {
   interface DataMap {
     blocks: Record<string, Element>
     htmlAst: HtmlRoot
-    hasMermaidDiagram: boolean
+    hasMermaidDiagram: boolean | undefined
   }
 }
