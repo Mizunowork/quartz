@@ -70,7 +70,10 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
   console.log(`Cleaned output directory \`${output}\` in ${perf.timeSince("clean")}`)
 
   perf.addEvent("glob")
-  const allFiles = await glob("**/*.*", argv.directory, [...cfg.configuration.ignorePatterns, ...loadIgnorePatterns(),])
+  const allFiles = await glob("**/*.*", argv.directory, [
+    ...cfg.configuration.ignorePatterns,
+    ...loadIgnorePatterns(),
+  ])
   const fps = allFiles.filter((fp) => fp.endsWith(".md")).sort()
   console.log(
     `Found ${fps.length} input files from \`${argv.directory}\` in ${perf.timeSince("glob")}`,
