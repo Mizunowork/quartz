@@ -13,7 +13,7 @@ import fs from "fs"
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const configPath = process.env.QUARTZ_CONFIG_PATH || path.resolve(__dirname, "config.json")
+const configPath = process.env.QUARTZ_CONFIG_PATH || path.resolve(__dirname, "../../config.json")
 
 const rawData = fs.readFileSync(configPath, "utf-8")
 const configData = JSON.parse(rawData)
