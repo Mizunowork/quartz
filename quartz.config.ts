@@ -1,12 +1,17 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
-import * as fs from "fs"
-import * as path from "path"
+import { fileURLToPath } from "url"
+import path from "path"
+import fs from "fs"
+
 /**
  * Quartz 4.0 Configuration
  *
  * See https://quartz.jzhao.xyz/configuration for more information.
  */
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const configPath = process.env.QUARTZ_CONFIG_PATH || path.resolve(__dirname, "config.json")
 
