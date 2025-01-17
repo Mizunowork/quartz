@@ -1,0 +1,137 @@
+{
+  "configuration": {
+    "pageTitle": "🪴 Quartz 4.0",
+    "pageTitleSuffix": "",
+    "enableSPA": true,
+    "enablePopovers": true,
+    "analytics": {
+      "provider": "plausible"
+    },
+    "locale": "en-US",
+    "baseUrl": "quartz.jzhao.xyz",
+    "ignorePatterns": ["private", "templates", ".obsidian"],
+    "defaultDateType": "created",
+    "generateSocialImages": false,
+    "theme": {
+      "fontOrigin": "googleFonts",
+      "cdnCaching": true,
+      "typography": {
+        "header": "Schibsted Grotesk",
+        "body": "Source Sans Pro",
+        "code": "IBM Plex Mono"
+      },
+      "colors": {
+        "lightMode": {
+          "light": "#faf8f8",
+          "lightgray": "#e5e5e5",
+          "gray": "#b8b8b8",
+          "darkgray": "#4e4e4e",
+          "dark": "#2b2b2b",
+          "secondary": "#284b63",
+          "tertiary": "#84a59d",
+          "highlight": "rgba(143, 159, 169, 0.15)",
+          "textHighlight": "#fff23688"
+        },
+        "darkMode": {
+          "light": "#161618",
+          "lightgray": "#393639",
+          "gray": "#646464",
+          "darkgray": "#d4d4d4",
+          "dark": "#ebebec",
+          "secondary": "#7b97aa",
+          "tertiary": "#84a59d",
+          "highlight": "rgba(143, 159, 169, 0.15)",
+          "textHighlight": "#b3aa0288"
+        }
+      }
+    }
+  },
+  "plugins": {
+    "transformers": [
+      {
+        "name": "FrontMatter"
+      },
+      {
+        "name": "CreatedModifiedDate",
+        "config": {
+          "priority": ["frontmatter", "filesystem"]
+        }
+      },
+      {
+        "name": "SyntaxHighlighting",
+        "config": {
+          "theme": {
+            "light": "github-light",
+            "dark": "github-dark"
+          },
+          "keepBackground": false
+        }
+      },
+      {
+        "name": "ObsidianFlavoredMarkdown",
+        "config": {
+          "enableInHtmlEmbed": false
+        }
+      },
+      {
+        "name": "GitHubFlavoredMarkdown"
+      },
+      {
+        "name": "TableOfContents"
+      },
+      {
+        "name": "CrawlLinks",
+        "config": {
+          "markdownLinkResolution": "shortest"
+        }
+      },
+      {
+        "name": "Description"
+      },
+      {
+        "name": "Latex",
+        "config": {
+          "renderEngine": "katex"
+        }
+      }
+    ],
+    "filters": [
+      {
+        "name": "RemoveDrafts"
+      }
+    ],
+    "emitters": [
+      {
+        "name": "AliasRedirects"
+      },
+      {
+        "name": "ComponentResources"
+      },
+      {
+        "name": "ContentPage"
+      },
+      {
+        "name": "FolderPage"
+      },
+      {
+        "name": "TagPage"
+      },
+      {
+        "name": "ContentIndex",
+        "config": {
+          "enableSiteMap": true,
+          "enableRSS": true
+        }
+      },
+      {
+        "name": "Assets"
+      },
+      {
+        "name": "Static"
+      },
+      {
+        "name": "NotFoundPage"
+      }
+    ]
+  }
+}
