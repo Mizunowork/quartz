@@ -60,28 +60,45 @@ export default {
   pages: {
     rss: {
       recentNotes: "Naujausi užrašai",
-      lastFewNotes: ({ count }) => 
-        count === 1 ? "Paskutinis 1 užrašas" : count < 10 ? `Paskutiniai ${count} užrašai` : `Paskutiniai ${count} užrašų`,
+      lastFewNotes: ({ count }) =>
+        count === 1
+          ? "Paskutinis 1 užrašas"
+          : count < 10
+            ? `Paskutiniai ${count} užrašai`
+            : `Paskutiniai ${count} užrašų`,
     },
     error: {
       title: "Nerasta",
-      notFound: "Arba šis puslapis yra pasiekiamas tik tam tikriems vartotojams, arba tokio puslapio nėra.",
+      notFound:
+        "Arba šis puslapis yra pasiekiamas tik tam tikriems vartotojams, arba tokio puslapio nėra.",
       home: "Grįžti į pagrindinį puslapį",
     },
     folderContent: {
       folder: "Aplankas",
       itemsUnderFolder: ({ count }) =>
-        count === 1 ? "1 elementas šiame aplanke." : count < 10 ? `${count} elementai šiame aplanke.` : `${count} elementų šiame aplanke.`,
+        count === 1
+          ? "1 elementas šiame aplanke."
+          : count < 10
+            ? `${count} elementai šiame aplanke.`
+            : `${count} elementų šiame aplanke.`,
     },
     tagContent: {
       tag: "Žyma",
       tagIndex: "Žymų indeksas",
       itemsUnderTag: ({ count }) =>
-        count === 1 ? "1 elementas su šia žyma." : count < 10 ? `${count} elementai su šia žyma.` : `${count} elementų su šia žyma.`,
-      showingFirst: ({ count }) => 
+        count === 1
+          ? "1 elementas su šia žyma."
+          : count < 10
+            ? `${count} elementai su šia žyma.`
+            : `${count} elementų su šia žyma.`,
+      showingFirst: ({ count }) =>
         count < 10 ? `Rodomos pirmosios ${count} žymos.` : `Rodomos pirmosios ${count} žymų.`,
       totalTags: ({ count }) =>
-        count === 1 ? "Rasta iš viso 1 žyma." : count < 10 ? `Rasta iš viso ${count} žymos.` : `Rasta iš viso ${count} žymų.`,
+        count === 1
+          ? "Rasta iš viso 1 žyma."
+          : count < 10
+            ? `Rasta iš viso ${count} žymos.`
+            : `Rasta iš viso ${count} žymų.`,
     },
   },
 } as const satisfies Translation
