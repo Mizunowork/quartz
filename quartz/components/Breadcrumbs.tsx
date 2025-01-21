@@ -59,8 +59,9 @@ export default ((opts?: Partial<BreadcrumbOptions>) => {
     allFiles,
     displayClass,
   }: QuartzComponentProps) => {
-    // Hide crumbs on root if enabled
-    if (options.hideOnRoot && fileData.slug === "index") {
+    const visible = fileData.frontmatter?.visible
+    // Hide crumbs on root if enabled or if visible is false
+    if ((options.hideOnRoot && fileData.slug === "index") || !visible) {
       return <></>
     }
 
