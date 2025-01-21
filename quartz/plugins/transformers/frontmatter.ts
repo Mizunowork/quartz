@@ -87,6 +87,13 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options>> = (userOpts)
 
             if (socialImage) data.socialImage = socialImage
 
+            if (data.visible != null) {
+              // set visible to false only when provided correct value, otherwise default to true
+              data.visible = !(data.visible.toString().trim().toLowerCase() === "false")
+            } else {
+              data.visible = true
+            }
+
             // fill in frontmatter
             file.data.frontmatter = data as QuartzPluginData["frontmatter"]
           }
@@ -114,6 +121,7 @@ declare module "vfile" {
         cssclasses: string[]
         socialImage: string
         comments: boolean | string
+        visible: boolean
       }>
   }
 }
