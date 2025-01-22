@@ -14,10 +14,9 @@ export const sharedPageComponents: SharedLayout = {
         // from data-repo-id
         repoId: 'R_kgDOKZeA4A',
         // from data-category
-        category: 'Announcements',
+        category: 'giscus',
         // from data-category-id
-        categoryId: 'DIC_kwDOKZeA4M4CmPLp',
-        mapping: "pathname"
+        categoryId: 'DIC_kwDOKZeA4M4CmPc2',
       }
     }),
   ],
