@@ -1,8 +1,8 @@
 ---
 title: 阿瑞纳与阿巴拉契亚的博客
 draft: false
-tags:
-date: 
+tags: 
+date: 2025-01-22
 ---
 Nice to meet you! This is Arena speaking.
 
