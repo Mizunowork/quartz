@@ -19,7 +19,6 @@ import { options } from "./util/sourcemap"
 import { Mutex } from "async-mutex"
 import DepGraph from "./depgraph"
 import { getStaticResourcesFromPlugins } from "./plugins"
-import loadIgnorePatterns from "./util/loadIgnorePatterns"
 
 type Dependencies = Record<string, DepGraph<FilePath> | null>
 
@@ -70,11 +69,9 @@ async function buildQuartz(argv: Argv, mut: Mutex, clientRefresh: () => void) {
   console.log(`Cleaned output directory \`${output}\` in ${perf.timeSince("clean")}`)
 
   perf.addEvent("glob")
-  const allFiles = await glob("**/*.*", argv.directory, [
-    ...cfg.configuration.ignorePatterns,
-    ...loadIgnorePatterns(),
-  ])
-  const fps = allFiles.filter((fp) => fp.endsWith(".md")).sort()
+  const gitIgnoreFilter = await isGitIgnored()
+  const allFiles = await glob("**/*.*", argv.directory, [...cfg.configuration.ignorePatterns])
+  const fps = allFiles.filter((fp) => !gitIgnoreFilter(fp) && fp.endsWith(".md")).sort()
   console.log(
     `Found ${fps.length} input files from \`${argv.directory}\` in ${perf.timeSince("glob")}`,
   )
