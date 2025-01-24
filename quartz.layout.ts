@@ -24,6 +24,7 @@ export const sharedPageComponents: SharedLayout = {
     links: {
       GitHub: "https://github.com/ArenaDruid",
       "哔哩哔哩": "https://space.bilibili.com/37095972",
+      "豆瓣": "https://www.douban.com/people/178019815"
       //"本作品已获得CC BY 4.0许可": "https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1",
     },
   }),
