@@ -17,3 +17,5 @@ date: 2024-11-26
 因而我评价这部作品剧情和形象塑造上严格差于ab，但是我觉得这是由于篇幅，而不是龙骑士07或者剧情本身的硬伤问题。
 
 有人说“短篇小说才是作家真正实力的竞技场”，就算这部作品距离麻枝准老师的传统key社作品有差距，但是龙骑士07用三个小时的篇幅讲出一个“短篇”angel beat，我依旧是认为是能体现这位老将的笔力的。而从另一方面来看，麻枝准将angel beat弄分割商法改编成gal还弄砸了捏，交一份刚刚合格的卷子也比交白卷好吧。
+
+<p xmlns:cc="http://creativecommons.org/ns#" >This work is licensed under <a href="https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://www.arenadruid.top/attachments/cc.svg" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://www.arenadruid.top/attachments/by.svg" alt=""></a></p>

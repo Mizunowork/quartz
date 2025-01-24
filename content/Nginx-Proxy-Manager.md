@@ -2,6 +2,8 @@
 title: Nginx proxy manager关于获取ip-ranges.json时卡住的解决方案
 draft: false
 date: 2025-01-23
+tags:
+  - 运维
 ---
 # 问题描述
 Nginx Proxy manager 默认标准情况下启动时会尝试向[ip-ranges.amazonaws.com](https://ip-ranges.amazonaws.com/ip-ranges.json)获取ip-ranges.json。但是可能由于某种未确定的原因导致程序卡在这一步，日志如下：
@@ -24,3 +26,6 @@ NPM_CTR_NAME=nginxproxymanager
 docker exec $NPM_CTR_NAME sed -i 's/\.then(internalIpRanges\.fetch)//g' /app/index.js
 docker restart $NPM_CTR_NAME
 ```
+
+# 版权页
+<p xmlns:cc="http://creativecommons.org/ns#" >This work is licensed under <a href="https://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://www.arenadruid.top/attachments/cc.svg" alt=""><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://www.arenadruid.top/attachments/by.svg" alt=""></a></p>
