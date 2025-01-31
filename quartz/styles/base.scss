@@ -573,6 +573,22 @@ ol.overflow {
   }*/
 }
 
+// Adding some spacing between entries for the entries in folder groups
+.overflow {
+  li {
+    margin-bottom: 0.5rem; // Spcaes increase
+    
+    li {
+      margin-bottom: 0.2rem; // Nested items spacing
+    }
+    
+    // Remove margin from the last item in each group
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
 .transclude {
   ul {
     padding-left: 1rem;
