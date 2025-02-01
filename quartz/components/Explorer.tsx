@@ -46,7 +46,7 @@ export default ((userOpts?: Partial<Options>) => {
   let jsonTree: string
   let lastBuildId: string = ""
 
-  function constructFileTree(allFiles: QuartzPluginData[], currentFilePath: string) {
+  function constructFileTree(allFiles: QuartzPluginData[]) {
     // Construct tree from allFiles
     fileTree = new FileNode("")
     allFiles.forEach((file) => fileTree.add(file))
@@ -81,7 +81,7 @@ export default ((userOpts?: Partial<Options>) => {
   }: QuartzComponentProps) => {
     if (ctx.buildId !== lastBuildId) {
       lastBuildId = ctx.buildId
-      constructFileTree(allFiles, (fileData.filePath ?? "").replaceAll(" ", "-"))
+      constructFileTree(allFiles)
     }
     return (
       <div class={classNames(displayClass, "explorer")}>
