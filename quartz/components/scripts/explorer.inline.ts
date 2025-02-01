@@ -38,7 +38,7 @@ function toggleExplorer(this: HTMLElement) {
 
   // Prevent scroll under
   if (document.querySelector("#mobile-explorer")) {
-    // Disable scrolling one the page when the explorer is opened on mobile
+    // Disable scrolling on the page when the explorer is opened on mobile
     const bodySelector = document.querySelector("#quartz-body")
     if (bodySelector) bodySelector.classList.toggle("lock-scroll")
   }
