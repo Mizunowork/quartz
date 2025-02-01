@@ -149,11 +149,14 @@ function toggleExplorerFolders() {
     /\/index$/g,
     "",
   )
-  const listToReplace = document.querySelectorAll(".folder-outer:has(> ul[data-folderul]")
+  const allFolders = document.querySelectorAll(".folder-outer")
 
-  listToReplace.forEach((element) => {
-    if (element.children.length > 0) {
-      if (currentFile.includes(element.firstElementChild?.getAttribute("data-folderul") ?? "")) {
+  allFolders.forEach((element) => {
+    const folderUl = Array.from(element.children).find((child) =>
+      child.matches("ul[data-folderul]"),
+    )
+    if (folderUl) {
+      if (currentFile.includes(folderUl.getAttribute("data-folderul") ?? "")) {
         if (!element.classList.contains("open")) {
           element.classList.add("open")
         }
