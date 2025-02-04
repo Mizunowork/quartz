@@ -78,7 +78,7 @@ const config: QuartzConfig = {
       // ```
       Plugin.FigureCaptions(),
       // Adds image lightbox support
-      Plugin.Lightbox(),
+      //Plugin.Lightbox(),
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [
