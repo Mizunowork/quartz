@@ -1,12 +1,3 @@
 @use "./base.scss";
 
 // put your custom CSS here!
-
-// 定义变量
-$chinese-italic-font: 'ChineseItalic';
-$western-font-stack: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-
-em, .cm-em, i {
-  font-family: $western-font-stack, $chinese-italic-font;
-  font-style: italic;
-}
