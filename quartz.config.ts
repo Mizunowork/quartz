@@ -19,7 +19,7 @@ const config: QuartzConfig = {
     defaultDateType: "created",
     generateSocialImages: {
       colorScheme: "darkMode",
-      socialImage: "cover.png", 
+      //image: "cover.png", 
     },
     theme: {
       fontOrigin: "googleFonts",
@@ -75,11 +75,8 @@ const config: QuartzConfig = {
       Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),
       // Adds image caption support. Syntax:
-      // ```md
-      // ![alt text](image.jpg)
-      // *caption text*
-      // ```
       Plugin.FigureCaptions(),
+      // 启动中文斜体转楷体插件
       Plugin.ChineseItalic(),
       // Adds image lightbox support
       //Plugin.Lightbox(),
