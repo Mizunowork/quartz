@@ -77,6 +77,7 @@ const config: QuartzConfig = {
       // *caption text*
       // ```
       Plugin.FigureCaptions(),
+      Plugin.ChineseItalic(),
       // Adds image lightbox support
       //Plugin.Lightbox(),
     ],
