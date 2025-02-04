@@ -7,7 +7,8 @@ export const ChineseItalic: QuartzTransformerPlugin = () => {
       return {
         css: [
           {
-            // 内联 CSS 直接注入到页面
+            // 关键修复：明确声明为内联样式
+            contentType: "inline",
             content: `
               @font-face {
                 font-family: 'ChineseItalic';
