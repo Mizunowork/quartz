@@ -71,6 +71,14 @@ const config: QuartzConfig = {
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),
+      // Adds image caption support. Syntax:
+      // ```md
+      // ![alt text](image.jpg)
+      // *caption text*
+      // ```
+      Plugin.FigureCaptions(),
+      // Adds image lightbox support
+      Plugin.Lightbox(),
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [
