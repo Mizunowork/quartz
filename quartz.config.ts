@@ -81,7 +81,10 @@ const config: QuartzConfig = {
       // Adds image lightbox support
       //Plugin.Lightbox(),
     ],
-    filters: [Plugin.RemoveDrafts()],
+    filters: [
+      //Plugin.RemoveDrafts(),
+      Plugin.ExplicitPublish(),
+    ],
     emitters: [
       Plugin.AliasRedirects(),
       Plugin.ComponentResources(),

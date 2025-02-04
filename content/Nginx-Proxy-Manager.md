@@ -1,6 +1,6 @@
 ---
 title: Nginx proxy manager关于获取ip-ranges.json时卡住的解决方案
-draft: false
+publish: true
 date: 2025-01-23
 tags:
   - 运维

@@ -1,6 +1,6 @@
 ---
 title: 时廻者 LOOPERS 短评
-draft: false
+publish: true
 tags:
   - 游戏
   - Galgame
