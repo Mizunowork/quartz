@@ -1,37 +1,15 @@
 import { QuartzTransformerPlugin } from "../types"
 
-export const ChineseItalic: QuartzTransformerPlugin = () => {
+interface Options {
+  // 可扩展选项（如自定义字体名）
+}
+
+export const ChineseItalic: QuartzTransformerPlugin<Options> = (opts) => {
   return {
     name: "ChineseItalic",
     externalResources() {
       return {
-        css: [
-          {
-            // 关键修复：明确声明为内联样式
-            contentType: "inline",
-            content: `
-              @font-face {
-                font-family: 'ChineseItalic';
-                font-style: italic;
-                src: local('楷体'), 
-                     local('Kaiti SC'),
-                     local('STKaiti');
-                unicode-range: U+4E00-9FFF;
-              }
-
-              em, .cm-em, i {
-                font-family: 
-                  -apple-system,
-                  BlinkMacSystemFont,
-                  'Segoe UI',
-                  Roboto,
-                  'ChineseItalic',
-                  sans-serif;
-                font-style: italic;
-              }
-            `,
-          },
-        ],
+        css: [{ content: "attachments/chinese-italic-kaiti.css" }],
       }
     },
   }
