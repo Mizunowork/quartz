@@ -9,7 +9,7 @@ export const ChineseItalic: QuartzTransformerPlugin<Options> = (opts) => {
     name: "ChineseItalic",
     externalResources() {
       return {
-        css: [{ content: "attachments/chinese-italic-kaiti.css" }],
+        css: [{ content: "static/chinese-italic-kaiti.css" }],
       }
     },
   }
