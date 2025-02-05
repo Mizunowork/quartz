@@ -16,14 +16,17 @@ const config: QuartzConfig = {
     locale: "zh-CN",
     baseUrl: "www.arenadruid.top",
     ignorePatterns: ["private", "templates", ".obsidian"],
-    defaultDateType: "created",
-    generateSocialImages: false,
+    defaultDateType: "modified",
+    generateSocialImages: {
+      colorScheme: "darkMode",
+      //image: "cover.png", 
+    },
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
+        header: "Noto Sans SC",
+        body: "Noto Sans SC",
         code: "IBM Plex Mono",
       },
       colors: {
@@ -72,16 +75,16 @@ const config: QuartzConfig = {
       Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),
       // Adds image caption support. Syntax:
-      // ```md
-      // ![alt text](image.jpg)
-      // *caption text*
-      // ```
       Plugin.FigureCaptions(),
+      // 启动中文斜体转楷体插件
       Plugin.ChineseItalic(),
       // Adds image lightbox support
       //Plugin.Lightbox(),
     ],
-    filters: [Plugin.RemoveDrafts()],
+    filters: [
+      //Plugin.RemoveDrafts(),
+      Plugin.ExplicitPublish(),
+    ],
     emitters: [
       Plugin.AliasRedirects(),
       Plugin.ComponentResources(),
