@@ -16,10 +16,9 @@ const config: QuartzConfig = {
     locale: "zh-CN",
     baseUrl: "www.arenadruid.top",
     ignorePatterns: ["private", "templates", ".obsidian"],
-    defaultDateType: "modified",
+    defaultDateType: "created",
     generateSocialImages: {
       colorScheme: "darkMode",
-      //image: "cover.png", 
     },
     theme: {
       fontOrigin: "googleFonts",
@@ -59,7 +58,7 @@ const config: QuartzConfig = {
     transformers: [
       Plugin.FrontMatter(),
       Plugin.CreatedModifiedDate({
-        priority: ["frontmatter", "filesystem"],
+        priority: ["frontmatter","git","filesystem"],
       }),
       Plugin.SyntaxHighlighting({
         theme: {
@@ -78,8 +77,6 @@ const config: QuartzConfig = {
       Plugin.FigureCaptions(),
       // 启动中文斜体转楷体插件
       Plugin.ChineseItalic(),
-      // Adds image lightbox support
-      //Plugin.Lightbox(),
     ],
     filters: [
       //Plugin.RemoveDrafts(),
