@@ -19,7 +19,6 @@ const config: QuartzConfig = {
     defaultDateType: "modified",
     generateSocialImages: {
       colorScheme: "darkMode",
-      //image: "cover.png", 
     },
     theme: {
       fontOrigin: "googleFonts",
@@ -76,8 +75,6 @@ const config: QuartzConfig = {
       Plugin.Latex({ renderEngine: "katex" }),
       // Adds image caption support. Syntax:
       Plugin.FigureCaptions(),
-      // 启动中文斜体转楷体插件
-      //Plugin.ChineseItalic(),
     ],
     filters: [
       //Plugin.RemoveDrafts(),
