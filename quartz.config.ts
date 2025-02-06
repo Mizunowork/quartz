@@ -77,9 +77,7 @@ const config: QuartzConfig = {
       // Adds image caption support. Syntax:
       Plugin.FigureCaptions(),
       // 启动中文斜体转楷体插件
-      Plugin.ChineseItalic(),
-      // Adds image lightbox support
-      //Plugin.Lightbox(),
+      //Plugin.ChineseItalic(),
     ],
     filters: [
       //Plugin.RemoveDrafts(),
