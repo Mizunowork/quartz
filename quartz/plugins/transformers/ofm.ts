@@ -54,7 +54,7 @@ const defaultOptions: Options = {
   enableInHtmlEmbed: false,
   enableYouTubeEmbed: true,
   enableVideoEmbed: true,
-  enableCheckbox: true,
+  enableCheckbox: false,
   inlineFootnotes: true,
 }
 
