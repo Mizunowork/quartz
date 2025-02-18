@@ -7,6 +7,7 @@ import {
   DefinitionContent,
   Paragraph,
   Code,
+  FootnoteDefinition,
 } from "mdast"
 import { Element, Literal, Root as HtmlRoot } from "hast"
 import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
@@ -38,6 +39,7 @@ export interface Options {
   enableYouTubeEmbed: boolean
   enableVideoEmbed: boolean
   enableCheckbox: boolean
+  inlineFootnotes: boolean
 }
 
 const defaultOptions: Options = {
@@ -52,7 +54,8 @@ const defaultOptions: Options = {
   enableInHtmlEmbed: false,
   enableYouTubeEmbed: true,
   enableVideoEmbed: true,
-  enableCheckbox: false,
+  enableCheckbox: true,
+  inlineFootnotes: true,
 }
 
 const calloutMapping = {
@@ -143,6 +146,22 @@ const wikilinkImageEmbedRegex = new RegExp(
   /^(?<alt>(?!^\d*x?\d*$).*?)?(\|?\s*?(?<width>\d+)(x(?<height>\d+))?)?$/,
 )
 
+const inlineFootnoteRegex = /\^\[([\s\S]*?)\]/g
+
+// Helper function to match balanced brackets
+function matchBalancedBrackets(text: string, startIndex: number): number {
+  let depth = 1;
+  let i = startIndex;
+  
+  while (i < text.length && depth > 0) {
+    if (text[i] === '[') depth++;
+    if (text[i] === ']') depth--;
+    i++;
+  }
+  
+  return depth === 0 ? i - 1 : -1;
+}
+
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
 
@@ -211,6 +230,52 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
 
           return `${embedDisplay}[[${fp}${displayAnchor}${displayAlias}]]`
         })
+      }
+
+      if (opts.inlineFootnotes) {
+        let footnoteCounter = 1
+        const footnotes: Record<string, string> = {}
+        let result = ""
+        let currentIndex = 0
+
+        while (true) {
+          // Find next inline footnote start
+          const startMatch = src.indexOf("^[", currentIndex)
+          if (startMatch === -1) break
+
+          // Add text before the footnote
+          result += src.slice(currentIndex, startMatch)
+
+          // Find the matching closing bracket
+          const contentStart = startMatch + 2
+          const contentEnd = matchBalancedBrackets(src, contentStart)
+          
+          if (contentEnd === -1) {
+            // No matching bracket found, treat as normal text
+            result += src.slice(startMatch, contentStart)
+            currentIndex = contentStart
+          } else {
+            // Extract footnote content
+            const content = src.slice(contentStart, contentEnd)
+            const id = `inline${Math.random().toString(36).substring(2, 8)}`
+            footnotes[id] = content.trim()
+            result += `[^${id}]`
+            currentIndex = contentEnd + 1
+          }
+        }
+
+        // Add remaining text
+        result += src.slice(currentIndex)
+
+        // Append footnote definitions
+        if (Object.keys(footnotes).length > 0) {
+          result += "\n\n"
+          Object.entries(footnotes).forEach(([id, content]) => {
+            result += `[^${id}]: ${content}\n`
+          })
+        }
+
+        return result
       }
 
       return src
