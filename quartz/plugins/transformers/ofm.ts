@@ -7,7 +7,6 @@ import {
   DefinitionContent,
   Paragraph,
   Code,
-  FootnoteDefinition,
 } from "mdast"
 import { Element, Literal, Root as HtmlRoot } from "hast"
 import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-find-and-replace"
@@ -146,21 +145,7 @@ const wikilinkImageEmbedRegex = new RegExp(
   /^(?<alt>(?!^\d*x?\d*$).*?)?(\|?\s*?(?<width>\d+)(x(?<height>\d+))?)?$/,
 )
 
-const inlineFootnoteRegex = /\^\[([\s\S]*?)\]/g
-
-// Helper function to match balanced brackets
-function matchBalancedBrackets(text: string, startIndex: number): number {
-  let depth = 1;
-  let i = startIndex;
-  
-  while (i < text.length && depth > 0) {
-    if (text[i] === '[') depth++;
-    if (text[i] === ']') depth--;
-    i++;
-  }
-  
-  return depth === 0 ? i - 1 : -1;
-}
+const inlineFootnoteRegex = /\^\[((?:[^\[\]]|\[(?:[^\[\]]|\[[^\[\]]*\])*\])*)\]/g
 
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
@@ -233,46 +218,21 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
       }
 
       if (opts.inlineFootnotes) {
-        let footnoteCounter = 1
+        // Replaces ^[inline] footnotes with regular footnotes [^1]:
         const footnotes: Record<string, string> = {}
-        let result = ""
-        let currentIndex = 0
+        
+        // Replace inline footnotes with references and collect definitions
+        const result = src.replace(inlineFootnoteRegex, (_match, content) => {
+          const id = `inline-${Math.random().toString(36).substring(2, 8)}`
+          footnotes[id] = content.trim()
+          return `[^${id}]`
+        })
 
-        while (true) {
-          // Find next inline footnote start
-          const startMatch = src.indexOf("^[", currentIndex)
-          if (startMatch === -1) break
-
-          // Add text before the footnote
-          result += src.slice(currentIndex, startMatch)
-
-          // Find the matching closing bracket
-          const contentStart = startMatch + 2
-          const contentEnd = matchBalancedBrackets(src, contentStart)
-          
-          if (contentEnd === -1) {
-            // No matching bracket found, treat as normal text
-            result += src.slice(startMatch, contentStart)
-            currentIndex = contentStart
-          } else {
-            // Extract footnote content
-            const content = src.slice(contentStart, contentEnd)
-            const id = `inline${Math.random().toString(36).substring(2, 8)}`
-            footnotes[id] = content.trim()
-            result += `[^${id}]`
-            currentIndex = contentEnd + 1
-          }
-        }
-
-        // Add remaining text
-        result += src.slice(currentIndex)
-
-        // Append footnote definitions
+        // Append footnote definitions if we found any
         if (Object.keys(footnotes).length > 0) {
-          result += "\n\n"
-          Object.entries(footnotes).forEach(([id, content]) => {
-            result += `[^${id}]: ${content}\n`
-          })
+          return result + "\n\n" + Object.entries(footnotes)
+            .map(([id, content]) => `[^${id}]: ${content}`)
+            .join("\n") + "\n"
         }
 
         return result
