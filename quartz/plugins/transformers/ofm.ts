@@ -231,7 +231,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
           },
         )
 
-        // Append footnote definitions if we found any
+        // Append footnote definitions if any are found
         if (Object.keys(footnotes).length > 0) {
           return (
             result +
