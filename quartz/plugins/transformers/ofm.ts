@@ -220,19 +220,27 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
       if (opts.inlineFootnotes) {
         // Replaces ^[inline] footnotes with regular footnotes [^1]:
         const footnotes: Record<string, string> = {}
-        
+
         // Replace inline footnotes with references and collect definitions
-        const result = (src as string).replace(inlineFootnoteRegex, (_match: string, content: string) => {
-          const id = `inline-${Math.random().toString(36).substring(2, 8)}`
-          footnotes[id] = content.trim()
-          return `[^${id}]`
-        })
+        const result = (src as string).replace(
+          inlineFootnoteRegex,
+          (_match: string, content: string) => {
+            const id = `inline-${Math.random().toString(36).substring(2, 8)}`
+            footnotes[id] = content.trim()
+            return `[^${id}]`
+          },
+        )
 
         // Append footnote definitions if we found any
         if (Object.keys(footnotes).length > 0) {
-          return result + "\n\n" + Object.entries(footnotes)
-            .map(([id, content]) => `[^${id}]: ${content}`)
-            .join("\n") + "\n"
+          return (
+            result +
+            "\n\n" +
+            Object.entries(footnotes)
+              .map(([id, content]) => `[^${id}]: ${content}`)
+              .join("\n") +
+            "\n"
+          )
         }
 
         return result
