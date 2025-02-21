@@ -222,7 +222,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
         const footnotes: Record<string, string> = {}
         
         // Replace inline footnotes with references and collect definitions
-        const result = src.replace(inlineFootnoteRegex, (_match, content) => {
+        const result = (src as string).replace(inlineFootnoteRegex, (_match: string, content: string) => {
           const id = `inline-${Math.random().toString(36).substring(2, 8)}`
           footnotes[id] = content.trim()
           return `[^${id}]`
