@@ -225,7 +225,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
         const result = (src as string).replace(
           inlineFootnoteRegex,
           (_match: string, content: string) => {
-            const id = `inline-${Math.random().toString(36).substring(2, 8)}`
+            const id = `inline-${Object.keys(footnotes).length + 1}`
             footnotes[id] = content.trim()
             return `[^${id}]`
           },
