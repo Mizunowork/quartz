@@ -2,7 +2,9 @@
 title: "Quartz Showcase"
 ---
 
-Want to see what Quartz can do? Here are some cool community gardens:
+Want to see what Quartz can do? 
+Check out [the largest community-driven gallery](https://obsidian-gallery.craftengineer.com/?category=quartz) of sites built on Obsidian, 
+or here are some cool community gardens as well:
 
 - [Quartz Documentation (this site!)](https://quartz.jzhao.xyz/)
 - [Jacky Zhao's Garden](https://jzhao.xyz/)
@@ -33,4 +35,4 @@ Want to see what Quartz can do? Here are some cool community gardens:
 - [Zen Browser Docs](https://docs.zen-browser.app)
 - [🪴8cat life](https://8cat.life)
 
-If you want to see your own on here, submit a [Pull Request adding yourself to this file](https://github.com/jackyzha0/quartz/blob/v4/docs/showcase.md)!
+If you want to add your own site, submit it at [Obsidian Garden Gallery](https://obsidian-gallery.craftengineer.com/?category=quartz)
