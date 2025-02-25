@@ -24,7 +24,7 @@ Under the default configuration, a citation key `[@templeton2024scaling]` will b
 >
 > By default, the references will be included at the end of the file. To control where the references to be included, uses `[^ref]`
 >
-> Refer to `rehyp-citation` docs for more information.
+> Refer to `rehype-citation` docs for more information.
 
 ## Customization
 
