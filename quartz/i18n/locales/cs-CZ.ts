@@ -80,5 +80,16 @@ export default {
       showingFirst: ({ count }) => `Zobrazují se první ${count} tagy.`,
       totalTags: ({ count }) => `Nalezeno celkem ${count} tagů.`,
     },
+    encryptedContent: {
+      loading: "Načítání...",
+      password: "Heslo",
+      submit: "Odeslat",
+      enterPassword: "Tato stránka je standardně uzamčena. Zadejte heslo pro odemknutí:",
+      modernBrowser: "Použijte moderní prohlížeč.",
+      wrongPassword: "Nesprávné heslo. Zadejte heslo znovu pro odemknutí:",
+      noPayload: "Není žádné šifrované užitečné zatížení.",
+      decrypting: "Dekódování...",
+      defaultDescription: "Toto je šifrovaná stránka",
+    },
   },
 } as const satisfies Translation

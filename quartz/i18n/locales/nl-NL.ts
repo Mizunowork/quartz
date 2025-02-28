@@ -82,5 +82,18 @@ export default {
         count === 1 ? "Eerste label tonen." : `Eerste ${count} labels tonen.`,
       totalTags: ({ count }) => `${count} labels gevonden.`,
     },
+    encryptedContent: {
+      loading: "Bezig met laden...",
+      password: "Wachtwoord",
+      submit: "Verzenden",
+      enterPassword:
+        "Deze pagina is standaard vergrendeld. Voer alstublieft uw wachtwoord in om te ontgrendelen:",
+      modernBrowser: "Gebruik alstublieft een moderne browser.",
+      wrongPassword:
+        "Verkeerd wachtwoord. Voer alstublieft uw wachtwoord opnieuw in om te ontgrendelen:",
+      noPayload: "Geen versleutelde payload.",
+      decrypting: "Ontsleutelen..",
+      defaultDescription: "Dit is een gecodeerde pagina",
+    },
   },
 } as const satisfies Translation
