@@ -158,6 +158,10 @@ button#desktop-explorer {
   > #explorer-ul {
     max-height: none;
   }
+
+  .highlight-path {
+    color: var(--tertiary);
+  }
 }
 
 svg {

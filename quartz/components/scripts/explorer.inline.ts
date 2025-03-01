@@ -169,12 +169,17 @@ window.addEventListener("resize", setupExplorer)
 
 document.addEventListener("nav", () => {
   const explorer = document.querySelector("#mobile-explorer")
+  const currentPath = document.getElementsByTagName("body")[0].getAttribute("data-slug") ?? ""
   if (explorer) {
     explorer.classList.add("collapsed")
     const content = explorer.nextElementSibling?.nextElementSibling as HTMLElement
     if (content) {
       content.classList.add("collapsed")
       content.classList.toggle("explorer-viewmode")
+    }
+    const currentPathInExplorer = document.querySelector(`a[data-for="${currentPath}"]`)
+    if (currentPathInExplorer) {
+      currentPathInExplorer.classList.add("highlight-path")
     }
   }
   setupExplorer()

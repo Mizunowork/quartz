@@ -13,6 +13,7 @@ const defaultOptions = {
   folderClickBehavior: "collapse",
   folderDefaultState: "collapsed",
   useSavedState: true,
+  highlightCurrentPath: true,
   mapFn: (node) => {
     return node
   },
@@ -92,6 +93,7 @@ export default ((userOpts?: Partial<Options>) => {
           data-behavior={opts.folderClickBehavior}
           data-collapsed={opts.folderDefaultState}
           data-savestate={opts.useSavedState}
+          data-highlightpath={opts.highlightCurrentPath}
           data-tree={jsonTree}
           data-mobile={true}
           aria-controls="explorer-content"
@@ -119,6 +121,7 @@ export default ((userOpts?: Partial<Options>) => {
           data-behavior={opts.folderClickBehavior}
           data-collapsed={opts.folderDefaultState}
           data-savestate={opts.useSavedState}
+          data-highlightpath={opts.highlightCurrentPath}
           data-tree={jsonTree}
           data-mobile={false}
           aria-controls="explorer-content"
