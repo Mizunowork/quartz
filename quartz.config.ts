@@ -1,5 +1,6 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
+import { Redirects } from "./quartz/plugins/redirects"
 
 /**
  * Quartz 4.0 Configuration
@@ -68,14 +69,15 @@ const config: QuartzConfig = {
       Plugin.GitHubFlavoredMarkdown(),
       Plugin.TableOfContents(),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
-      Plugin.Redirects({
-        redirects: {
-          "/testredirect": "https://google.com",
-          // "/another-page": "https://another-example.com"
-          // Add more redirects as needed
-        }
-      })
-    ],   Plugin.Description(),
+      Plugin.Description(),
+      Redirects({
+              redirects: {
+                "/old-page": "https://example.com",
+                "/another-page": "https://another-example.com"
+                // Add more redirects as needed
+              }
+            }),
+
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [
