@@ -1,0 +1,13 @@
+{
+	"nodes":[
+		{"id":"a85fff7a7493ef52","type":"group","x":-600,"y":-240,"width":1340,"height":980,"color":"4","label":"Canvas Group"},
+		{"id":"05e0c45c85417543","type":"link","url":"https://jsoncanvas.org/spec/1.0/","x":300,"y":300,"width":401,"height":400,"color":"3"},
+		{"id":"5997bc7558e18f0b","type":"text","text":"Plain text note","x":-560,"y":470,"width":250,"height":60,"color":"5"},
+		{"id":"f583da2f9411eca1","x":-200,"y":-200,"width":400,"height":400,"color":"1","type":"file","file":"features/popover previews.md"}
+	],
+	"edges":[
+		{"id":"185431e9b6c045dc","fromNode":"5997bc7558e18f0b","fromSide":"right","toNode":"05e0c45c85417543","toSide":"left","fromEnd":"arrow"},
+		{"id":"be55c44ecde61a30","fromNode":"f583da2f9411eca1","fromSide":"right","toNode":"05e0c45c85417543","toSide":"top","color":"2","label":"Specifications"},
+		{"id":"1ff7941319ca11b8","fromNode":"f583da2f9411eca1","fromSide":"left","toNode":"5997bc7558e18f0b","toSide":"top","color":"6"}
+	]
+}
