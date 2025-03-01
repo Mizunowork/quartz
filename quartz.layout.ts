@@ -7,7 +7,7 @@ export const sharedPageComponents: SharedLayout = {
   header: [],
   footer: Component.Footer({
     links: {
-      "Visit My Main Website": "https://mischavandenburg.com"
+      "Join my Community": "https://skool.com/kubecraft"
     },
   }),
 }
@@ -16,7 +16,8 @@ export const sharedPageComponents: SharedLayout = {
 export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
     Component.Breadcrumbs(),
-    Component.ArticleTitle(),
+    // Hide titles because I always have them in my files
+    // Component.ArticleTitle(),
     Component.ContentMeta(),
   ],
   left: [
@@ -24,7 +25,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.RecentNotes({ limit: 10 })),
+    Component.DesktopOnly(Component.RecentNotes({ limit: 50 })),
   ],
   right: [
     Component.Graph(),
@@ -41,7 +42,7 @@ export const defaultListPageLayout: PageLayout = {
     Component.MobileOnly(Component.Spacer()),
     Component.Search(),
     Component.Darkmode(),
-    Component.DesktopOnly(Component.RecentNotes({ limit: 10 })),
+    Component.DesktopOnly(Component.RecentNotes({ limit: 50 })),
   ],
   right: [],
 }
