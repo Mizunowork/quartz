@@ -68,7 +68,14 @@ const config: QuartzConfig = {
       Plugin.GitHubFlavoredMarkdown(),
       Plugin.TableOfContents(),
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
-      Plugin.Description(),
+      Plugin.Redirects({
+        redirects: {
+          "/testredirect": "https://google.com",
+          // "/another-page": "https://another-example.com"
+          // Add more redirects as needed
+        }
+      })
+    ],   Plugin.Description(),
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [
