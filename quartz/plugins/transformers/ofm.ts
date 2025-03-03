@@ -225,13 +225,13 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
       if (opts.enableInlineFootnotes) {
         // Replaces ^[inline] footnotes with regular footnotes [^1]:
         const footnotes: Record<string, string> = {}
-        let counter = 1
+        let counter = 0
 
         // Replace inline footnotes with references and collect definitions
         const result = (src as string).replace(
           inlineFootnoteRegex,
           (_match: string, content: string) => {
-            const id = `inline-${counter++}`
+            const id = `generated-inline-footnote-${counter++}`
             footnotes[id] = content.trim()
             return `[^${id}]`
           },
