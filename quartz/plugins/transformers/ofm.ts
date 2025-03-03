@@ -38,7 +38,7 @@ export interface Options {
   enableYouTubeEmbed: boolean
   enableVideoEmbed: boolean
   enableCheckbox: boolean
-  inlineFootnotes: boolean
+  enableInlineFootnotes: boolean
 }
 
 const defaultOptions: Options = {
@@ -54,7 +54,7 @@ const defaultOptions: Options = {
   enableYouTubeEmbed: true,
   enableVideoEmbed: true,
   enableCheckbox: false,
-  inlineFootnotes: true,
+  enableInlineFootnotes: true,
 }
 
 const calloutMapping = {
@@ -145,7 +145,12 @@ const wikilinkImageEmbedRegex = new RegExp(
   /^(?<alt>(?!^\d*x?\d*$).*?)?(\|?\s*?(?<width>\d+)(x(?<height>\d+))?)?$/,
 )
 
-const inlineFootnoteRegex = /\^\[((?:[^\[\]]|\[(?:[^\[\]]|\[[^\[\]]*\])*\])*)\]/g
+const inlineFootnoteRegex = new RegExp(/\^\[((?:[^\[\]]|\[(?:[^\[\]]|\[[^\[\]]*\])*\])*)\]/g)
+// match inline footnotes where content can contain any properly nested brackets
+// \^\[...\] -> matches ^[inline footnote's] brackets
+// (?:...) -> does not capture any of the following:
+//   [^\[\]] -> any character that is not a bracket
+//   \[(?:[^\[\]]|\[[^\[\]]*\])*\] -> a properly nested set of brackets
 
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
@@ -217,15 +222,16 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
         })
       }
 
-      if (opts.inlineFootnotes) {
+      if (opts.enableInlineFootnotes) {
         // Replaces ^[inline] footnotes with regular footnotes [^1]:
         const footnotes: Record<string, string> = {}
+        let counter = 1
 
         // Replace inline footnotes with references and collect definitions
         const result = (src as string).replace(
           inlineFootnoteRegex,
           (_match: string, content: string) => {
-            const id = `inline-${Object.keys(footnotes).length + 1}`
+            const id = `inline-${counter++}`
             footnotes[id] = content.trim()
             return `[^${id}]`
           },
