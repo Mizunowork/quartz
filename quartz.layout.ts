@@ -38,7 +38,7 @@ export const defaultContentPageLayout: PageLayout = {
 
 // components for the index page
 export const indexContentPageLayout: PageLayout = {
-  ...defaultContentPageLayout
+  ...defaultContentPageLayout,
 }
 
 // components for pages that display lists of pages  (e.g. tags or folders)
