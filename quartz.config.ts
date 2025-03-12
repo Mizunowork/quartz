@@ -18,14 +18,14 @@ const config: QuartzConfig = {
     locale: "zh-CN", 
     baseUrl: "enneaaa.netlify.app",  
     ignorePatterns: ["private", "templates", ".obsidian"],   
-    defaultDateType: "created", 
+    defaultDateType: "created",  
     generateSocialImages: true,
     theme: {
       fontOrigin: "local", 
       cdnCaching: true,
       typography: {
-        header: "LXGW WenKai Lite",     
-        body: "LXGW WenKai Lite",   
+        header: "LXGW WenKai",      
+        body: "LXGW WenKai",    
         code: "IBM Plex Mono",   
       },
       colors: {
