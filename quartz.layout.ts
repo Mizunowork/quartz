@@ -45,6 +45,25 @@ export const defaultContentPageLayout: PageLayout = {
     Component.DesktopOnly(Component.TableOfContents()), 
     Component.Backlinks(),
   ],
+  afterBody: [  
+    Component.Comments({  
+      provider: 'giscus',
+      options: { 
+        // from data-repo 
+        repo: 'enneaa/giscus',  
+        // from data-repo-id 
+        repoId: 'R_kgDOOHb7aw',  
+        // from data-category  
+        category: 'Announcements',  
+        // from data-category-id  
+        categoryId: 'DIC_kwDOOHb7a84Cn6os',    
+        themeUrl: "https://enneaaa.netlify.app/static/giscus", 
+        lightTheme: "light-theme", 
+        darkTheme: "dark-theme",
+        inputPosition: "top",
+      }
+    }),
+  ],
 }
 
 // components for pages that display lists of pages  (e.g. tags or folders)
