@@ -16,16 +16,16 @@ const config: QuartzConfig = {
       provider: "plausible",
     },
     locale: "zh-CN", 
-    baseUrl: "enneaaa.netlify.app", 
+    baseUrl: "enneaaa.netlify.app",  
     ignorePatterns: ["private", "templates", ".obsidian"],   
     defaultDateType: "created", 
     generateSocialImages: true,
     theme: {
-      fontOrigin: "googleFonts",
+      fontOrigin: "local", 
       cdnCaching: true,
       typography: {
-        header: "Noto Serif SC",    
-        body: "Noto Serif SC",  
+        header: "LXGW WenKai Lite",     
+        body: "LXGW WenKai Lite",   
         code: "IBM Plex Mono",   
       },
       colors: {
