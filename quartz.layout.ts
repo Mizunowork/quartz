@@ -5,6 +5,7 @@ import * as Component from "./quartz/components"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
+  afterBody: [],
   left: [Component.RecentNotes({
     title: "最近笔记",
     limit: 5,
@@ -19,10 +20,10 @@ export const sharedPageComponents: SharedLayout = {
 }
 
 // components for pages that display a single page (e.g. a single note)
-export const defaultContentPageLayout: PageLayout = { 
+export const defaultContentPageLayout: PageLayout = { 
   beforeBody: [
-    Component.ArticleTitle(),
-    Component.ContentMeta(), 
+    Component.ArticleTitle(), 
+    Component.ContentMeta(),
     Component.TagList(),
   ],
   left: [
@@ -31,16 +32,17 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Flex({
       components: [
         {
-          Component: Component.Search(), 
+          Component: Component.Search(),
           grow: true,
         },
         { Component: Component.Darkmode() },
       ],
     }),
+    Component.Explorer(),
   ],
-  right: [ 
-    Component.DesktopOnly(Component.TableOfContents()), 
+  right: [
     Component.Graph(),
+    Component.DesktopOnly(Component.TableOfContents()),
   ],
   afterBody: [  
     Component.Backlinks(),
@@ -57,16 +59,15 @@ export const defaultContentPageLayout: PageLayout = {
         categoryId: 'DIC_kwDOOHb7a84Cn6os',    
         themeUrl: "https://enneaaa.netlify.app/static/giscus", 
         lightTheme: "light-theme", 
-        darkTheme: "dark-theme",
+        darkTheme: "dark-theme", 
         inputPosition: "top",
       }
     }),
-  ],
 }
 
 // components for pages that display lists of pages  (e.g. tags or folders)
-export const defaultListPageLayout: PageLayout = { 
-  beforeBody: [Component.ArticleTitle(), Component.ContentMeta()],
+export const defaultListPageLayout: PageLayout = {
+  beforeBody: [Component.ArticleTitle(), Component.ContentMeta()], 
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
@@ -74,5 +75,4 @@ export const defaultListPageLayout: PageLayout = {
     Component.Darkmode(),
   ],
   right: [],
-  afterBody: [],
 }
