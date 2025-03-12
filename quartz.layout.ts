@@ -39,11 +39,11 @@ export const defaultContentPageLayout: PageLayout = {
     }),
   ],
   right: [ 
-    Component.Graph(),
     Component.DesktopOnly(Component.TableOfContents()), 
-    Component.Backlinks(),
+    Component.Graph(),
   ],
   afterBody: [  
+    Component.Backlinks(),
     Component.Comments({  
       provider: 'giscus',
       options: { 
