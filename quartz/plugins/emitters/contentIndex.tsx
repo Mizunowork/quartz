@@ -27,16 +27,16 @@ interface Options {
   rssLimit?: number
   rssFullHtml: boolean
   rssSlug: string
-  includeEmptyFiles: boolean
+  includeEmptyFiles: boolean 
 }
 
 const defaultOptions: Options = {
   enableSiteMap: true,
   enableRSS: true,
-  rssLimit: 10,
-  rssFullHtml: false,
-  rssSlug: "index",
-  includeEmptyFiles: true,
+  rssLimit: 20, 
+  rssFullHtml: true, 
+  rssSlug: "feed", 
+  includeEmptyFiles: true, 
 }
 
 function generateSiteMap(cfg: GlobalConfiguration, idx: ContentIndexMap): string {
