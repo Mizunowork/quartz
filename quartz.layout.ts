@@ -35,10 +35,10 @@ export const defaultContentPageLayout: PageLayout = {   
     }),
     Component.RecentNotes({   
     title: "最近笔记",
-    limit: 5,
-    showTags: true
+    limit: 3, 
+    showTags: false,
     }), 
-    Component.Explorer(),   
+    Component.Explorer(),    
   ],
   right: [
     Component.DesktopOnly(Component.TableOfContents()),   
@@ -49,19 +49,19 @@ export const defaultContentPageLayout: PageLayout = {   
 }
 
 // components for pages that display lists of pages  (e.g. tags or folders)
-export const defaultListPageLayout: PageLayout = { 
+export const defaultListPageLayout: PageLayout = {  
   beforeBody: [Component.ArticleTitle(), Component.ContentMeta()], 
   left: [
     Component.PageTitle(),
-    Component.MobileOnly(Component.Spacer()),   
+    Component.MobileOnly(Component.Spacer()),    
     Component.Search(), 
     Component.Darkmode(), 
     Component.RecentNotes({   
     title: "最近笔记",
-    limit: 5,
-    showTags: true
+    limit: 3, 
+    showTags: false,
     }), 
-    Component.Explorer(),   
+    Component.Explorer(),    
   ],
   right: [],
 }
