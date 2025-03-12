@@ -1,10 +1,6 @@
 @use "./base.scss";
-
-// put your custom CSS here! 
-// 使用 @import 引入字体
 @import 'https://cdn.staticfile.org/lxgw-wenkai-screen-webfont/1.6.0/lxgwwenkaiscreen.css';
 
-// 只需要在 body 中设置字体即可，会自动继承给子元素
 body {
   font-family: "LXGW WenKai Screen", sans-serif;
 }
