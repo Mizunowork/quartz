@@ -28,22 +28,22 @@ export const defaultContentPageLayout: PageLayout = {   
       components: [ 
         {
           Component: Component.Search(), 
-          grow: true, 
+          grow: true,  
         },
         { Component: Component.Darkmode() }, 
       ],
     }),
-    Component.Explorer(),   
     Component.RecentNotes({   
     title: "最近笔记",
     limit: 5,
     showTags: true
-  }), 
+    }), 
+    Component.Explorer(),   
   ],
   right: [
-    Component.DesktopOnly(Component.TableOfContents()),  
+    Component.DesktopOnly(Component.TableOfContents()),   
     Component.Backlinks(),    
-    Component.Graph(),      
+    Component.Graph(),       
   ], 
   afterBody: [],
 }
@@ -53,15 +53,15 @@ export const defaultListPageLayout: PageLayout = { 
   beforeBody: [Component.ArticleTitle(), Component.ContentMeta()], 
   left: [
     Component.PageTitle(),
-    Component.MobileOnly(Component.Spacer()),  
+    Component.MobileOnly(Component.Spacer()),   
     Component.Search(), 
     Component.Darkmode(), 
-    Component.Explorer(),  
-    Component.RecentNotes({  
+    Component.RecentNotes({   
     title: "最近笔记",
     limit: 5,
     showTags: true
-  }), 
+    }), 
+    Component.Explorer(),   
   ],
   right: [],
 }
