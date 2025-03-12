@@ -9,7 +9,7 @@ import * as Plugin from "./quartz/plugins"
 const config: QuartzConfig = {
   configuration: {
     pageTitle: "🌲是話說",  
-    pageTitleSuffix: "", 
+    pageTitleSuffix: "",  
     enableSPA: true,
     enablePopovers: true,
     analytics: {
@@ -17,16 +17,16 @@ const config: QuartzConfig = {
     },
     locale: "zh-CN", 
     baseUrl: "enneaaa.netlify.app", 
-    ignorePatterns: ["private", "templates", ".obsidian"], 
+    ignorePatterns: ["private", "templates", ".obsidian"],  
     defaultDateType: "created",
     generateSocialImages: true,
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Noto Sans SC",  
+        header: "Noto Serif SC",   
         body: "Noto Sans SC", 
-        code: "IBM Plex Mono", 
+        code: "IBM Plex Mono",  
       },
       colors: {
         lightMode: {
@@ -35,21 +35,21 @@ const config: QuartzConfig = {
           gray: "#b8b8b8",
           darkgray: "#4e4e4e",
           dark: "#2b2b2b",
-          secondary: "#284b63",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#fff23688",
+          secondary: "#7992a0", 
+          tertiary: "#84a59d", 
+          highlight: "rgba(143, 159, 169, 0.15)", 
+          textHighlight: "#fff23688", 
         },
         darkMode: {
           light: "#161618",
-          lightgray: "#393639",
+          lightgray: "#393639", 
           gray: "#646464",
           darkgray: "#d4d4d4",
           dark: "#ebebec",
-          secondary: "#7b97aa", 
+          secondary: "#7b97aa",  
           tertiary: "#84a59d",
           highlight: "rgba(143, 159, 169, 0.15)",
-          textHighlight: "#b3aa0288",
+          textHighlight: "#b3aa0288", 
         },
       },
     },
