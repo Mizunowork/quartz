@@ -6,10 +6,10 @@ export const sharedPageComponents: SharedLayout = {  
   head: Component.Head(),
   header: [],
   afterBody: [],
-  footer: Component.Footer({
+  footer: Component.Footer({ 
     links: {
-      GitHub: "https://github.com/jackyzha0/quartz", 
-      "Discord Community": "https://discord.gg/cRFFHYye7t", 
+      GitHub: "https://github.com/jackyzha0/quartz",  
+      "Scroll to top ↑": "#", 
     },
   }),
 }
@@ -22,45 +22,30 @@ export const defaultContentPageLayout: PageLayout = {   
     Component.TagList(), 
   ],
   left: [
-    Component.PageTitle(), 
-    Component.MobileOnly(Component.Spacer()), 
-    Component.Flex({
-      components: [ 
-        {
-          Component: Component.Search(), 
-          grow: true,  
-        },
-        { Component: Component.Darkmode() }, 
-      ],
-    }),
-    Component.RecentNotes({   
-    title: "最近笔记",
-    limit: 3, 
-    showTags: false,
-    }), 
-    Component.Explorer(),    
+    Component.PageTitle(),  
+    Component.MobileOnly(Component.Spacer()),  
+    Component.Search(),
+    Component.Darkmode(),
+    Component.DesktopOnly(Component.RecentNotes({ limit: 3, showTags: false })),
+    Component.Explorer(),     
   ],
   right: [
-    Component.DesktopOnly(Component.TableOfContents()),   
-    Component.Backlinks(),    
+    Component.DesktopOnly(Component.TableOfContents()),    
+    Component.Backlinks(),     
     Component.Graph(),       
   ], 
   afterBody: [],
 }
 
 // components for pages that display lists of pages  (e.g. tags or folders)
-export const defaultListPageLayout: PageLayout = {  
+export const defaultListPageLayout: PageLayout = {   
   beforeBody: [Component.ArticleTitle(), Component.ContentMeta()], 
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),    
     Component.Search(), 
-    Component.Darkmode(), 
-    Component.RecentNotes({   
-    title: "最近笔记",
-    limit: 3, 
-    showTags: false,
-    }), 
+    Component.Darkmode(),  
+    Component.DesktopOnly(Component.RecentNotes({ limit: 3, showTags: false })),
     Component.Explorer(),    
   ],
   right: [],
