@@ -5,11 +5,11 @@ import * as Component from "./quartz/components"
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
-  afterBody: [],
-  left: [Component.RecentNotes({
+  afterBody: [], 
+  left: [Component.RecentNotes({ 
     title: "最近笔记",
     limit: 5,
-    showTags: true
+    showTags: true 
   })],
   footer: Component.Footer({
     links: {
@@ -22,31 +22,30 @@ export const sharedPageComponents: SharedLayout = {
 // components for pages that display a single page (e.g. a single note)
 export const defaultContentPageLayout: PageLayout = { 
   beforeBody: [
-    Component.ArticleTitle(), 
+    Component.ArticleTitle(),  
     Component.ContentMeta(),
     Component.TagList(),
   ],
   left: [
-    Component.PageTitle(),
+    Component.PageTitle(), 
     Component.MobileOnly(Component.Spacer()),
     Component.Flex({
       components: [
         {
-          Component: Component.Search(),
+          Component: Component.Search(), 
           grow: true,
         },
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.Explorer(),
   ],
   right: [
-    Component.Graph(), 
     Component.DesktopOnly(Component.TableOfContents()),
+    Component.Graph(),  
   ], 
   afterBody: [   
-    Component.Backlinks(), 
-    Component.Comments({   
+    Component.Backlinks(),  
+    Component.Comments({    
       provider: 'giscus',
       options: { 
         // from data-repo  
@@ -56,7 +55,7 @@ export const defaultContentPageLayout: PageLayout = { 
         // from data-category  
         category: 'Announcements',  
         // from data-category-id   
-        categoryId: 'DIC_kwDOOHb7a84Cn6os',     
+        categoryId: 'DIC_kwDOOHb7a84Cn6os',      
         themeUrl: "https://enneaaa.netlify.app/static/giscus", 
         lightTheme: "light-theme", 
         darkTheme: "dark-theme",  
