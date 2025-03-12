@@ -15,15 +15,15 @@ export const sharedPageComponents: SharedLayout = {  
 }
 
 // components for pages that display a single page (e.g. a single note) 
-export const defaultContentPageLayout: PageLayout = {  
+export const defaultContentPageLayout: PageLayout = {   
   beforeBody: [
-    Component.ArticleTitle(),  
+    Component.ArticleTitle(),   
     Component.ContentMeta(), 
-    Component.TagList(),
+    Component.TagList(), 
   ],
   left: [
     Component.PageTitle(), 
-    Component.MobileOnly(Component.Spacer()),
+    Component.MobileOnly(Component.Spacer()), 
     Component.Flex({
       components: [ 
         {
@@ -33,31 +33,30 @@ export const defaultContentPageLayout: PageLayout = {  
         { Component: Component.Darkmode() }, 
       ],
     }),
-    Component.Explorer(),  
-    Component.RecentNotes({  
+    Component.Explorer(),   
+    Component.RecentNotes({   
     title: "最近笔记",
     limit: 5,
     showTags: true
   }), 
   ],
   right: [
-    Component.DesktopOnly(Component.TableOfContents()), 
-    Component.Graph(),    
+    Component.DesktopOnly(Component.TableOfContents()),  
+    Component.Backlinks(),    
+    Component.Graph(),      
   ], 
-  afterBody: [   
-    Component.Backlinks(),   
-  ],
+  afterBody: [],
 }
 
 // components for pages that display lists of pages  (e.g. tags or folders)
-export const defaultListPageLayout: PageLayout = {
+export const defaultListPageLayout: PageLayout = { 
   beforeBody: [Component.ArticleTitle(), Component.ContentMeta()], 
   left: [
     Component.PageTitle(),
-    Component.MobileOnly(Component.Spacer()), 
-    Component.Search(),
-    Component.Darkmode(),
-    Component.Explorer(), 
+    Component.MobileOnly(Component.Spacer()),  
+    Component.Search(), 
+    Component.Darkmode(), 
+    Component.Explorer(),  
     Component.RecentNotes({  
     title: "最近笔记",
     limit: 5,
