@@ -74,4 +74,5 @@ export const defaultListPageLayout: PageLayout = {
     Component.Darkmode(),
   ],
   right: [],
+  afterBody: [],
 }
