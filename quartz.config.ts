@@ -17,7 +17,7 @@ const config: QuartzConfig = {
     },
     locale: "zh-CN", 
     baseUrl: "enneaaa.netlify.app", 
-    ignorePatterns: ["private", "templates", ".obsidian"],
+    ignorePatterns: ["private", "templates", ".obsidian"], 
     defaultDateType: "created",
     generateSocialImages: true,
     theme: {
@@ -46,7 +46,7 @@ const config: QuartzConfig = {
           gray: "#646464",
           darkgray: "#d4d4d4",
           dark: "#ebebec",
-          secondary: "#7b97aa",
+          secondary: "#7b97aa", 
           tertiary: "#84a59d",
           highlight: "rgba(143, 159, 169, 0.15)",
           textHighlight: "#b3aa0288",
@@ -91,5 +91,28 @@ const config: QuartzConfig = {
     ],
   },
 }
+
+Component.RecentNotes({
+  title: "最近更新",
+  showTags: false,
+  limit: 4,
+  filter: (f) => {
+    if (f.filePath?.endsWith("index.md")) {
+      return false
+    }
+    return true
+  },
+  sort: (f1, f2) => {
+    if (f1.dates && f2.dates) {
+      if (Math.abs(f2.dates.modified.getDay() - f1.dates.modified.getDay())<=3) {
+        return f2.dates.created.getTime() - f1.dates.created.getTime()
+      }
+      return f2.dates.modified.getTime() - f1.dates.modified.getTime()
+    } else if (f1.dates && !f2.dates) {
+      return -1
+    }
+    return 1 
+  }
+})
 
 export default config
