@@ -139,7 +139,7 @@ export default (() => {
 
     const ogImageDefaultPath = `https://${cfg.baseUrl}/static/og-image.png`
     // "static/social-images/slug-filename.md.webp"
-    const ogImageGeneratedPath = `https://${cfg.baseUrl}/${fileDir.replace(
+    const ogImageGeneratedPath = `https://${cfg.baseUrl}/${fileDir.replace( 
       `${ctx.argv.output}/`,
       "",
     )}/${fileName}.${extension}`
@@ -172,7 +172,13 @@ export default (() => {
       <head>
         <title>{title}</title>
         <meta charSet="utf-8" />
-        {cfg.theme.cdnCaching && cfg.theme.fontOrigin === "googleFonts" && (
+        {cfg.theme.cdnCaching && ( 
+          <>
+            <link rel="preconnect" href="https://cdn.jsdelivr.net" /> 
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css" />  
+          </>
+        )}
+        {cfg.theme.cdnCaching && cfg.theme.fontOrigin === "googleFonts" && ( 
           <>
             <link rel="preconnect" href="https://fonts.googleapis.com" />
             <link rel="preconnect" href="https://fonts.gstatic.com" />
