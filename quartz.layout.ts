@@ -56,7 +56,7 @@ export const defaultContentPageLayout: PageLayout = { 
       themeUrl: "https://enneaaa.netlify.app/static/giscus", 
       lightTheme: "light-theme", 
       darkTheme: "dark-theme",
-      inputPosition: "top"
+      inputPosition: "top",
     }
   }),
 ],
