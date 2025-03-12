@@ -1,12 +1,13 @@
 import { QuartzConfig } from "./quartz/cfg"
 import * as Plugin from "./quartz/plugins"
+import * as Component from "./quartz/components"  // 添加这行
 
 /**
  * Quartz 4 Configuration
  *
  * See https://quartz.jzhao.xyz/configuration for more information.
  */
-const config: QuartzConfig = {
+const config: QuartzConfig = { 
   configuration: {
     pageTitle: "是話說", 
     pageTitleSuffix: "",
@@ -90,32 +91,32 @@ const config: QuartzConfig = {
       Plugin.NotFoundPage(),
     ],
   },
-  components: { 
-    beforeBody: [
-      Component.RecentNotes({
+  components: {  
+    beforeBody: [ 
+      Component.RecentNotes({ 
         title: "最近更新",
         showTags: false,
         limit: 4,
-        filter: (f) => { 
-          if (f.filePath?.endsWith("index.md")) {
+        filter: (f) => {  
+          if (f.filePath?.endsWith("index.md")) { 
             return false
           }
           return true
         },
         sort: (f1, f2) => {
-          if (f1.dates && f2.dates) {
-            if (Math.abs(f2.dates.modified.getDay() - f1.dates.modified.getDay())<=3) {
+          if (f1.dates && f2.dates) { 
+            if (Math.abs(f2.dates.modified.getDay() - f1.dates.modified.getDay())<=3) { 
               return f2.dates.created.getTime() - f1.dates.created.getTime()
             }
-            return f2.dates.modified.getTime() - f1.dates.modified.getTime()
-          } else if (f1.dates && !f2.dates) {
+            return f2.dates.modified.getTime() - f1.dates.modified.getTime() 
+          } else if (f1.dates && !f2.dates) { 
             return -1 
           }
           return 1
         }
       })
     ]
-    }
+  }
 }
 
 
