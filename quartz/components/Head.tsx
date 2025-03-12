@@ -175,12 +175,12 @@ export default (() => {
         {cfg.theme.cdnCaching && cfg.theme.fontOrigin === "local" ? ( 
           <>
             <link rel="preconnect" href="https://cdn.staticfile.org" />
-            <link rel="stylesheet" href="https://cdn.staticfile.org/lxgw-wenkai-webfont/1.7.0/style.css" /> 
+            <link rel="stylesheet" href="https://cdn.staticfile.org/lxgw-wenkai-webfont/1.7.0/style.css" />  
           </>
         ) : cfg.theme.fontOrigin === "googleFonts" ? (
           <>
             <link rel="preconnect" href="https://fonts.googleapis.com" /> 
-            <link rel="preconnect" href="https://fonts.gstatic.com" /> 
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" /> 
             <link rel="stylesheet" href={googleFontHref(cfg.theme)} />
           </>
         ) : null}
