@@ -8,7 +8,7 @@ export const sharedPageComponents: SharedLayout = {  
   afterBody: [],
   footer: Component.Footer({ 
     links: {
-      GitHub: "https://github.com/jackyzha0/quartz",  
+      GitHub: "https://github.com/jackyzha0/quartz",   
       "Scroll to top ↑": "#", 
     },
   }),
@@ -18,19 +18,19 @@ export const sharedPageComponents: SharedLayout = {  
 export const defaultContentPageLayout: PageLayout = {   
   beforeBody: [
     Component.ArticleTitle(),   
-    Component.ContentMeta(), 
+    Component.ContentMeta(),  
     Component.TagList(), 
   ],
   left: [
     Component.PageTitle(),  
     Component.MobileOnly(Component.Spacer()),  
     Component.Flex({ 
-      components: [
+      components: [ 
         {
-          Component: Component.Search(),
-          grow: true,
+          Component: Component.Search(), 
+          grow: true, 
         },
-        { Component: Component.Darkmode() },
+        { Component: Component.Darkmode() }, 
       ],
     }),
     Component.DesktopOnly(Component.RecentNotes({ limit: 3, showTags: false })),
@@ -45,12 +45,12 @@ export const defaultContentPageLayout: PageLayout = {   
 }
 
 // components for pages that display lists of pages  (e.g. tags or folders)
-export const defaultListPageLayout: PageLayout = {   
+export const defaultListPageLayout: PageLayout = {    
   beforeBody: [Component.ArticleTitle(), Component.ContentMeta()], 
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),    
-    Component.Search(), 
+    Component.Search(),  
     Component.Darkmode(),  
     Component.DesktopOnly(Component.RecentNotes({ limit: 3, showTags: false })),
     Component.Explorer(),    
