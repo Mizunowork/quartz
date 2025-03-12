@@ -45,14 +45,14 @@ export const defaultContentPageLayout: PageLayout = { 
   Component.Comments({ 
     provider: 'giscus',
     options: {
-      // from data-repo
-      repo: 'jackyzha0/quartz', 
-      // from data-repo-id
-      repoId: 'MDEwOlJlcG9zaXRvcnkzODcyMTMyMDg',
-      // from data-category
-      category: 'Announcements',
-      // from data-category-id 
-      categoryId: 'DIC_kwDOFxRnmM4B-Xg6', 
+      // from data-repo 
+      repo: 'enneaa/giscus',  
+      // from data-repo-id 
+      repoId: 'R_kgDOOHb7aw', 
+      // from data-category 
+      category: 'Announcements', 
+      // from data-category-id  
+      categoryId: 'DIC_kwDOOHb7a84Cn6os',  
     }
   }),
 ],
