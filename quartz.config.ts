@@ -90,7 +90,7 @@ const config: QuartzConfig = {
       Plugin.NotFoundPage(),
     ],
   },
-    components: {
+  components: { 
     beforeBody: [
       Component.RecentNotes({
         title: "最近更新",
