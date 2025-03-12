@@ -135,7 +135,7 @@ export default (() => {
     const path = url.pathname as FullSlug
     const baseDir = fileData.slug === "404" ? path : pathToRoot(fileData.slug!)
 
-    const iconPath = joinSegments(baseDir, "static/icon.png")
+    const iconPath = joinSegments(baseDir, "static/icon.png") 
 
     const ogImageDefaultPath = `https://${cfg.baseUrl}/static/og-image.png`
     // "static/social-images/slug-filename.md.webp"
@@ -172,7 +172,7 @@ export default (() => {
       <head>
         <title>{title}</title>
         <meta charSet="utf-8" />
-        {cfg.theme.cdnCaching && ( 
+        {cfg.theme.cdnCaching && cfg.theme.fontOrigin === "local" && (  
           <>
             <link rel="preconnect" href="https://cdn.jsdelivr.net" /> 
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.1.0/style.css" />  
