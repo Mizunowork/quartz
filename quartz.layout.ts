@@ -1,15 +1,10 @@
-import { PageLayout, SharedLayout } from "./quartz/cfg"
+import { PageLayout, SharedLayout } from "./quartz/cfg" 
 import * as Component from "./quartz/components"
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {  
   head: Component.Head(),
   header: [],
-  left: [Component.RecentNotes({
-    title: "最近笔记",
-    limit: 5,
-    showTags: true
-  })], 
   afterBody: [],
   footer: Component.Footer({
     links: {
@@ -38,11 +33,16 @@ export const defaultContentPageLayout: PageLayout = {  
         { Component: Component.Darkmode() }, 
       ],
     }),
-    Component.Explorer(), 
+    Component.Explorer(),  
+    Component.RecentNotes({  
+    title: "最近笔记",
+    limit: 5,
+    showTags: true
+  }), 
   ],
   right: [
     Component.DesktopOnly(Component.TableOfContents()), 
-    Component.Graph(),   
+    Component.Graph(),    
   ], 
   afterBody: [   
     Component.Backlinks(),   
@@ -54,10 +54,15 @@ export const defaultListPageLayout: PageLayout = {
   beforeBody: [Component.ArticleTitle(), Component.ContentMeta()], 
   left: [
     Component.PageTitle(),
-    Component.MobileOnly(Component.Spacer()),
+    Component.MobileOnly(Component.Spacer()), 
     Component.Search(),
     Component.Darkmode(),
     Component.Explorer(), 
+    Component.RecentNotes({  
+    title: "最近笔记",
+    limit: 5,
+    showTags: true
+  }), 
   ],
   right: [],
 }
