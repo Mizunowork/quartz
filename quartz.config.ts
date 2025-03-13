@@ -24,7 +24,7 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",    
       cdnCaching: true,   
       typography: {
-        header: "Noto Sans SC",      
+        header: "Noto Serif SC",      
         body: "Noto Sans SC",      
         code: "IBM Plex Mono",            
       },
