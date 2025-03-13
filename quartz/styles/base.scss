@@ -12,12 +12,12 @@ html {
 }
 
 body,
-section {
+section {  
   margin: 0;
   box-sizing: border-box;
-  background-color: var(--light);
-  font-family: var(--bodyFont);
-  color: var(--darkgray);
+  background-color: var(--light);  
+  font-family: var(--bodyFont);  
+  color: var(--darkgray);  
 }
 
 .text-highlight {
@@ -70,9 +70,9 @@ strong {
 }
 
 a {
-  font-weight: $semiBoldWeight;
-  text-decoration: none;
-  transition: color 0.2s ease;
+  /* font-weight: $semiBoldWeight; */    
+  text-decoration: none;  
+  transition: color 0.2s ease;  
   color: var(--secondary);
 
   &:hover {
@@ -80,8 +80,8 @@ a {
   }
 
   &.internal {
-    text-decoration: none;
-    background-color: var(--highlight);
+    text-decoration: none;    
+    /* background-color: var(--highlight);  */
     padding: 0 0.1rem;
     border-radius: 5px;
     line-height: 1.4rem;
