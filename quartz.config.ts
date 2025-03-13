@@ -19,14 +19,14 @@ const config: QuartzConfig = {
     baseUrl: "enneaaa.netlify.app",  
     ignorePatterns: ["private", "templates", ".obsidian"],   
     defaultDateType: "created",    
-    generateSocialImages: true,  
+    generateSocialImages: true,    
     theme: {
       fontOrigin: "googleFonts",    
       cdnCaching: true,   
       typography: {
         header: "Noto Sans SC",      
         body: "Noto Sans SC",      
-        code: "Noto Sans SC",          
+        code: "IBM Plex Mono",            
       },
       colors: {
         lightMode: {
