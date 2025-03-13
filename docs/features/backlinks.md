@@ -10,6 +10,7 @@ A backlink for a note is a link from another note to that note. Links in the bac
 
 - Removing backlinks: delete all usages of `Component.Backlinks()` from `quartz.layout.ts`.
 - Hide when empty: hide `Backlinks` if given page doesn't contain any backlinks (default to `true`). To disable this, use `Component.Backlinks({ hideWhenEmpty: false })`.
+- Hide on root: hide `Backlinks` on the home page `content/index.md` (default to `false`). To enable this, use `Component.Backlinks({ hideOnRoot: true })`.
 - Component: `quartz/components/Backlinks.tsx`
 - Style: `quartz/components/styles/backlinks.scss`
 - Script: `quartz/components/scripts/search.inline.ts`
