@@ -137,6 +137,7 @@ The home page is the main web page of your Quartz. The content for the home page
 
 Customization of the home page can be achieved by conditionally hiding or unhiding components; by passing in a boolean value to the `hideOnRoot{:ts}` option for the components detailed in the `defaultContentPageLayout{:ts}` variable in `quartz.config.ts`. The components that support this feature are:
 
+- Article title is shown by default, to hide it the configuration looks like: `Component.ArticleTitle({hideOnRoot:true}){:ts}`
 - [[Backlinks]] are shown by default, to hide them the configuration looks like: `Component.Backlinks({ hideOnRoot: true }){:ts}`
 - [[Breadcrumbs]] are hidden by default, to unhide them the configuration looks like: `Component.Breadcrumbs({ hideOnRoot: false }){:ts}`
 - Date and reading time are shown by default, to hide them the configuration looks like: `Component.ContentMeta({ hideOnRoot: true }){:ts}`
