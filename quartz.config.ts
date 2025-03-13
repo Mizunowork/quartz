@@ -18,15 +18,15 @@ const config: QuartzConfig = {
     locale: "zh-CN", 
     baseUrl: "enneaaa.netlify.app",  
     ignorePatterns: ["private", "templates", ".obsidian"],   
-    defaultDateType: "created",  
-    generateSocialImages: true,
+    defaultDateType: "created",    
+    generateSocialImages: true,  
     theme: {
-      fontOrigin: "googleFonts",
-      cdnCaching: true, 
+      fontOrigin: "googleFonts",  
+      cdnCaching: true,   
       typography: {
-        header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
-        code: "IBM Plex Mono",    
+        header: "sans-serif",  
+        body: "sans-serif",  
+        code: "IBM Plex Mono",      
       },
       colors: {
         lightMode: {
@@ -38,7 +38,7 @@ const config: QuartzConfig = {
           secondary: "#7992a0",  
           tertiary: "#7992a0",  
           highlight: "rgba(143, 159, 169, 0.07)", 
-          textHighlight: "#fff23688", 
+          textHighlight: "#fff23688",   
         },
         darkMode: { 
           light: "#161618",
