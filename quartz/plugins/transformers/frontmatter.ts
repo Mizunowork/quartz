@@ -3,12 +3,11 @@ import remarkFrontmatter from "remark-frontmatter"
 import { QuartzTransformerPlugin } from "../types"
 import yaml from "js-yaml"
 import toml from "toml"
-import { FilePath, FullSlug, joinSegments, slugifyFilePath, slugTag } from "../../util/path"
+import { FullSlug, joinSegments, slugTag } from "../../util/path"
 import { QuartzPluginData } from "../vfile"
 import { i18n } from "../../i18n"
 import { Argv } from "../../util/ctx"
 import { VFile } from "vfile"
-import path from "path"
 
 export interface Options {
   delimiters: string | [string, string]
@@ -22,7 +21,10 @@ const defaultOptions: Options = {
 
 function coalesceAliases(data: { [key: string]: any }, aliases: string[]) {
   for (const alias of aliases) {
-    if (data[alias] !== undefined && data[alias] !== null) return data[alias]
+    if (data[alias] !== undefined && data[alias] !== null) {
+      if (typeof data[alias] === "string") return [data[alias]]
+      return data[alias]
+    }
   }
 }
 
@@ -43,14 +45,14 @@ function coerceToArray(input: string | string[]): string[] | undefined {
     .map((tag: string | number) => tag.toString())
 }
 
-export function getAliasSlugs(aliases: string[], argv: Argv, file: VFile): FullSlug[] {
-  const dir = path.posix.relative(argv.directory, path.dirname(file.data.filePath!))
+export function getAliasSlugs(aliases: string[], _argv: Argv, file: VFile): FullSlug[] {
   const slugs: FullSlug[] = aliases.map(
-    (alias) => path.posix.join(dir, slugifyFilePath(alias as FilePath)) as FullSlug,
+    (alias) => (alias.startsWith("/") ? alias : `/${alias}`) as FullSlug,
   )
   const permalink = file.data.frontmatter?.permalink
   if (typeof permalink === "string") {
-    slugs.push(permalink as FullSlug)
+    const absolutePermalink = permalink.startsWith("/") ? permalink : `/${permalink}`
+    slugs.push(absolutePermalink as FullSlug)
   }
   // fix any slugs that have trailing slash
   return slugs.map((slug) =>
@@ -131,6 +133,7 @@ declare module "vfile" {
         created: string
         published: string
         description: string
+        permalink: string
         publish: boolean | string
         draft: boolean | string
         lang: string

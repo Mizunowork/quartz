@@ -2,6 +2,10 @@
 title: AliasRedirects
 tags:
   - plugin/emitter
+permalink: "permalink"
+alias:
+  - "alias"
+  - "aliases"
 ---
 
 This plugin emits HTML redirect pages for aliases and permalinks defined in the frontmatter of content files.
@@ -11,14 +15,15 @@ For example, A `foo.md` has the following frontmatter
 ```md title="foo.md"
 ---
 title: "Foo"
+permalink: "bar"
 alias:
-  - "bar"
+  - "baz"
 ---
 ```
 
-The target `host.me/bar` will be redirected to `host.me/foo`
+The target `host.me/bar` and `host.me/baz` will be redirected to `host.me/foo`
 
-Note that these are permanent redirect.
+Note that these are permanent redirects.
 
 The emitter supports the following aliases:
 
