@@ -130,3 +130,14 @@ typography: {
   ...
 }
 ```
+
+## Home Page
+
+The home page is the main web page of your Quartz. The content for the home page lives in `content/index.md`, to change it see [[authoring content|the authoring content guide]].
+
+Customization of the home page can be achieved by conditionally hiding or unhiding components; by passing in a boolean value to the `hideOnRoot:` options in `quartz.config.ts`. The components that support this feature are:
+
+- [[Breadcrumbs]] are hidden by default, to unhide them the configuration looks like: `Component.Breadcrumbs({ hideOnRoot: false }){:ts}`
+- Date and reading time are shown by default, to hide them the configuration looks like: `Component.ContentMeta({ hideOnRoot: true }){:ts}`
+
+A differnet method is used to configure the comment box on the home page, see [[Comments#Conditionally display comments|conditionally display comments]].

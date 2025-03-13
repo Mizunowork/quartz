@@ -12,11 +12,13 @@ interface ContentMetaOptions {
    */
   showReadingTime: boolean
   showComma: boolean
+  hideOnRoot: boolean
 }
 
 const defaultOptions: ContentMetaOptions = {
   showReadingTime: true,
   showComma: true,
+  hideOnRoot: false
 }
 
 export default ((opts?: Partial<ContentMetaOptions>) => {
@@ -24,6 +26,11 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
   const options: ContentMetaOptions = { ...defaultOptions, ...opts }
 
   function ContentMetadata({ cfg, fileData, displayClass }: QuartzComponentProps) {
+    // Hide metadata on root if enabled
+    if (options.hideOnRoot && fileData.slug === "index") {
+      return null
+    }
+
     const text = fileData.text
 
     if (text) {
