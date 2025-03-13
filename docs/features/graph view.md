@@ -23,7 +23,7 @@ Most configuration can be done by passing in options to `Component.Graph()`.
 For example, here's what the default configuration looks like:
 
 ```typescript title="quartz.layout.ts"
-Component.Graph({
+const defaultOptions: GraphOptions = {
   localGraph: {
     drag: true, // whether to allow panning the view around
     zoom: true, // whether to allow zooming in and out
@@ -34,8 +34,9 @@ Component.Graph({
     linkDistance: 30, // how long should the links be by default?
     fontSize: 0.6, // what size should the node labels be?
     opacityScale: 1, // how quickly do we fade out the labels when zooming out?
-    removeTags: [], // what tags to remove from the graph
     showTags: true, // whether to show tags in the graph
+    removeTags: [], // what tags to remove from the graph
+    focusOnHover: false,
     enableRadial: false, // whether to constrain the graph, similar to Obsidian
   },
   globalGraph: {
@@ -44,15 +45,17 @@ Component.Graph({
     depth: -1,
     scale: 0.9,
     repelForce: 0.5,
-    centerForce: 0.3,
+    centerForce: 0.2,
     linkDistance: 30,
     fontSize: 0.6,
     opacityScale: 1,
-    removeTags: [], // what tags to remove from the graph
-    showTags: true, // whether to show tags in the graph
-    enableRadial: true, // whether to constrain the graph, similar to Obsidian
+    showTags: true,
+    removeTags: [],
+    focusOnHover: true,
+    enableRadial: true,
   },
-})
+  hideOnRoot: false
+}
 ```
 
 When passing in your own options, you can omit any or all of these fields if you'd like to keep the default value for that field.

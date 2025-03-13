@@ -24,6 +24,7 @@ export interface D3Config {
 interface GraphOptions {
   localGraph: Partial<D3Config> | undefined
   globalGraph: Partial<D3Config> | undefined
+  hideOnRoot: boolean
 }
 
 const defaultOptions: GraphOptions = {
@@ -57,10 +58,16 @@ const defaultOptions: GraphOptions = {
     focusOnHover: true,
     enableRadial: true,
   },
+  hideOnRoot: false
 }
 
 export default ((opts?: Partial<GraphOptions>) => {
-  const Graph: QuartzComponent = ({ displayClass, cfg }: QuartzComponentProps) => {
+  const Graph: QuartzComponent = ({ displayClass, fileData, cfg }: QuartzComponentProps) => {
+    // Hide graph on root if enabled
+    if (opts?.hideOnRoot && fileData.slug === "index") {
+      return null
+    }
+
     const localGraph = { ...defaultOptions.localGraph, ...opts?.localGraph }
     const globalGraph = { ...defaultOptions.globalGraph, ...opts?.globalGraph }
     return (

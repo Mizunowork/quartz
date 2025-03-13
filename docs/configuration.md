@@ -142,5 +142,6 @@ Customization of the home page can be achieved by conditionally hiding or unhidi
 - [[Breadcrumbs]] are hidden by default, to unhide them the configuration looks like: `Component.Breadcrumbs({ hideOnRoot: false }){:ts}`
 - Date and reading time are shown by default, to hide them the configuration looks like: `Component.ContentMeta({ hideOnRoot: true }){:ts}`
 - [[Explorer]] is shown by default, to hide it the configuration looks like: `Component.Explorer({ hideOnRoot: true }){:ts}`
+- [[Graph view]] is shown by default, to hide it the configuration looks like: `Component.Graph({ hideOnRoot: true }){:ts}`
 
 A differnet method is used to configure the comment box on the home page, see [[Comments#Conditionally display comments|conditionally display comments]].
