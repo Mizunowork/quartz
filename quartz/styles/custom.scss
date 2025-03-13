@@ -5,6 +5,9 @@ body {
   font-family: system-ui, -apple-system, Helvetica, Roboto, Tahoma, Arial, 'PingFang SC',  
     'Noto Sans', 'Microsoft YaHei', sans-serif;  
 }
-a {
+a {    
   font-weight: normal;  
+  &.internal {                
+    background-color: transparent;    
+    }
 }
