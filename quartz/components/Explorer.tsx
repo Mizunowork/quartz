@@ -20,6 +20,7 @@ export interface Options {
   filterFn: (node: FileTrieNode) => boolean
   mapFn: (node: FileTrieNode) => void
   order: OrderEntries[]
+  hideOnRoot: boolean
 }
 
 const defaultOptions: Options = {
@@ -48,6 +49,7 @@ const defaultOptions: Options = {
   },
   filterFn: (node) => node.slugSegment !== "tags",
   order: ["filter", "map", "sort"],
+  hideOnRoot: false
 }
 
 export type FolderState = {
@@ -59,7 +61,12 @@ export default ((userOpts?: Partial<Options>) => {
   const opts: Options = { ...defaultOptions, ...userOpts }
   const { OverflowList, overflowListAfterDOMLoaded } = OverflowListFactory()
 
-  const Explorer: QuartzComponent = ({ cfg, displayClass }: QuartzComponentProps) => {
+  const Explorer: QuartzComponent = ({ cfg, fileData, displayClass }: QuartzComponentProps) => {
+    // Hide explorer on root if enabled
+    if (opts.hideOnRoot && fileData.slug === "index") {
+      return null
+    }
+
     return (
       <div
         class={classNames(displayClass, "explorer")}

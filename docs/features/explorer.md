@@ -42,6 +42,7 @@ Want to customize it even more?
 
 - Removing explorer: remove `Component.Explorer()` from `quartz.layout.ts`
   - (optional): After removing the explorer component, you can move the [[table of contents | Table of Contents]] component back to the `left` part of the layout
+- Hide on root: hide `Explorer` on the home page `content/index.md` (default to `false`). To enable this, use `Component.Explorer({ hideOnRoot: true })`.
 - Changing `sort`, `filter` and `map` behavior: explained in [[#Advanced customization]]
 - Component:
   - Wrapper (Outer component, generates file tree, etc): `quartz/components/Explorer.tsx`
