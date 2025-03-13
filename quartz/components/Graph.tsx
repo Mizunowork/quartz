@@ -58,7 +58,7 @@ const defaultOptions: GraphOptions = {
     focusOnHover: true,
     enableRadial: true,
   },
-  hideOnRoot: false
+  hideOnRoot: false,
 }
 
 export default ((opts?: Partial<GraphOptions>) => {

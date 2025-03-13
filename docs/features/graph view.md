@@ -54,7 +54,7 @@ const defaultOptions: GraphOptions = {
     focusOnHover: true,
     enableRadial: true,
   },
-  hideOnRoot: false
+  hideOnRoot: false,
 }
 ```
 

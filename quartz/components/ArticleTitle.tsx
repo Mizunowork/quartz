@@ -6,7 +6,7 @@ interface ArticleTitleOptions {
 }
 
 const defaultOptions: ArticleTitleOptions = {
-  hideOnRoot: false
+  hideOnRoot: false,
 }
 
 export default ((opts?: Partial<ArticleTitleOptions>) => {

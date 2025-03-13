@@ -49,7 +49,7 @@ const defaultOptions: Options = {
   },
   filterFn: (node) => node.slugSegment !== "tags",
   order: ["filter", "map", "sort"],
-  hideOnRoot: false
+  hideOnRoot: false,
 }
 
 export type FolderState = {
