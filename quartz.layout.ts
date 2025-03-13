@@ -23,7 +23,7 @@ export const defaultContentPageLayout: PageLayout = {   
   ],
   left: [
     Component.PageTitle(),  
-    Component.MobileOnly(Component.Spacer()),  
+    // Component.MobileOnly(Component.Spacer()),  
     Component.Flex({ 
       components: [ 
         {
@@ -53,9 +53,9 @@ export const defaultContentPageLayout: PageLayout = {   
       category: 'Announcements',  
       // from data-category-id  
       categoryId: 'DIC_kwDOOHb7a84Cn6os',    
-      themeUrl: "https://enneaaa.netlify.app/static/giscus", 
-      lightTheme: "light-theme", 
-      darkTheme: "dark-theme",
+      themeUrl: "https://enneaaa.netlify.app/static/giscus", // corresponds to quartz/static/giscus/
+      lightTheme: "light-theme", // corresponds to light-theme.css in quartz/static/giscus/
+      darkTheme: "dark-theme", // corresponds to dark-theme.css quartz/static/giscus/
     }
   }),
 ],
@@ -66,7 +66,7 @@ export const defaultListPageLayout: PageLayout = {    
   beforeBody: [Component.ArticleTitle(), Component.ContentMeta()], 
   left: [
     Component.PageTitle(),
-    Component.MobileOnly(Component.Spacer()),    
+    // Component.MobileOnly(Component.Spacer()),    
     Component.Search(),  
     Component.Darkmode(),  
     Component.DesktopOnly(Component.RecentNotes({ limit: 3, showTags: false })),
