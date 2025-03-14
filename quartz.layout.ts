@@ -23,7 +23,7 @@ export const defaultContentPageLayout: PageLayout = {   
   ],
   left: [
     Component.PageTitle(),  
-    // Component.MobileOnly(Component.Spacer()),  
+    Component.MobileOnly(Component.Spacer()),  
     Component.Flex({ 
       components: [ 
         {
@@ -49,7 +49,7 @@ export const defaultListPageLayout: PageLayout = {    
   beforeBody: [Component.ArticleTitle(), Component.ContentMeta()], 
   left: [
     Component.PageTitle(),
-    // Component.MobileOnly(Component.Spacer()),    
+    Component.MobileOnly(Component.Spacer()),    
     Component.Search(),  
     Component.Darkmode(),  
     Component.DesktopOnly(Component.RecentNotes({ limit: 3, showTags: false,linkToMore: "recent" })),
