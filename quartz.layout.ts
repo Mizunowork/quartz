@@ -36,7 +36,7 @@ export const defaultContentPageLayout: PageLayout = {   
     Component.RecentNotes({
   title: "最近更新",
   showTags: false,
-  limit: 4,
+  limit: 10,
   filter: (f) => {
     if (f.filePath?.endsWith("index.md")) {
       return false
@@ -76,7 +76,7 @@ export const defaultListPageLayout: PageLayout = {    
     Component.RecentNotes({
   title: "最近更新",
   showTags: false,
-  limit: 4,
+  limit: 10,
   filter: (f) => {
     if (f.filePath?.endsWith("index.md")) {
       return false
