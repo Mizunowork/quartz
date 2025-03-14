@@ -33,7 +33,7 @@ export const defaultContentPageLayout: PageLayout = {   
         { Component: Component.Darkmode() }, 
       ],
     }),
-    Component.DesktopOnly(Component.RecentNotes({ limit: 15, showTags: false })),
+    Component.DesktopOnly(Component.RecentNotes({ limit: 15, showTags: false, linkToMore: "recent" })),
     // Component.Explorer(),     
   ],
   right: [
@@ -52,7 +52,7 @@ export const defaultListPageLayout: PageLayout = {    
     // Component.MobileOnly(Component.Spacer()),    
     Component.Search(),  
     Component.Darkmode(),  
-    Component.DesktopOnly(Component.RecentNotes({ limit: 3, showTags: false })),
+    Component.DesktopOnly(Component.RecentNotes({ limit: 3, showTags: false,linkToMore: "recent" })),
     // Component.Explorer(),    
   ],
   right: [],
