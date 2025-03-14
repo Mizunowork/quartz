@@ -10,7 +10,7 @@ import { pageResources, renderPage } from "../../components/renderPage"
 import { FullPageLayout } from "../../cfg"
 import { Argv } from "../../util/ctx"
 import { FilePath, isRelativeURL, joinSegments, pathToRoot } from "../../util/path"
-import { defaultContentPageLayout, sharedPageComponents } from "../../../quartz.layout"
+import { defaultHomePageLayout, sharedPageComponents } from "../../../quartz.layout"
 import { Content } from "../../components"
 import chalk from "chalk"
 import { write } from "./helpers"
@@ -51,10 +51,9 @@ const parseDependencies = (argv: Argv, hast: Root, file: VFile): string[] => {
   return dependencies
 }
 
-export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpts) => {
+export const HomePage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpts) => {
   const opts: FullPageLayout = {
-    ...sharedPageComponents,
-    ...defaultContentPageLayout,
+    ...defaultHomePageLayout,
     pageBody: Content(),
     ...userOpts,
   }
@@ -64,7 +63,7 @@ export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOp
   const Body = BodyConstructor()
 
   return {
-    name: "ContentPage",
+    name: "HomePage",
     getQuartzComponents() {
       return [
         Head,
@@ -98,15 +97,9 @@ export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOp
       const cfg = ctx.cfg.configuration
       const allFiles = content.map((c) => c[1].data)
 
-      let containsIndex = false
       for (const [tree, file] of content) {
         const slug = file.data.slug!
-        if (slug === "index") {
-          containsIndex = true
-          continue
-        }
-
-        if (file.data.slug?.endsWith("/index")) {
+        if (slug !== "index") {
           continue
         }
 
@@ -128,14 +121,6 @@ export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOp
           slug,
           ext: ".html",
         })
-      }
-
-      if (!containsIndex && !ctx.argv.fastRebuild) {
-        console.log(
-          chalk.yellow(
-            `\nWarning: you seem to be missing an \`index.md\` home page file at the root of your \`${ctx.argv.directory}\` folder (\`${path.join(ctx.argv.directory, "index.md")} does not exist\`). This may cause errors when deploying.`,
-          ),
-        )
       }
     },
   }

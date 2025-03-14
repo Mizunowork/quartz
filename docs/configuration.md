@@ -130,3 +130,11 @@ typography: {
   ...
 }
 ```
+
+## Home Page
+
+The home page is the main web page of your Quartz. The content for the home page lives in `content/index.md`, to change it see [[authoring content|the authoring content guide]].
+
+To enable easy customization, the `homePage` emitter allows you to fully rearrange the layout of the home page. The default home page layout is called `defaultHomePageLayout{:ts}` and can be found in `quartz.layout.ts`. The layout of the home page and all other content pages is the same by default. See [[layout|the layout documentation]] for further guidance.
+
+A differnet method is used to configure the comment box on the home page, see [[Comments#Conditionally display comments|conditionally display comments]].

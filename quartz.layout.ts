@@ -1,4 +1,4 @@
-import { PageLayout, SharedLayout } from "./quartz/cfg"
+import { PageLayout, SharedLayout, HomePageLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 
 // components shared across all pages
@@ -61,4 +61,17 @@ export const defaultListPageLayout: PageLayout = {
     Component.Explorer(),
   ],
   right: [],
+}
+
+// components for the home page
+export const defaultHomePageLayout: HomePageLayout = {
+  ...sharedPageComponents,
+  ...defaultContentPageLayout,
+  // head:  Component.Head(),
+  // header: [],
+  // left: [],
+  // beforeBody: [],
+  // afterBody: [],
+  // right: [],
+  // footer: Component.Footer(),
 }
