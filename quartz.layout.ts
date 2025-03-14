@@ -5,7 +5,26 @@ import * as Component from "./quartz/components"
 export const sharedPageComponents: SharedLayout = {  
   head: Component.Head(),
   header: [],
-  afterBody: [],
+  afterBody: [
+    Component.Comments({
+      provider: 'giscus',
+      options: {
+        // from data-repo
+        repo: 'CatMuse/CatMuse',
+        // from data-repo-id
+        repoId: 'R_kgDON1wDZg',
+        // from data-category
+        category: 'Announcements',
+        // from data-category-id
+        categoryId: 'DIC_kwDON1wDZs4Cmywd',
+        themeUrl: "https://www.catmuse.me/static/giscus", // corresponds to quartz/static/giscus/
+        lightTheme: "light", // corresponds to light-theme.css in quartz/static/giscus/
+        darkTheme: "dark", // corresponds to dark-theme.css quartz/static/giscus/
+        mapping: "pathname",
+        inputPosition: "top",
+      }
+    }),
+  ],
   footer: Component.Footer({ 
     links: {
       GitHub: "https://github.com/enneaa",   
@@ -41,26 +60,7 @@ export const defaultContentPageLayout: PageLayout = {   
     Component.Backlinks(),     
     Component.Graph(),       
   ], 
-  afterBody: [
-    Component.Comments({
-      provider: 'giscus',
-      options: {
-        // from data-repo
-        repo: 'enneaa/giscus',
-        // from data-repo-id
-        repoId: 'R_kgDOOHb7aw',
-        // from data-category
-        category: 'Announcements',
-        // from data-category-id
-        categoryId: 'DIC_kwDOOHb7a84Cn6os',
-        themeUrl: "https://enneaaa.netlify.app/static/giscus", // corresponds to quartz/static/giscus/
-        lightTheme: "light-theme", // corresponds to light-theme.css in quartz/static/giscus/
-        darkTheme: "dark-theme", // corresponds to dark-theme.css quartz/static/giscus/
-        mapping: "pathname",
-        inputPosition: "top",
-      }
-    }),
-  ],
+  afterBody: [],
 }
 
 // components for pages that display lists of pages  (e.g. tags or folders)
