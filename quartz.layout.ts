@@ -37,7 +37,7 @@ export const defaultContentPageLayout: PageLayout = {   
   title: "最近更新",
   showTags: false,
   limit: 10,
-      linkToMore: "recent"
+      linkToMore: "recent",
   filter: (f) => {
     if (f.filePath?.endsWith("index.md")) {
       return false
@@ -78,7 +78,7 @@ export const defaultListPageLayout: PageLayout = {    
   title: "最近更新",
   showTags: false,
   limit: 10,
-      linkToMore: "recent"
+      linkToMore: "recent",
   filter: (f) => {
     if (f.filePath?.endsWith("index.md")) {
       return false
