@@ -1,12 +1,11 @@
 @use "../../styles/variables.scss" as *;
 
 .tags-link {
-  display:block;
+  display: block;
   height: 2rem;
   width: 2rem;
 
   & .tags-button {
-
     cursor: pointer;
     padding: 0px;
     position: relative;

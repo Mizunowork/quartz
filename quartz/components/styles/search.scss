@@ -4,7 +4,7 @@
   min-width: fit-content;
   max-width: 14rem;
   margin-right: 0.5rem;
-  
+
   @media all and ($mobile) {
     flex-grow: 0.3;
   }
@@ -236,11 +236,11 @@
 }
 
 .search-mini {
-    width: 2rem;
-    height: 2rem;
-    margin: 0;
+  width: 2rem;
+  height: 2rem;
+  margin: 0;
 
-  &>.search-button-mini {
+  & > .search-button-mini {
     display: inline;
     position: relative;
     background: none;
@@ -251,8 +251,8 @@
       position: absolute;
       width: 20px;
       height: 20px;
-      margin:0px;
-  
+      margin: 0px;
+
       top: calc(50% - 10px);
       left: calc(50% - 10px);
     }

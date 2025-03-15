@@ -28,7 +28,7 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Flex({
       components: [
         {
-          Component: Component.Search({miniButton: false}),
+          Component: Component.Search(),
           grow: true,
         },
         { Component: Component.Tags() },
@@ -54,7 +54,7 @@ export const defaultListPageLayout: PageLayout = {
     Component.Flex({
       components: [
         {
-          Component: Component.Search({miniButton: false}),
+          Component: Component.Search(),
           grow: true,
         },
         { Component: Component.Tags() },
