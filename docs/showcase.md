@@ -32,3 +32,5 @@ Want to see what Quartz can do? Here are some cool community gardens:
 - [🌓 Projects & Privacy - FOSS, tech, law](https://be-far.com)
 - [Zen Browser Docs](https://docs.zen-browser.app)
 - [🪴8cat life](https://8cat.life)
+- [🪴Junghanacs's Garden - 텍스트 힙스터](https://notes.junghanacs.com/)
+
