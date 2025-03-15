@@ -34,13 +34,15 @@ export const defaultContentPageLayout: PageLayout = {   
       ],
     }),
     Component.DesktopOnly(Component.TableOfContents()),
+    Component.DesktopOnly(Component.Graph()),   
     // Component.Explorer(),     
   ],
   right: [
-    Component.DesktopOnly(Component.RecentNotes({
+    Component.Backlinks(), 
+    Component.RecentNotes({
   title: "最近更新",
   showTags: false,
-  limit: 10,
+  limit: 4,
       linkToMore: "recent",
   filter: (f) => {
     if (f.filePath?.endsWith("index.md")) {
@@ -59,8 +61,7 @@ export const defaultContentPageLayout: PageLayout = {   
     }
     return 1
   }
-})),
-    Component.Backlinks(),     
+}),
     // Component.Graph(),       
   ], 
   afterBody: [],
@@ -75,13 +76,14 @@ export const defaultListPageLayout: PageLayout = {    
     Component.Search(),  
     Component.Darkmode(),  
     Component.DesktopOnly(Component.TableOfContents()),
+    Component.DesktopOnly(Component.Graph()), 
     // Component.Explorer(),    
   ],
   right: [
-    Component.DesktopOnly(Component.RecentNotes({
+    Component.RecentNotes({
   title: "最近更新",
   showTags: false,
-  limit: 10,
+  limit: 4,
       linkToMore: "recent",
   filter: (f) => {
     if (f.filePath?.endsWith("index.md")) {
@@ -100,6 +102,6 @@ export const defaultListPageLayout: PageLayout = {    
     }
     return 1
   }
-})),
+}),
   ],
 }
