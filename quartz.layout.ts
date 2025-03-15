@@ -28,11 +28,13 @@ export const defaultContentPageLayout: PageLayout = {
     Component.Flex({
       components: [
         {
-          Component: Component.Search(),
+          Component: Component.Search({miniButton: false}),
           grow: true,
         },
+        { Component: Component.Tags() },
         { Component: Component.Darkmode() },
       ],
+      gap: "0rem",
     }),
     Component.Explorer(),
   ],
@@ -52,11 +54,13 @@ export const defaultListPageLayout: PageLayout = {
     Component.Flex({
       components: [
         {
-          Component: Component.Search(),
+          Component: Component.Search({miniButton: false}),
           grow: true,
         },
+        { Component: Component.Tags() },
         { Component: Component.Darkmode() },
       ],
+      gap: "0rem",
     }),
     Component.Explorer(),
   ],

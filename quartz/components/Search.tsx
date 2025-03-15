@@ -7,20 +7,23 @@ import { i18n } from "../i18n"
 
 export interface SearchOptions {
   enablePreview: boolean
+  miniButton: boolean
 }
 
 const defaultOptions: SearchOptions = {
   enablePreview: true,
+  miniButton: false,
 }
 
 export default ((userOpts?: Partial<SearchOptions>) => {
   const Search: QuartzComponent = ({ displayClass, cfg }: QuartzComponentProps) => {
     const opts = { ...defaultOptions, ...userOpts }
     const searchPlaceholder = i18n(cfg.locale).components.search.searchBarPlaceholder
+    const searchButtonText = opts.miniButton ? "" : <p>{i18n(cfg.locale).components.search.title}</p>
     return (
-      <div class={classNames(displayClass, "search")}>
-        <button class="search-button">
-          <p>{i18n(cfg.locale).components.search.title}</p>
+      <div class={classNames(displayClass, "search") + (opts.miniButton ? " search-mini" : "")}>
+        <button class={"search-button" + (opts.miniButton ? " search-button-mini" : "")}>
+        {searchButtonText}
           <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7">
             <title>Search</title>
             <g class="search-path" fill="none">
