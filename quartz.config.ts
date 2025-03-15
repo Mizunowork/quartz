@@ -21,11 +21,11 @@ const config: QuartzConfig = {
     defaultDateType: "created",    
     generateSocialImages: true,    
     theme: {
-      fontOrigin: "googleFonts",    
+      fontOrigin: "local",    
       cdnCaching: true,   
       typography: {
-        header: "Noto Serif SC",      
-        body: "Noto Sans SC",      
+        header: "LXGW WenKai Screen",      
+        body: "LXGW WenKai Screen",      
         code: "IBM Plex Mono",            
       },
       colors: {

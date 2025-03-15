@@ -86,7 +86,6 @@ export function googleFontHref(theme: Theme) {
   const headerFont = formatFontSpecification("header", header)
   const bodyFont = formatFontSpecification("body", body)
   const codeFont = formatFontSpecification("code", code)
-
   // return `https://fonts.googleapis.com/css2?family=${bodyFont}&family=${headerFont}&family=${codeFont}&display=swap`
   return `https://fonts.loli.net/css2?family=${bodyFont}&family=${headerFont}&family=${codeFont}&display=swap`
 }
