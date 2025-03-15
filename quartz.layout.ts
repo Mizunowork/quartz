@@ -33,13 +33,35 @@ export const defaultContentPageLayout: PageLayout = {   
         { Component: Component.Darkmode() }, 
       ],
     }),
-    Component.DesktopOnly(Component.TableOfContents()),
-    Component.DesktopOnly(Component.Graph()),   
+    Component.DesktopOnly(Component.RecentNotes({
+  title: "最近更新",
+  showTags: false,
+  limit: 10,
+      linkToMore: "recent",
+  filter: (f) => {
+    if (f.filePath?.endsWith("index.md")) {
+      return false
+    }
+    return true
+  },
+  sort: (f1, f2) => {
+    if (f1.dates && f2.dates) {
+      if (Math.abs(f2.dates.modified.getDay() - f1.dates.modified.getDay())<=3) {
+        return f2.dates.created.getTime() - f1.dates.created.getTime()
+      }
+      return f2.dates.modified.getTime() - f1.dates.modified.getTime()
+    } else if (f1.dates && !f2.dates) {
+      return -1
+    }
+    return 1
+  }
+})),
     // Component.Explorer(),     
   ],
   right: [
+    Component.DesktopOnly(Component.TableOfContents()),
     Component.Backlinks(), 
-    Component.RecentNotes({
+    Component.MobileOnly(Component.RecentNotes({
   title: "最近更新",
   showTags: false,
   limit: 4,
@@ -61,7 +83,7 @@ export const defaultContentPageLayout: PageLayout = {   
     }
     return 1
   }
-}),
+})),
     // Component.Graph(),       
   ], 
   afterBody: [],
@@ -73,14 +95,42 @@ export const defaultListPageLayout: PageLayout = {    
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),    
-    Component.Search(),  
-    Component.Darkmode(),  
-    Component.DesktopOnly(Component.TableOfContents()),
-    Component.DesktopOnly(Component.Graph()), 
+    Component.Flex({ 
+      components: [ 
+        {
+          Component: Component.Search(), 
+          grow: true, 
+        },
+        { Component: Component.Darkmode() }, 
+      ],
+    }),
+    Component.DesktopOnly(Component.RecentNotes({
+  title: "最近更新",
+  showTags: false,
+  limit: 10,
+      linkToMore: "recent",
+  filter: (f) => {
+    if (f.filePath?.endsWith("index.md")) {
+      return false
+    }
+    return true
+  },
+  sort: (f1, f2) => {
+    if (f1.dates && f2.dates) {
+      if (Math.abs(f2.dates.modified.getDay() - f1.dates.modified.getDay())<=3) {
+        return f2.dates.created.getTime() - f1.dates.created.getTime()
+      }
+      return f2.dates.modified.getTime() - f1.dates.modified.getTime()
+    } else if (f1.dates && !f2.dates) {
+      return -1
+    }
+    return 1
+  }
+})),
     // Component.Explorer(),    
   ],
   right: [
-    Component.RecentNotes({
+    Component.MobileOnly(Component.RecentNotes({
   title: "最近更新",
   showTags: false,
   limit: 4,
@@ -102,6 +152,6 @@ export const defaultListPageLayout: PageLayout = {    
     }
     return 1
   }
-}),
+})),
   ],
 }
