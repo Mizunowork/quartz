@@ -4,7 +4,6 @@ title: 最近发布
 publish: true
 ---
   
-  
 - [[recent|recent]]  
 - [[./index|index]]  
 - [[./王小波杂文读后感|王小波杂文读后感]]  
