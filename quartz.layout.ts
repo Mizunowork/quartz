@@ -33,6 +33,10 @@ export const defaultContentPageLayout: PageLayout = {   
         { Component: Component.Darkmode() }, 
       ],
     }),
+    Component.DesktopOnly(Component.TableOfContents()),
+    // Component.Explorer(),     
+  ],
+  right: [
     Component.DesktopOnly(Component.RecentNotes({
   title: "最近更新",
   showTags: false,
@@ -56,12 +60,8 @@ export const defaultContentPageLayout: PageLayout = {   
     return 1
   }
 })),
-    // Component.Explorer(),     
-  ],
-  right: [
-    Component.DesktopOnly(Component.TableOfContents()),     
     Component.Backlinks(),     
-    Component.Graph(),       
+    // Component.Graph(),       
   ], 
   afterBody: [],
 }
@@ -74,6 +74,10 @@ export const defaultListPageLayout: PageLayout = {    
     Component.MobileOnly(Component.Spacer()),    
     Component.Search(),  
     Component.Darkmode(),  
+    Component.DesktopOnly(Component.TableOfContents()),
+    // Component.Explorer(),    
+  ],
+  right: [
     Component.DesktopOnly(Component.RecentNotes({
   title: "最近更新",
   showTags: false,
@@ -97,7 +101,5 @@ export const defaultListPageLayout: PageLayout = {    
     return 1
   }
 })),
-    // Component.Explorer(),    
   ],
-  right: [],
 }
