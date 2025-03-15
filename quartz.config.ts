@@ -18,7 +18,7 @@ const config: QuartzConfig = {
     locale: "zh-CN", 
     baseUrl: "enneaaa.netlify.app",  
     ignorePatterns: ["private", "templates", ".obsidian"],   
-    defaultDateType: "date",    
+    defaultDateType: "created",    
     generateSocialImages: true,    
     theme: {
       fontOrigin: "googleFonts",    
