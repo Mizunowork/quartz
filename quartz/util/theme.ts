@@ -143,6 +143,7 @@ ${stylesheet.join("\n\n")}
   --highlight: ${theme.colors.lightMode.highlight};
   --textHighlight: ${theme.colors.lightMode.textHighlight};
 
+  --titleFont: "${getFontSpecificationName(theme.typography.title)}", ${DEFAULT_SANS_SERIF};
   --headerFont: "${getFontSpecificationName(theme.typography.header)}", ${DEFAULT_SANS_SERIF};
   --bodyFont: "${getFontSpecificationName(theme.typography.body)}", ${DEFAULT_SANS_SERIF};
   --codeFont: "${getFontSpecificationName(theme.typography.code)}", ${DEFAULT_MONO};
