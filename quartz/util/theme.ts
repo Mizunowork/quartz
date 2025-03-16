@@ -91,6 +91,13 @@ export function googleFontHref(theme: Theme) {
   return `https://fonts.googleapis.com/css2?family=${bodyFont}&family=${headerFont}&family=${codeFont}&display=swap`
 }
 
+export function googleSubFontHref(theme: Theme, text: string): string {
+  const { title } = theme.typography;
+  const titleFont = formatFontSpecification("title", title);
+
+  return `https://fonts.googleapis.com/css2?family=${titleFont}&text=${encodeURIComponent(text)}&display=swap`;
+}
+
 export interface GoogleFontFile {
   url: string
   filename: string
