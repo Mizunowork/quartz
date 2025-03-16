@@ -71,7 +71,10 @@ export default ((opts?: Partial<FolderContentOptions>) => {
                 if (child.data?.dates) {
                   // compare all dates and assign to maybeDates if its more recent or its not set
                   if (!maybeDates) {
-                    maybeDates = child.data.dates
+                    const childDates = child.data.dates;
+                    maybeDates = {
+                      ...childDates
+                    }
                   } else {
                     if (child.data.dates.created > maybeDates.created) {
                       maybeDates.created = child.data.dates.created
