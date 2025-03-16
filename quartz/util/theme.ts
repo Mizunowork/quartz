@@ -25,6 +25,7 @@ export type FontSpecification =
 
 export interface Theme {
   typography: {
+    title: FontSpecification
     header: FontSpecification
     body: FontSpecification
     code: FontSpecification
@@ -48,7 +49,7 @@ export function getFontSpecificationName(spec: FontSpecification): string {
   return spec.name
 }
 
-function formatFontSpecification(type: "header" | "body" | "code", spec: FontSpecification) {
+function formatFontSpecification(type: "title" | "header" | "body" | "code", spec: FontSpecification) {
   if (typeof spec === "string") {
     spec = { name: spec }
   }
