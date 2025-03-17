@@ -84,7 +84,7 @@ function formatFontSpecification(type: "title" | "header" | "body" | "code", spe
 
 export function googleFontHref(theme: Theme, text: string): string[] {
   const { header, body, code } = theme.typography
-  const title = (theme.typography.title || undefined) ?? header
+  const title = theme.typography.title || header
 
   const titleFont = formatFontSpecification("title", title)
   const headerFont = formatFontSpecification("header", header)
@@ -147,7 +147,7 @@ ${stylesheet.join("\n\n")}
   --highlight: ${theme.colors.lightMode.highlight};
   --textHighlight: ${theme.colors.lightMode.textHighlight};
 
-  --titleFont: "${getFontSpecificationName(theme.typography.title)}", ${DEFAULT_SANS_SERIF};
+  --titleFont: "${getFontSpecificationName(theme.typography.title || theme.typography.header)}", ${DEFAULT_SANS_SERIF};
   --headerFont: "${getFontSpecificationName(theme.typography.header)}", ${DEFAULT_SANS_SERIF};
   --bodyFont: "${getFontSpecificationName(theme.typography.body)}", ${DEFAULT_SANS_SERIF};
   --codeFont: "${getFontSpecificationName(theme.typography.code)}", ${DEFAULT_MONO};
