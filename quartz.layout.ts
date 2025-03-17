@@ -67,7 +67,7 @@ export const defaultListPageLayout: PageLayout = {
 export const defaultHomePageLayout: HomePageLayout = {
   ...sharedPageComponents,
   ...defaultContentPageLayout,
-  // head:  Component.Head(),
+  // head: Component.Head(),
   // header: [],
   // left: [],
   // beforeBody: [],

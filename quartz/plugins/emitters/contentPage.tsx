@@ -10,7 +10,11 @@ import { pageResources, renderPage } from "../../components/renderPage"
 import { FullPageLayout } from "../../cfg"
 import { Argv } from "../../util/ctx"
 import { FilePath, isRelativeURL, joinSegments, pathToRoot } from "../../util/path"
-import { defaultContentPageLayout, sharedPageComponents } from "../../../quartz.layout"
+import {
+  defaultContentPageLayout,
+  sharedPageComponents,
+  defaultHomePageLayout,
+} from "../../../quartz.layout"
 import { Content } from "../../components"
 import chalk from "chalk"
 import { write } from "./helpers"
@@ -52,7 +56,7 @@ const parseDependencies = (argv: Argv, hast: Root, file: VFile): string[] => {
 }
 
 export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOpts) => {
-  const opts: FullPageLayout = {
+  let opts: FullPageLayout = {
     ...sharedPageComponents,
     ...defaultContentPageLayout,
     pageBody: Content(),
@@ -103,7 +107,18 @@ export const ContentPage: QuartzEmitterPlugin<Partial<FullPageLayout>> = (userOp
         const slug = file.data.slug!
         if (slug === "index") {
           containsIndex = true
-          continue
+          opts = {
+            ...defaultHomePageLayout,
+            pageBody: Content(),
+            ...userOpts,
+          }
+        } else {
+          opts = {
+            ...sharedPageComponents,
+            ...defaultContentPageLayout,
+            pageBody: Content(),
+            ...userOpts,
+          }
         }
 
         if (file.data.slug?.endsWith("/index")) {
