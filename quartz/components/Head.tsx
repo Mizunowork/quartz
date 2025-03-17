@@ -5,7 +5,6 @@ import { googleFontHref } from "../util/theme"
 import { QuartzComponent, QuartzComponentConstructor, QuartzComponentProps } from "./types"
 import { unescapeHTML } from "../util/escape"
 import { CustomOgImagesEmitterName } from "../plugins/emitters/ogImage"
-import { JSX } from "preact/jsx-runtime"
 export default (() => {
   const Head: QuartzComponent = ({
     cfg,
