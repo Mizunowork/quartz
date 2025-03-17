@@ -31,7 +31,7 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
   const opts = { ...defaultOptions, ...userOpts }
   return {
     name: "CreatedModifiedDate",
-    markdownPlugins() {
+    markdownPlugins(ctx) {
       return [
         () => {
           let repo: Repository | undefined = undefined
@@ -40,8 +40,8 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
             let modified: MaybeDate = undefined
             let published: MaybeDate = undefined
 
-            const fp = file.data.filePath!
-            const fullFp = path.isAbsolute(fp) ? fp : path.posix.join(file.cwd, fp)
+            const fp = file.data.relativePath!
+            const fullFp = path.posix.join(ctx.argv.directory, fp)
             for (const source of opts.priority) {
               if (source === "filesystem") {
                 const st = await fs.promises.stat(fullFp)
