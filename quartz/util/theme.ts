@@ -25,7 +25,7 @@ export type FontSpecification =
 
 export interface Theme {
   typography: {
-    title: FontSpecification
+    title: FontSpecification | undefined
     header: FontSpecification
     body: FontSpecification
     code: FontSpecification
@@ -82,20 +82,24 @@ function formatFontSpecification(type: "title" | "header" | "body" | "code", spe
   return spec.name
 }
 
-export function googleFontHref(theme: Theme) {
-  const { code, header, body } = theme.typography
+export function googleFontHref(theme: Theme, text: string): string[] {
+  const { header, body, code } = theme.typography
+  const title = (theme.typography.title || undefined) ?? header
+
+  const titleFont = formatFontSpecification("title", title)
   const headerFont = formatFontSpecification("header", header)
   const bodyFont = formatFontSpecification("body", body)
   const codeFont = formatFontSpecification("code", code)
 
-  return `https://fonts.googleapis.com/css2?family=${bodyFont}&family=${headerFont}&family=${codeFont}&display=swap`
-}
+  let hrefs = [
+    `https://fonts.googleapis.com/css2?family=${headerFont}&family=${bodyFont}&family=${codeFont}&display=swap`,
+  ]
 
-export function googleSubFontHref(theme: Theme, text: string): string {
-  const { title } = theme.typography;
-  const titleFont = formatFontSpecification("title", title);
+  if (titleFont !== headerFont) {
+    hrefs.push(`https://fonts.googleapis.com/css2?family=${titleFont}&text=${encodeURIComponent(text)}&display=swap`)
+  }
 
-  return `https://fonts.googleapis.com/css2?family=${titleFont}&text=${encodeURIComponent(text)}&display=swap`;
+  return hrefs
 }
 
 export interface GoogleFontFile {
