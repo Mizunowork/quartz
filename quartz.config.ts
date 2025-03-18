@@ -16,8 +16,8 @@ const config: QuartzConfig = {
       provider: "plausible",
     },
     locale: "zh-CN", 
-    baseUrl: "enneaa.netlify.app",  
-    ignorePatterns: ["private", "templates", ".obsidian"], 
+    baseUrl: "enneaa.netlify.app/pages",   
+    ignorePatterns: ["private", "templates", ".obsidian"],  
     defaultDateType: "created",
     theme: {
       fontOrigin: "googleFonts",
