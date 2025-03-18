@@ -60,7 +60,7 @@ export const defaultContentPageLayout: PageLayout = {   
         category: 'Announcements',
         // from data-category-id
         categoryId: 'DIC_kwDOOHb7a84Cn6os', 
-        themeUrl: "https://enneaa.netlify.app/static/giscus",     
+        themeUrl: "https://www.catmuse.me/static/giscus",     
         lightTheme: "light",
         darkTheme: "dark",  
         mapping: "title",
