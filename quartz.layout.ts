@@ -18,7 +18,7 @@ export const sharedPageComponents: SharedLayout = {  
 // components for pages that display a single page (e.g. a single note)  
 export const defaultContentPageLayout: PageLayout = {   
   beforeBody: [
-    // Component.Breadcrumbs(),
+    // Component.Breadcrumbs(), 
     Component.ArticleTitle(),
     Component.ContentMeta(),
   ],
@@ -59,15 +59,15 @@ export const defaultContentPageLayout: PageLayout = {   
         // from data-category
         category: 'Announcements',
         // from data-category-id
-        categoryId: 'DIC_kwDOOHb7a84Cn6os',
-        themeUrl: "https://enneaa.netlify.app/static/giscus", // corresponds to quartz/static/giscus/  
-        lightTheme: "light", // corresponds to light-theme.css in quartz/static/giscus/
-        darkTheme: "dark", // corresponds to dark-theme.css quartz/static/giscus/ 
+        categoryId: 'DIC_kwDOOHb7a84Cn6os', 
+        themeUrl: "https://www.catmuse.me/static/giscus",   
+        lightTheme: "light",
+        darkTheme: "dark",  
         mapping: "title",
         inputPosition: "bottom",
       }
     }),
-    Component.MobileOnly(Component.RecentNotes({
+    Component.MobileOnly(Component.RecentNotes({ 
       title: "最近更新",
       showTags: false,
       limit: 5,
