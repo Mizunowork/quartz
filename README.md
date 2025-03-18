@@ -8,9 +8,9 @@ Quartz v4 features a from-the-ground rewrite focusing on end-user extensibility 
 🔗 Read the documentation and get started: https://quartz.jzhao.xyz/
 
 ## 本站地址
-- [Netlify](https://enneaa.netlify.app) 
-- [Cloudflare](https://pages-4gz.pages.dev)
-- [Github](https://enneaa.github.io/sn/) 
+- [Netlify](https://enneaa.netlify.app)  
+- [Cloudflare](https://enneaa.pages.dev/)
+- [Github](https://enneaa.github.io/sn/)  
 
 [Join the Discord Community](https://discord.gg/cRFFHYye7t) 
 
