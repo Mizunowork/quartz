@@ -9,8 +9,8 @@ export const sharedPageComponents: SharedLayout = {  
   afterBody: [],
   footer: Component.Footer({ 
     links: {
-      RSS: "https://enneaaa.netlify.app/feed.xml",   
-      "Scroll to top ↑": "#", 
+      RSS: "https://enneaa.netlify.app/feed.xml",   
+      "Scroll to top ↑": "#",  
     },
   }),
 }
