@@ -43,7 +43,7 @@ export const defaultContentPageLayout: PageLayout = {   
     // Component.Explorer(),
   ],
   right: [
-    Component.DesktopOnly(Component.TagList()),
+    Component.DesktopOnly(Component.TagList()), 
     Component.DesktopOnly(Component.TableOfContents()),
     Component.DesktopOnly(Component.Graph()),
   ],
@@ -60,7 +60,7 @@ export const defaultContentPageLayout: PageLayout = {   
         category: 'Announcements',
         // from data-category-id
         categoryId: 'DIC_kwDOOHb7a84Cn6os',
-        themeUrl: "https://enneaaa.netlify.app/static/giscus", // corresponds to quartz/static/giscus/
+        themeUrl: "https://enneaa.netlify.app/static/giscus", // corresponds to quartz/static/giscus/  
         lightTheme: "light", // corresponds to light-theme.css in quartz/static/giscus/
         darkTheme: "dark", // corresponds to dark-theme.css quartz/static/giscus/ 
         mapping: "title",
