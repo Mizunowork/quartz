@@ -2,10 +2,15 @@ import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 
 // components shared across all pages
+// If a layout section is configured for a PageLayout, the respective emitter
+// will use that configuration rather than the configuration here.
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
+  beforeBody: [],
   afterBody: [],
+  left: [],
+  right: [],
   footer: Component.Footer({
     links: {
       GitHub: "https://github.com/jackyzha0/quartz",
@@ -61,4 +66,16 @@ export const defaultListPageLayout: PageLayout = {
     Component.Explorer(),
   ],
   right: [],
+}
+
+// components for the home page
+export const defaultHomePageLayout: PageLayout = {
+  ...defaultContentPageLayout,
+  // head: Component.Head(),
+  // header: [],
+  // left: [],
+  // beforeBody: [],
+  // afterBody: [],
+  // right: [],
+  // footer: Component.Footer(),
 }

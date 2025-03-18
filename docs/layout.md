@@ -2,7 +2,7 @@
 title: Layout
 ---
 
-Certain emitters may also output [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) files. To enable easy customization, these emitters allow you to fully rearrange the layout of the page. The default page layouts can be found in `quartz.layout.ts`.
+Certain emitters may also output [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) files. To enable easy customization, these emitters allow you to fully rearrange the layout of the page. The default page layouts can be found in `quartz.layout.ts`, and this is where customization of the layout is configured.
 
 Each page is composed of multiple different sections which contain `QuartzComponents`. The following code snippet lists all of the valid sections that you can add components to:
 
@@ -19,7 +19,7 @@ export interface FullPageLayout {
 }
 ```
 
-These correspond to following parts of the page:
+These correspond to following sections of the page layout:
 
 | Layout                          | Preview                             |
 | ------------------------------- | ----------------------------------- |
@@ -28,7 +28,7 @@ These correspond to following parts of the page:
 | Mobile (width < 800px)          | ![[quartz-layout-mobile.png\|800]]  |
 
 > [!note]
-> There are two additional layout fields that are _not_ shown in the above diagram.
+> There are two additional layout sections that are _not_ shown in the above diagram.
 >
 > 1. `head` is a single component that renders the `<head>` [tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head) in the HTML. This doesn't appear visually on the page and is only is responsible for metadata about the document like the tab title, scripts, and styles.
 > 2. `header` is a set of components that are laid out horizontally and appears _before_ the `beforeBody` section. This enables you to replicate the old Quartz 3 header bar where the title, search bar, and dark mode toggle. By default, Quartz 4 doesn't place any components in the `header`.
