@@ -35,9 +35,11 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
       return [
         () => {
           let repo: Repository | undefined = undefined
+          let repositoryWorkdir: string
           if (opts.priority.includes("git")) {
             try {
               repo = Repository.discover(ctx.argv.directory)
+              repositoryWorkdir = repo.workdir() ?? ""
             } catch (e) {
               console.log(
                 chalk.yellow(`\nWarning: couldn't find git repository for ${ctx.argv.directory}`),
@@ -62,8 +64,8 @@ export const CreatedModifiedDate: QuartzTransformerPlugin<Partial<Options>> = (u
                 modified ||= file.data.frontmatter.modified as MaybeDate
                 published ||= file.data.frontmatter.published as MaybeDate
               } else if (source === "git" && repo) {
-                const relativePath = path.relative(repo.workdir()!, fullFp)
                 try {
+                  const relativePath = path.relative(repositoryWorkdir, fullFp)
                   modified ||= await repo.getFileLatestModifiedDateAsync(relativePath)
                 } catch {
                   console.log(
