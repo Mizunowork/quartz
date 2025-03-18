@@ -7,7 +7,11 @@ Quartz v4 features a from-the-ground rewrite focusing on end-user extensibility 
 
 🔗 Read the documentation and get started: https://quartz.jzhao.xyz/
 
-[Join the Discord Community](https://discord.gg/cRFFHYye7t)
+
+- [Netlify](https://enneaa.netlify.app) 
+- [Cloudflare](https://pages-4gz.pages.dev) 
+
+[Join the Discord Community](https://discord.gg/cRFFHYye7t) 
 
 ## Sponsors
 
