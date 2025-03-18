@@ -16,8 +16,8 @@ const config: QuartzConfig = {
       provider: "plausible",
     },
     locale: "en-US",
-    baseUrl: "quartz.jzhao.xyz",
-    ignorePatterns: ["private", "templates", ".obsidian"],
+    baseUrl: "enneaa.github.io", 
+    ignorePatterns: ["private", "templates", ".obsidian"], 
     defaultDateType: "created",
     theme: {
       fontOrigin: "googleFonts",
