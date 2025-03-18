@@ -15,7 +15,7 @@ export const sharedPageComponents: SharedLayout = {  
   }),
 }
 
-// components for pages that display a single page (e.g. a single note)  
+// components for pages that display a single page (e.g. a single note)   
 export const defaultContentPageLayout: PageLayout = {   
   beforeBody: [
     // Component.Breadcrumbs(), 
@@ -28,7 +28,7 @@ export const defaultContentPageLayout: PageLayout = {   
     Component.Flex({ 
       components: [ 
         {
-          Component: Component.Search(), 
+          Component: Component.Search(),  
           grow: true, 
         },
         { Component: Component.Darkmode() }, 
@@ -60,7 +60,7 @@ export const defaultContentPageLayout: PageLayout = {   
         category: 'Announcements',
         // from data-category-id
         categoryId: 'DIC_kwDOOHb7a84Cn6os', 
-        themeUrl: "https://www.catmuse.me/static/giscus",   
+        themeUrl: "https://enneaa.netlify.app/static/giscus",     
         lightTheme: "light",
         darkTheme: "dark",  
         mapping: "title",
