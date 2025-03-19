@@ -9,13 +9,13 @@ export const sharedPageComponents: SharedLayout = {  
   afterBody: [],
   footer: Component.Footer({ 
     links: {
-      RSS: "https://enneaa.netlify.app/feed.xml",   
+      RSS: "https://enneaa.pages.dev/feed.xml",    
       "Scroll to top ↑": "#",  
     },
   }),
 }
 
-// components for pages that display a single page (e.g. a single note)   
+// components for pages that display a single page (e.g. a single note)    
 export const defaultContentPageLayout: PageLayout = {   
   beforeBody: [
     // Component.Breadcrumbs(), 
@@ -60,7 +60,7 @@ export const defaultContentPageLayout: PageLayout = {   
         category: 'Announcements',
         // from data-category-id
         categoryId: 'DIC_kwDOOHb7a84Cn6os', 
-        themeUrl: "https://www.catmuse.me/static/giscus",     
+        themeUrl: "https://enneaa.pages.dev/static/giscus",      
         lightTheme: "light",
         darkTheme: "dark",  
         mapping: "title",
