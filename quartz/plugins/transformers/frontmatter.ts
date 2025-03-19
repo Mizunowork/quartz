@@ -46,10 +46,16 @@ function getAliasSlugs(aliases: string[]): FullSlug[] {
     const isMd = getFileExtension(alias) === "md"
     const mockFp = isMd ? alias : alias + ".md"
     const slug = slugifyFilePath(mockFp as FilePath)
-    res.push(slug)
+    pushSlugs(res, slug)
   }
 
   return res
+}
+
+function pushSlugs<T>(arr: T[], ...items: T[]) {
+  for (const item of items) {
+    if (!arr.includes(item)) arr.push(item)
+  }
 }
 
 export const FrontMatter: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
@@ -84,15 +90,15 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options>> = (userOpts)
             if (aliases) {
               data.aliases = aliases // frontmatter
               file.data.aliases = getAliasSlugs(aliases)
-              allSlugs.push(...file.data.aliases)
+              pushSlugs(allSlugs, ...file.data.aliases)
             }
 
             if (data.permalink != null && data.permalink.toString() !== "") {
               data.permalink = data.permalink.toString() as FullSlug
               const aliases = file.data.aliases ?? []
-              aliases.push(data.permalink)
+              pushSlugs(aliases, data.permalink)
               file.data.aliases = aliases
-              allSlugs.push(data.permalink)
+              pushSlugs(allSlugs, data.permalink)
             }
 
             const cssclasses = coerceToArray(coalesceAliases(data, ["cssclasses", "cssclass"]))
