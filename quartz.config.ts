@@ -9,14 +9,14 @@ import * as Plugin from "./quartz/plugins"
 const config: QuartzConfig = {
   configuration: {
     pageTitle: "🌲是話說", 
-    pageTitleSuffix: "",
+    pageTitleSuffix: "", 
     enableSPA: true,
     enablePopovers: true,
     analytics: {
       provider: "plausible",
     },
     locale: "zh-CN", 
-    baseUrl: "",     
+    baseUrl: "enneaa.pages.dev",      
     ignorePatterns: ["private", "templates", ".obsidian"],  
     defaultDateType: "created",
     theme: {
