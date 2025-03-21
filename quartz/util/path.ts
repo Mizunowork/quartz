@@ -40,6 +40,15 @@ export function isRelativeURL(s: string): s is RelativeURL {
   return validStart && validEnding && ![".md", ".html"].includes(getFileExtension(s) ?? "")
 }
 
+export function isAbsoluteURL(s: string): boolean {
+  try {
+    new URL(s)
+    return true
+  } catch {
+    return false
+  }
+}
+
 export function getFullSlug(window: Window): FullSlug {
   const res = window.document.body.dataset.slug! as FullSlug
   return res

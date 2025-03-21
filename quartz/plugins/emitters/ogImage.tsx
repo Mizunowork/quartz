@@ -1,14 +1,7 @@
 import { QuartzEmitterPlugin } from "../types"
 import { i18n } from "../../i18n"
 import { unescapeHTML } from "../../util/escape"
-import {
-  FullSlug,
-  getFileExtension,
-  isFullUrl,
-  isRelativeURL,
-  joinSegments,
-  QUARTZ,
-} from "../../util/path"
+import { FullSlug, getFileExtension, isAbsoluteURL, joinSegments, QUARTZ } from "../../util/path"
 import { ImageOptions, SocialImageOptions, defaultImage, getSatoriFonts } from "../../util/og"
 import sharp from "sharp"
 import satori, { SatoriOptions } from "satori"
@@ -154,9 +147,9 @@ export const CustomOgImages: QuartzEmitterPlugin<Partial<SocialImageOptions>> = 
             let userDefinedOgImagePath = pageData.frontmatter?.socialImage
 
             if (userDefinedOgImagePath) {
-              userDefinedOgImagePath = isRelativeURL(userDefinedOgImagePath)
-                ? `https://${baseUrl}/static/${userDefinedOgImagePath}`
-                : userDefinedOgImagePath
+              userDefinedOgImagePath = isAbsoluteURL(userDefinedOgImagePath)
+                ? userDefinedOgImagePath
+                : `https://${baseUrl}/static/${userDefinedOgImagePath}`
             }
 
             const generatedOgImagePath = isRealFile
@@ -164,7 +157,7 @@ export const CustomOgImages: QuartzEmitterPlugin<Partial<SocialImageOptions>> = 
               : undefined
             const defaultOgImagePath = `https://${baseUrl}/static/og-image.png`
             const ogImagePath = userDefinedOgImagePath ?? generatedOgImagePath ?? defaultOgImagePath
-
+            console.log("ogImagePath", ogImagePath)
             const ogImageMimeType = `image/${getFileExtension(ogImagePath) ?? "png"}`
             return (
               <>
