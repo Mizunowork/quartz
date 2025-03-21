@@ -1,6 +1,8 @@
 import { slug as slugAnchor } from "github-slugger"
 import type { Element as HastElement } from "hast"
 import { clone } from "./clone"
+import { URL } from "url"
+
 // this file must be isomorphic so it can't use node libs (e.g. path)
 
 export const QUARTZ = "quartz"
@@ -14,7 +16,6 @@ export function isFilePath(s: string): s is FilePath {
   const validStart = !s.startsWith(".")
   return validStart && _hasFileExtension(s)
 }
-
 
 /** Cannot be relative and may not have leading or trailing slashes. It can have `index` as it's last segment. Use this wherever possible is it's the most 'general' interpretation of a slug. */
 export type FullSlug = SlugLike<"full">
@@ -43,10 +44,10 @@ export function isRelativeURL(s: string): s is RelativeURL {
 export function isAbsoluteURL(s: string): boolean {
   try {
     new URL(s)
-    return true
   } catch {
     return false
   }
+  return true
 }
 
 export function getFullSlug(window: Window): FullSlug {
