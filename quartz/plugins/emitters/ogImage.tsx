@@ -1,7 +1,13 @@
 import { QuartzEmitterPlugin } from "../types"
 import { i18n } from "../../i18n"
 import { unescapeHTML } from "../../util/escape"
-import { FullSlug, getFileExtension, joinSegments, QUARTZ } from "../../util/path"
+import {
+  FullSlug,
+  getFileExtension,
+  isAbsoluteFilePath,
+  joinSegments,
+  QUARTZ,
+} from "../../util/path"
 import { ImageOptions, SocialImageOptions, defaultImage, getSatoriFonts } from "../../util/og"
 import sharp from "sharp"
 import satori, { SatoriOptions } from "satori"
@@ -144,9 +150,14 @@ export const CustomOgImages: QuartzEmitterPlugin<Partial<SocialImageOptions>> = 
         additionalHead: [
           (pageData) => {
             const isRealFile = pageData.filePath !== undefined
-            const userDefinedOgImagePath = pageData.frontmatter?.socialImage
-              ? `https://${baseUrl}/static/${pageData.frontmatter?.socialImage}`
-              : undefined
+            const socialImage = pageData.frontmatter?.socialImage
+
+            let userDefinedOgImagePath = undefined
+            if (socialImage) {
+              userDefinedOgImagePath = isAbsoluteFilePath(socialImage)
+                ? socialImage
+                : `https://${baseUrl}/static/${socialImage}`
+
             const generatedOgImagePath = isRealFile
               ? `https://${baseUrl}/${pageData.slug!}-og-image.webp`
               : undefined
