@@ -4,7 +4,8 @@ import { unescapeHTML } from "../../util/escape"
 import {
   FullSlug,
   getFileExtension,
-  isAbsoluteFilePath,
+  isFullUrl,
+  isRelativeURL,
   joinSegments,
   QUARTZ,
 } from "../../util/path"
@@ -153,9 +154,9 @@ export const CustomOgImages: QuartzEmitterPlugin<Partial<SocialImageOptions>> = 
             let userDefinedOgImagePath = pageData.frontmatter?.socialImage
 
             if (userDefinedOgImagePath) {
-              userDefinedOgImagePath = isAbsoluteFilePath(userDefinedOgImagePath)
-                ? userDefinedOgImagePath
-                : `https://${baseUrl}/static/${socialImage}`
+              userDefinedOgImagePath = isRelativeURL(userDefinedOgImagePath)
+                ? `https://${baseUrl}/static/${userDefinedOgImagePath}`
+                : userDefinedOgImagePath
             }
 
             const generatedOgImagePath = isRealFile
