@@ -150,12 +150,11 @@ export const CustomOgImages: QuartzEmitterPlugin<Partial<SocialImageOptions>> = 
         additionalHead: [
           (pageData) => {
             const isRealFile = pageData.filePath !== undefined
-            const socialImage = pageData.frontmatter?.socialImage
+            let userDefinedOgImagePath = pageData.frontmatter?.socialImage
 
-            let userDefinedOgImagePath = undefined
-            if (socialImage) {
-              userDefinedOgImagePath = isAbsoluteFilePath(socialImage)
-                ? socialImage
+            if (userDefinedOgImagePath) {
+              userDefinedOgImagePath = isAbsoluteFilePath(userDefinedOgImagePath)
+                ? userDefinedOgImagePath
                 : `https://${baseUrl}/static/${socialImage}`
             }
 
