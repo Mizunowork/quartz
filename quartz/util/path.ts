@@ -15,6 +15,11 @@ export function isFilePath(s: string): s is FilePath {
   return validStart && _hasFileExtension(s)
 }
 
+export function isAbsoluteFilePath(s: string): s is FilePath {
+  const parsedUrl = new URL(s)
+  return !parsedUrl.protocol
+}
+
 /** Cannot be relative and may not have leading or trailing slashes. It can have `index` as it's last segment. Use this wherever possible is it's the most 'general' interpretation of a slug. */
 export type FullSlug = SlugLike<"full">
 export function isFullSlug(s: string): s is FullSlug {
