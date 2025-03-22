@@ -46,16 +46,10 @@ function getAliasSlugs(aliases: string[]): FullSlug[] {
     const isMd = getFileExtension(alias) === "md"
     const mockFp = isMd ? alias : alias + ".md"
     const slug = slugifyFilePath(mockFp as FilePath)
-    pushSlugs(res, slug)
+    res.push(slug)
   }
 
   return res
-}
-
-function pushSlugs<T>(arr: T[], ...items: T[]) {
-  for (const item of items) {
-    if (!arr.includes(item)) arr.push(item)
-  }
 }
 
 export const FrontMatter: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
@@ -90,15 +84,15 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options>> = (userOpts)
             if (aliases) {
               data.aliases = aliases // frontmatter
               file.data.aliases = getAliasSlugs(aliases)
-              pushSlugs(allSlugs, ...file.data.aliases)
+              allSlugs.push(...file.data.aliases)
             }
 
             if (data.permalink != null && data.permalink.toString() !== "") {
               data.permalink = data.permalink.toString() as FullSlug
               const aliases = file.data.aliases ?? []
-              pushSlugs(aliases, data.permalink)
+              aliases.push(data.permalink)
               file.data.aliases = aliases
-              pushSlugs(allSlugs, data.permalink)
+              allSlugs.push(data.permalink)
             }
 
             const cssclasses = coerceToArray(coalesceAliases(data, ["cssclasses", "cssclass"]))
@@ -119,6 +113,11 @@ export const FrontMatter: QuartzTransformerPlugin<Partial<Options>> = (userOpts)
             if (published) data.published = published
 
             if (socialImage) data.socialImage = socialImage
+
+            // Remove duplicate slugs
+            const uniqueSlugs = [...new Set(allSlugs)]
+            allSlugs.length = 0
+            uniqueSlugs.forEach((slug) => allSlugs.push(slug))
 
             // fill in frontmatter
             file.data.frontmatter = data as QuartzPluginData["frontmatter"]
