@@ -16,6 +16,7 @@ export default ((opts?: Options) => {
         <p>
           {i18n(cfg.locale).components.footer.createdWith}{" "}
           <a href="https://quartz.jzhao.xyz/">Quartz v{version}</a> © {year}
+          <script defer src="https://umami-iota-seven-90.vercel.app/script.js" data-website-id="ee01f4e4-959a-45e1-a527-d2f261304075"></script>
         </p>
         <ul>
           {Object.entries(links).map(([text, link]) => (
