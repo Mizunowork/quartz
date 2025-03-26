@@ -87,7 +87,7 @@ The example above would only render the Search component when the page is not in
 Component.ConditionalRender({
   component: Component.Breadcrumbs(),
   condition: (page) => page.fileData.slug !== "index",
-}),
+})
 ```
 
 The example above would hide breadcrumbs on the root `index.md` page.
