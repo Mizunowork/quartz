@@ -127,7 +127,7 @@ export async function handleCreate(argv) {
     if (contentStat.isSymbolicLink()) {
       await fs.promises.unlink(contentFolder)
     } else {
-      await rm(contentFolder, { recursive: true })
+      await rm(contentFolder, { recursive: true, force: true })
     }
   }
 
