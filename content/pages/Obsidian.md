@@ -5,7 +5,7 @@ date: 2023-11-26
 publish: true
 ---
 [[应用|应用]] [[双链笔记|双链笔记]]  
-- 插件  
+- Obsidian 插件  
 	- quickadd  
 ---  
 - 自由。  
