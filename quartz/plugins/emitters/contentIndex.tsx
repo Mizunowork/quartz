@@ -25,17 +25,17 @@ interface Options {
   enableSiteMap: boolean
   enableRSS: boolean
   rssLimit?: number
-  rssFullHtml: boolean 
+  rssFullHtml: boolean
   rssSlug: string
   includeEmptyFiles: boolean
 }
 
 const defaultOptions: Options = {
   enableSiteMap: true,
-  enableRSS: true, 
-  rssLimit: 10, 
-  rssFullHtml: true, 
-  rssSlug: "feed", 
+  enableRSS: true,
+  rssLimit: 10,
+  rssFullHtml: false,
+  rssSlug: "index",
   includeEmptyFiles: true,
 }
 

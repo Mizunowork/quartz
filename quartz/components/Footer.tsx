@@ -24,7 +24,6 @@ export default ((opts?: Options) => {
             </li>
           ))}
         </ul>
-        <script defer src="https://enneaumami.netlify.app/script.js" data-website-id="ee01f4e4-959a-45e1-a527-d2f261304075"></script>
       </footer>
     )
   }
