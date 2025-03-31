@@ -7,6 +7,13 @@
   overflow-y: hidden;
   min-height: 4rem;
   flex: 0 1 auto;
+
+  &.desktop-only {
+    @media all and not ($mobile) {
+      display: flex;
+    }
+  }
+
   &:has(button.toc-header.collapsed) {
     flex: 0 1 1.2rem;
   }
@@ -46,12 +53,14 @@ button.toc-header {
 }
 
 .toc-content {
+  margin-top: 0.5rem;
   list-style: none;
-  position: relative;
+  overflow: hidden;
+  overflow-y: auto;
 
   & ul {
     list-style: none;
-    margin: 0.5rem 0;
+    margin: 0;
     padding: 0;
     & > li > a {
       color: var(--dark);
