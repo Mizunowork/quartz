@@ -286,7 +286,7 @@ document.addEventListener("nav", async (e: CustomEventMap["nav"]) => {
   }
 })
 
-window.addEventListener("resize", function() {
+window.addEventListener("resize", function () {
   // Desktop explorer opens by default, and it stays open when the window is resized
   // to mobile screen size. Applies `no-scroll` to <html> in this edge case.
   var explorer = document.querySelector(".explorer")
