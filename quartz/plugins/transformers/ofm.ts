@@ -118,9 +118,6 @@ export const wikilinkRegex = new RegExp(
   /!?\[\[([^\[\]\|\#\\]+)?(#+[^\[\]\|\#\\]+)?(\\?\|[^\[\]\#]+)?\]\]/g,
 )
 
-export const blockReferenceEscapeRegex = new RegExp(/[\s\#]\^([\w-]+)[\s\n\]]/g)
-export const blockReferenceCurrentPageRegex = new RegExp(/(\[\[\#\^|\]\(\#\^)/g)
-
 // ^\|([^\n])+\|\n(\|) -> matches the header row
 // ( ?:?-{3,}:? ?\|)+  -> matches the header row separator
 // (\|([^\n])+\|\n)+   -> matches the body rows
@@ -189,21 +186,12 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
           })
         })
 
-        // prepare blockreferences
-        src = src.replace(blockReferenceEscapeRegex, (value, capture) => {
-          return value.replace(capture, `block-${capture}`)
-        })
-
-        src = src.replace(blockReferenceCurrentPageRegex, (value, capture) => {
-          return value.replace(capture, capture.slice(0, -1))
-        })
-
         // replace all other wikilinks
         src = src.replace(wikilinkRegex, (value, ...capture) => {
           const [rawFp, rawHeader, rawAlias]: (string | undefined)[] = capture
 
           const [fp, anchor] = splitAnchor(`${rawFp ?? ""}${rawHeader ?? ""}`)
-          const blockRef = Boolean(rawHeader?.match(/^#?\^/)) ? "^" : ""
+          const blockRef = Boolean(rawHeader?.match(/^#?\^/)) ? "" : ""
           const displayAnchor = anchor ? `#${blockRef}${anchor.trim().replace(/^#+/, "")}` : ""
           const displayAlias = rawAlias ?? rawHeader?.replace("#", "|") ?? ""
           const embedDisplay = value.startsWith("!") ? "!" : ""
