@@ -118,6 +118,8 @@ export const wikilinkRegex = new RegExp(
   /!?\[\[([^\[\]\|\#\\]+)?(#+[^\[\]\|\#\\]+)?(\\?\|[^\[\]\#]+)?\]\]/g,
 )
 
+export const blockReferenceEscapeRegex = new RegExp(/[\s\#]\^([\w-]+)[\s\n\]]/g)
+
 // ^\|([^\n])+\|\n(\|) -> matches the header row
 // ( ?:?-{3,}:? ?\|)+  -> matches the header row separator
 // (\|([^\n])+\|\n)+   -> matches the body rows
@@ -184,6 +186,11 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
 
             return escaped
           })
+        })
+
+        // prepare blockreferences
+        src = src.replace(blockReferenceEscapeRegex, (value, capture) => {
+          return value.replace(capture, `block-${capture}`)
         })
 
         // replace all other wikilinks
@@ -546,12 +553,63 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                     if (matches && matches.length >= 1) {
                       parent!.children.splice(index! + 2, 1)
                       const block = matches[0].slice(1)
+                      const anchor = block.startsWith("/")
+                        ? `#block-${block.slice(1)}`
+                        : `#block-${block}`
 
                       if (!Object.keys(file.data.blocks!).includes(block)) {
                         node.properties = {
                           ...node.properties,
                           id: block,
                         }
+                        node.children = [
+                          ...node.children,
+                          {
+                            type: "element",
+                            tagName: "a",
+                            properties: {
+                              role: "anchor",
+                              ariaHidden: true,
+                              tabIndex: -1,
+                              "data-no-popover": true,
+                              href: anchor,
+                            },
+                            children: [
+                              {
+                                type: "element",
+                                tagName: "svg",
+                                properties: {
+                                  width: 18,
+                                  height: 18,
+                                  viewBox: "0 0 24 24",
+                                  fill: "none",
+                                  stroke: "currentColor",
+                                  "stroke-width": "2",
+                                  "stroke-linecap": "round",
+                                  "stroke-linejoin": "round",
+                                },
+                                children: [
+                                  {
+                                    type: "element",
+                                    tagName: "path",
+                                    properties: {
+                                      d: "M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71",
+                                    },
+                                    children: [],
+                                  },
+                                  {
+                                    type: "element",
+                                    tagName: "path",
+                                    properties: {
+                                      d: "M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71",
+                                    },
+                                    children: [],
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                        ]
                         file.data.blocks![block] = node
                       }
                     }
@@ -564,6 +622,9 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                   if (matches && matches.length >= 1) {
                     last.value = last.value.slice(0, -matches[0].length)
                     const block = matches[0].slice(1)
+                    const anchor = block.startsWith("/")
+                      ? `#block-${block.slice(1)}`
+                      : `#block-${block}`
 
                     if (last.value === "") {
                       // this is an inline block ref but the actual block
@@ -580,6 +641,54 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                               ...element.properties,
                               id: block,
                             }
+                            element.children = [
+                              ...element.children,
+                              {
+                                type: "element",
+                                tagName: "a",
+                                properties: {
+                                  role: "anchor",
+                                  ariaHidden: true,
+                                  tabIndex: -1,
+                                  "data-no-popover": true,
+                                  href: anchor,
+                                },
+                                children: [
+                                  {
+                                    type: "element",
+                                    tagName: "svg",
+                                    properties: {
+                                      width: 18,
+                                      height: 18,
+                                      viewBox: "0 0 24 24",
+                                      fill: "none",
+                                      stroke: "currentColor",
+                                      "stroke-width": "2",
+                                      "stroke-linecap": "round",
+                                      "stroke-linejoin": "round",
+                                    },
+                                    children: [
+                                      {
+                                        type: "element",
+                                        tagName: "path",
+                                        properties: {
+                                          d: "M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71",
+                                        },
+                                        children: [],
+                                      },
+                                      {
+                                        type: "element",
+                                        tagName: "path",
+                                        properties: {
+                                          d: "M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71",
+                                        },
+                                        children: [],
+                                      },
+                                    ],
+                                  },
+                                ],
+                              },
+                            ]
                             file.data.blocks![block] = element
                           }
                           return
@@ -592,6 +701,54 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                           ...node.properties,
                           id: block,
                         }
+                        node.children = [
+                          ...node.children,
+                          {
+                            type: "element",
+                            tagName: "a",
+                            properties: {
+                              role: "anchor",
+                              ariaHidden: true,
+                              tabIndex: -1,
+                              "data-no-popover": true,
+                              href: anchor,
+                            },
+                            children: [
+                              {
+                                type: "element",
+                                tagName: "svg",
+                                properties: {
+                                  width: 18,
+                                  height: 18,
+                                  viewBox: "0 0 24 24",
+                                  fill: "none",
+                                  stroke: "currentColor",
+                                  "stroke-width": "2",
+                                  "stroke-linecap": "round",
+                                  "stroke-linejoin": "round",
+                                },
+                                children: [
+                                  {
+                                    type: "element",
+                                    tagName: "path",
+                                    properties: {
+                                      d: "M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71",
+                                    },
+                                    children: [],
+                                  },
+                                  {
+                                    type: "element",
+                                    tagName: "path",
+                                    properties: {
+                                      d: "M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71",
+                                    },
+                                    children: [],
+                                  },
+                                ],
+                              },
+                            ],
+                          },
+                        ]
                         file.data.blocks![block] = node
                       }
                     }

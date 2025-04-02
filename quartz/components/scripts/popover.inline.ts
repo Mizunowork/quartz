@@ -82,10 +82,6 @@ async function mouseEnterHandler(
       const contents = await response.text()
       const html = p.parseFromString(contents, "text/html")
       normalizeRelativeURLs(html, targetUrl)
-      // strip all IDs from non-heading elements
-      html
-        .querySelectorAll("[id]:not(:is(h1, h2, h3, h4, h5, h6))")
-        .forEach((el) => el.removeAttribute("id"))
       const elts = [...html.getElementsByClassName("popover-hint")]
       if (elts.length === 0) return
 
