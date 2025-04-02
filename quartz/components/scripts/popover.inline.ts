@@ -82,17 +82,15 @@ async function mouseEnterHandler(
       const contents = await response.text()
       const html = p.parseFromString(contents, "text/html")
       normalizeRelativeURLs(html, targetUrl)
-      // strip all IDs from elements to prevent duplicates on same-page links
-      if (thisUrl.pathname === targetUrl.pathname) {
-        html.querySelectorAll("[id]").forEach((el) => {
-          const targetID = `popover-${el.id}`
-          const targetLink = hash.startsWith("#popover")
-            ? hash
-            : `#popover-${hash.slice(1).replace("^", "").replace("%5E", "")}`
-          el.id = targetID
-          hash = targetLink
-        })
-      }
+      // prepend all IDs inside popovers to prevent duplicates
+      html.querySelectorAll("[id]").forEach((el) => {
+        const targetID = `popover-${el.id}`
+        const targetLink = hash.startsWith("#popover")
+          ? hash
+          : `#popover-${hash.slice(1).replace("^", "").replace("%5E", "")}`
+        el.id = targetID
+        hash = targetLink
+      })
       const elts = [...html.getElementsByClassName("popover-hint")]
       if (elts.length === 0) return
 
