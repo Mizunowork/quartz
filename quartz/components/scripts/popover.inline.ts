@@ -85,12 +85,12 @@ async function mouseEnterHandler(
       // prepend all IDs inside popovers to prevent duplicates
       html.querySelectorAll("[id]").forEach((el) => {
         const targetID = `popover-${el.id}`
-        const targetLink = hash.startsWith("#popover")
-          ? hash
-          : `#popover-${hash.slice(1).replace("^", "").replace("%5E", "")}`
         el.id = targetID
-        hash = targetLink
       })
+      const targetLink = hash.startsWith("#popover")
+        ? hash
+        : `#popover-${hash.slice(1).replace("^", "").replace("%5E", "")}`
+      hash = targetLink
       const elts = [...html.getElementsByClassName("popover-hint")]
       if (elts.length === 0) return
 
