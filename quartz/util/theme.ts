@@ -108,10 +108,10 @@ export interface GoogleFontFile {
 }
 
 const fontMimeMap: Record<string, string> = {
-  "truetype": "ttf",
-  "woff": "woff",
-  "woff2": "woff2",
-  "opentype": "otf",
+  truetype: "ttf",
+  woff: "woff",
+  woff2: "woff2",
+  opentype: "otf",
 }
 
 export async function processGoogleFonts(
@@ -121,7 +121,8 @@ export async function processGoogleFonts(
   processedStylesheet: string
   fontFiles: GoogleFontFile[]
 }> {
-  const fontSourceRegex = /url\((https:\/\/fonts.gstatic.com\/.+(?:\/|(?:kit=))(.+?)[.&].+?)\)\sformat\('(\w+?)'\);/g
+  const fontSourceRegex =
+    /url\((https:\/\/fonts.gstatic.com\/.+(?:\/|(?:kit=))(.+?)[.&].+?)\)\sformat\('(\w+?)'\);/g
   const fontFiles: GoogleFontFile[] = []
   let processedStylesheet = stylesheet
 
