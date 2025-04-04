@@ -87,7 +87,6 @@ async function mouseEnterHandler(
         const targetID = `popover-${el.id}`
         el.id = targetID
       })
-      console.log(hash)
       const targetLink = hash.startsWith("#popover") ? hash : `#popover-${hash.slice(1)}`
       hash = targetLink
       const elts = [...html.getElementsByClassName("popover-hint")]
