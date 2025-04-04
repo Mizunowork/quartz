@@ -4,14 +4,6 @@ title: Configuration
 
 Quartz is meant to be extremely configurable, even if you don't know any coding. Most of the configuration you should need can be done by just editing `quartz.config.ts` or changing [[layout|the layout]] in `quartz.layout.ts`.
 
-[[hosting#^123456]]
-
-[[#general-configuration]]
-
-[[#^test]]
-
-[[configuration#^test]]
-
 > [!tip]
 > If you edit Quartz configuration using a text-editor that has TypeScript language support like VSCode, it will warn you when you you've made an error in your configuration, helping you avoid configuration mistakes!
 
@@ -84,7 +76,7 @@ plugins: {
 - [[tags/plugin/filter|Filters]] **filter** content (e.g. filtering out drafts)
 - [[tags/plugin/emitter|Emitters]] **reduce** over content (e.g. creating an RSS feed or pages that list all files with a specific tag)
 
-You can customize the behaviour of Quartz by adding, removing and reordering plugins in the `transformers`, `filters` and `emitters` fields. ^test
+You can customize the behaviour of Quartz by adding, removing and reordering plugins in the `transformers`, `filters` and `emitters` fields.
 
 > [!note]
 > Each node is modified by every transformer _in order_. Some transformers are position sensitive, so you may need to pay particular attention to whether they need to come before or after certain other plugins.
