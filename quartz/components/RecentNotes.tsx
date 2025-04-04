@@ -22,7 +22,7 @@ const defaultOptions = (cfg: GlobalConfiguration): Options => ({
   linkToMore: false,
   showTags: true,
   filter: () => true,
-  sort: byDateAndAlphabetical(cfg),
+  sort: byDateAndAlphabetical(cfg, false),
 })
 
 export default ((userOpts?: Partial<Options>) => {
