@@ -1,0 +1,10 @@
+services:
+  app:
+    build:
+      context: .
+    volumes:
+      - ./content:/usr/src/app/content
+      - ./public:/usr/src/app/public
+    ports:
+      - 8080:8080
+      - 3001:3001
