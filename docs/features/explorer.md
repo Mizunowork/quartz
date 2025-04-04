@@ -151,6 +151,19 @@ Component.Explorer({
 })
 ```
 
+Alternatively, here's how to filter by slug:
+
+```ts title="quartz.layout.ts"
+// Filter by slug
+Component.Explorer({
+  filterFn: (node) => {
+    // set containing slugs of everything you want to filter out
+    const omit = new Set(["authoring content", "tags", "hosting"])
+    return !omit.has((node.slug ?? "").split("/")[0])
+  },
+})
+```
+
 ### Remove files by tag
 
 You can access the tags of a file by `node.data.tags`.
