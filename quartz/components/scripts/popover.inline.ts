@@ -34,7 +34,7 @@ async function mouseEnterHandler(
   thisUrl.hash = ""
   thisUrl.search = ""
   const targetUrl = new URL(link.href)
-  let hash = decodeURIComponent(targetUrl.hash)
+  const hash = decodeURIComponent(targetUrl.hash)
   targetUrl.hash = ""
   targetUrl.search = ""
 
@@ -87,8 +87,6 @@ async function mouseEnterHandler(
         const targetID = `popover-${el.id}`
         el.id = targetID
       })
-      const targetLink = hash.startsWith("#popover") ? hash : `#popover-${hash.slice(1)}`
-      hash = targetLink
       const elts = [...html.getElementsByClassName("popover-hint")]
       if (elts.length === 0) return
 
@@ -99,7 +97,8 @@ async function mouseEnterHandler(
   link.appendChild(popoverElement)
 
   if (hash !== "") {
-    const heading = popoverInner.querySelector(hash) as HTMLElement | null
+    const targetAnchor = hash.startsWith("#popover") ? hash : `#popover-${hash.slice(1)}`
+    const heading = popoverInner.querySelector(targetAnchor) as HTMLElement | null
     if (heading) {
       // leave ~12px of buffer when scrolling to a heading
       popoverInner.scroll({ top: heading.offsetTop - 12, behavior: "instant" })
