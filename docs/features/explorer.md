@@ -154,7 +154,6 @@ Component.Explorer({
 Alternatively, here's how to filter by slug:
 
 ```ts title="quartz.layout.ts"
-// Filter by slug
 Component.Explorer({
   filterFn: (node) => {
     // set containing slugs of everything you want to filter out
