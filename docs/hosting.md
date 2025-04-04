@@ -34,7 +34,7 @@ To add a custom domain, check out [Cloudflare's documentation](https://developer
 
 ## GitHub Pages
 
-In your local Quartz, create a new file `quartz/.github/workflows/deploy.yml`.
+In your local Quartz, create a new file `quartz/.github/workflows/deploy.yml`. ^123456
 
 ```yaml title="quartz/.github/workflows/deploy.yml"
 name: Deploy Quartz site to GitHub Pages
