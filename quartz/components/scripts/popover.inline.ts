@@ -7,27 +7,33 @@ async function mouseEnterHandler(
   this: HTMLAnchorElement,
   { clientX, clientY }: { clientX: number; clientY: number },
 ) {
+  inActivePopover()
+
   const link = this
+  link.id = link.innerText
   if (link.dataset.noPopover === "true") {
     return
   }
 
   async function setPosition(popoverElement: HTMLElement) {
     const { x, y } = await computePosition(link, popoverElement, {
+      strategy: "fixed",
       middleware: [inline({ x: clientX, y: clientY }), shift(), flip()],
     })
     Object.assign(popoverElement.style, {
       left: `${x}px`,
-      top: `${y}px`,
+      transform: `translateY(${y}px)`,
     })
   }
 
-  const hasAlreadyBeenFetched = () =>
-    [...link.children].some((child) => child.classList.contains("popover"))
+  const prevPopoverElement = document.getElementById(`popover-${link.id}`)
+  const hasAlreadyBeenFetched = () => !!prevPopoverElement
 
   // dont refetch if there's already a popover
   if (hasAlreadyBeenFetched()) {
-    return setPosition(link.lastChild as HTMLElement)
+    setPosition(prevPopoverElement as HTMLElement)
+    prevPopoverElement?.classList.add("active-popover")
+    return
   }
 
   const thisUrl = new URL(document.location.href)
@@ -91,7 +97,9 @@ async function mouseEnterHandler(
   }
 
   setPosition(popoverElement)
-  link.appendChild(popoverElement)
+  popoverElement.id = `popover-${link.id}`
+  popoverElement?.classList.add("active-popover")
+  document.body.appendChild(popoverElement)
 
   if (hash !== "") {
     const heading = popoverInner.querySelector(hash) as HTMLElement | null
@@ -102,10 +110,23 @@ async function mouseEnterHandler(
   }
 }
 
+function inActivePopover() {
+  const allPopoverElements = document.querySelectorAll(".popover")
+  if (allPopoverElements) {
+    allPopoverElements.forEach((popoverElement) =>
+      popoverElement.classList.remove("active-popover"),
+    )
+  }
+}
+
 document.addEventListener("nav", () => {
   const links = [...document.getElementsByClassName("internal")] as HTMLAnchorElement[]
   for (const link of links) {
+    link.addEventListener("mouseleave", inActivePopover)
     link.addEventListener("mouseenter", mouseEnterHandler)
-    window.addCleanup(() => link.removeEventListener("mouseenter", mouseEnterHandler))
+    window.addCleanup(() => {
+      link.removeEventListener("mouseenter", mouseEnterHandler)
+      link.removeEventListener("mouseleave", inActivePopover)
+    })
   }
 })
