@@ -545,15 +545,11 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                     if (matches && matches.length >= 1) {
                       parent!.children.splice(index! + 2, 1)
                       const block = matches[0].slice(1)
-                      const anchor = block.startsWith("/")
-                        ? `#block-${block.slice(1)}`
-                        : `#block-${block}`
 
                       if (!Object.keys(file.data.blocks!).includes(block)) {
                         node.properties = {
                           ...node.properties,
                           id: block,
-                          href: anchor,
                         }
                         file.data.blocks![block] = node
                       }
@@ -567,9 +563,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                   if (matches && matches.length >= 1) {
                     last.value = last.value.slice(0, -matches[0].length)
                     const block = matches[0].slice(1)
-                    const anchor = block.startsWith("/")
-                      ? `#block-${block.slice(1)}`
-                      : `#block-${block}`
 
                     if (last.value === "") {
                       // this is an inline block ref but the actual block
@@ -585,7 +578,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                             element.properties = {
                               ...element.properties,
                               id: block,
-                              href: anchor,
                             }
                             file.data.blocks![block] = element
                           }
@@ -598,7 +590,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                         node.properties = {
                           ...node.properties,
                           id: block,
-                          href: anchor,
                         }
                         file.data.blocks![block] = node
                       }
