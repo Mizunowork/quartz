@@ -7,7 +7,7 @@ async function mouseEnterHandler(
   this: HTMLAnchorElement,
   { clientX, clientY }: { clientX: number; clientY: number },
 ) {
-  inActivePopover()
+  clearActivePopover()
 
   const link = this
   link.id = link.innerText
@@ -110,7 +110,7 @@ async function mouseEnterHandler(
   }
 }
 
-function inActivePopover() {
+function clearActivePopover() {
   const allPopoverElements = document.querySelectorAll(".popover")
   if (allPopoverElements) {
     allPopoverElements.forEach((popoverElement) =>
@@ -122,11 +122,11 @@ function inActivePopover() {
 document.addEventListener("nav", () => {
   const links = [...document.getElementsByClassName("internal")] as HTMLAnchorElement[]
   for (const link of links) {
-    link.addEventListener("mouseleave", inActivePopover)
+    link.addEventListener("mouseleave", clearActivePopover)
     link.addEventListener("mouseenter", mouseEnterHandler)
     window.addCleanup(() => {
       link.removeEventListener("mouseenter", mouseEnterHandler)
-      link.removeEventListener("mouseleave", inActivePopover)
+      link.removeEventListener("mouseleave", clearActivePopover)
     })
   }
 })
