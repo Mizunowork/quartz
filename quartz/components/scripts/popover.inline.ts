@@ -1,8 +1,10 @@
 import { computePosition, flip, inline, shift } from "@floating-ui/dom"
 import { normalizeRelativeURLs } from "../../util/path"
 import { fetchCanonical } from "./util"
+import { randomIdNonSecure } from "../../util/random"
 
 const p = new DOMParser()
+
 async function mouseEnterHandler(
   this: HTMLAnchorElement,
   { clientX, clientY }: { clientX: number; clientY: number },
@@ -10,7 +12,7 @@ async function mouseEnterHandler(
   clearActivePopover()
 
   const link = this
-  link.id = link.innerText
+  link.id = `backlink-${randomIdNonSecure()}`
   if (link.dataset.noPopover === "true") {
     return
   }
@@ -21,12 +23,11 @@ async function mouseEnterHandler(
       middleware: [inline({ x: clientX, y: clientY }), shift(), flip()],
     })
     Object.assign(popoverElement.style, {
-      left: `${x}px`,
-      transform: `translateY(${y}px)`,
+      transform: `translate(${x}px, ${y}px)`,
     })
   }
 
-  const prevPopoverElement = document.getElementById(`popover-${link.id}`)
+  const prevPopoverElement = document.getElementById(`popover-${link.id.split("-")[1]}`)
   const hasAlreadyBeenFetched = () => !!prevPopoverElement
 
   // dont refetch if there's already a popover
@@ -97,7 +98,7 @@ async function mouseEnterHandler(
   }
 
   setPosition(popoverElement)
-  popoverElement.id = `popover-${link.id}`
+  popoverElement.id = `popover-${link.id.split("-")[1]}`
   popoverElement?.classList.add("active-popover")
   document.body.appendChild(popoverElement)
 
