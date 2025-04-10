@@ -12,7 +12,11 @@ async function mouseEnterHandler(
   clearActivePopover()
 
   const link = this
-  const id = randomIdNonSecure()
+  if (this.dataset.popoverId === undefined) {
+    this.dataset.popoverId = randomIdNonSecure()
+  }
+  const id = this.dataset.popoverId
+
   if (link.dataset.noPopover === "true") {
     return
   }
