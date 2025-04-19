@@ -135,8 +135,8 @@ export const tableWikilinkRegex = new RegExp(/(!?\[\[[^\]]*?\]\]|\[\^[^\]]*?\])/
 //    -> For LaTeX: (?:.*?\${1,2}[^$]*?==[^$]*?\${1,2}.*?)*?
 //    -> For code blocks: (?:.*?`[^`]*?==[^`]*?`.*?)*?
 //    Test Examples:
-//      *  ==$$A == B AND B == C$$ and $$B == C AND C == D$$==
-//      *  ==$A == B AND B == C$ and $B == C AND C == D$==
+//      *  ==$$A == B \land B == C$$ and $$B == C \land C == D$$==
+//      *  ==$A == B \land B == C$ and $B == C \land C == D$==
 //      *  ==`A == B && B == C` and `B == C && C == D`==
 const highlightRegex = new RegExp(
   /(?<!<)==(?!>)((?:.*?\${1,2}[^$]*?==[^$]*?\${1,2}.*?)*?|(?:.*?`[^`]*?==[^`]*?`.*?)*?|.+?)(?<!<)==(?!>)/g,
