@@ -205,8 +205,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
 
       // pre-transform highlights
       if (opts.highlight) {
-        src = src.replace(highlightRegex,
-          `<span class="text-highlight">$1</span>`)
+        src = src.replace(highlightRegex, `<span class="text-highlight">$1</span>`)
       }
 
       return src
