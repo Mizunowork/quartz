@@ -138,7 +138,9 @@ export const tableWikilinkRegex = new RegExp(/(!?\[\[[^\]]*?\]\]|\[\^[^\]]*?\])/
 //      *  ==$$A == B AND B == C$$ and $$B == C AND C == D$$==
 //      *  ==$A == B AND B == C$ and $B == C AND C == D$==
 //      *  ==`A == B && B == C` and `B == C && C == D`==
-const highlightRegex = new RegExp(/(?<!<)==(?!>)((?:.*?\${1,2}[^$]*?==[^$]*?\${1,2}.*?)*?|(?:.*?`[^`]*?==[^`]*?`.*?)*?|.+?)(?<!<)==(?!>)/g)
+const highlightRegex = new RegExp(
+  /(?<!<)==(?!>)((?:.*?\${1,2}[^$]*?==[^$]*?\${1,2}.*?)*?|(?:.*?`[^`]*?==[^`]*?`.*?)*?|.+?)(?<!<)==(?!>)/g,
+)
 const commentRegex = new RegExp(/%%[\s\S]*?%%/g)
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
 const calloutRegex = new RegExp(/^\[\!([\w-]+)\|?(.+?)?\]([+-]?)/)
