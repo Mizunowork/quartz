@@ -137,7 +137,7 @@ for the following edge cases:
   *  ==$A == B \land B == C$ and $B == C \land C == D$!==
   *  ==`A == B && B == C` and `B == C && C == D`!==
 */
-const highlightRegex = new RegExp(/(?<!<)==(?!>)(.+?)(?<!<)==(?!>)/gm)
+const highlightRegex = new RegExp(/(?<!<)==(?!>)(.+?)(?<!<)==(?!>)/gms)
 const commentRegex = new RegExp(/%%[\s\S]*?%%/g)
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
 const calloutRegex = new RegExp(/^\[\!([\w-]+)\|?(.+?)?\]([+-]?)/)
