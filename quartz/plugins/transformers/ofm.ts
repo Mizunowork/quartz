@@ -13,7 +13,7 @@ import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-
 import rehypeRaw from "rehype-raw"
 import { SKIP, visit } from "unist-util-visit"
 import path from "path"
-import { splitAnchor } from "../../util/path"
+import { FullSlug, splitAnchor } from "../../util/path"
 import { JSResource, CSSResource } from "../../util/resources"
 // @ts-ignore
 import calloutScript from "../../components/scripts/callout.inline"
@@ -206,7 +206,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
 
       return src
     },
-    markdownPlugins(_ctx) {
+    markdownPlugins(ctx) {
       const plugins: PluggableList = []
 
       // regex replacements
@@ -227,8 +227,18 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                 // embed cases
                 if (value.startsWith("!")) {
                   const ext: string = path.extname(fp).toLowerCase()
-                  const url = slugifyFilePath(fp as FilePath)
-                  if ([".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg", ".webp"].includes(ext)) {
+                  let url = slugifyFilePath(fp as FilePath)
+                  if (
+                    [".png", ".jpg", ".jpeg", ".gif", ".gifv", ".bmp", ".svg", ".webp"].includes(
+                      ext,
+                    )
+                  ) {
+                    // Replace extension of eligible image files with ".webp" if image optimization is enabled.
+                    url =
+                      ctx.cfg.configuration.optimizeImages &&
+                      [".png", ".jpg", ".jpeg"].includes(ext)
+                        ? ((slugifyFilePath(fp as FilePath, true) + ".webp") as FullSlug)
+                        : url
                     const match = wikilinkImageEmbedRegex.exec(alias ?? "")
                     const alt = match?.groups?.alt ?? ""
                     const width = match?.groups?.width ?? "auto"

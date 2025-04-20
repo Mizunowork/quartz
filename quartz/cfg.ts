@@ -70,6 +70,13 @@ export interface GlobalConfiguration {
    * Region Codes: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
    */
   locale: ValidLocale
+  /**
+   * Whether to optimize images for web serving when building Quartz.
+   *
+   * If true, eligible images will be stripped all metadata and converted to WebP format,
+   * and associated image links in wikilinks will be updated with the new file extension.
+   */
+  optimizeImages: boolean
 }
 
 export interface QuartzConfig {

@@ -52,6 +52,8 @@ const config: QuartzConfig = {
         },
       },
     },
+    // Disable `optimizeImages` to speed up build time
+    optimizeImages: true,
   },
   plugins: {
     transformers: [
