@@ -126,21 +126,18 @@ export const tableRegex = new RegExp(/^\|([^\n])+\|\n(\|)( ?:?-{3,}:? ?\|)+\n(\|
 // matches any wikilink, only used for escaping wikilinks inside tables
 export const tableWikilinkRegex = new RegExp(/(!?\[\[[^\]]*?\]\]|\[\^[^\]]*?\])/g)
 
-// Edge cases for highlight syntax `==<text>==`:
-// 1. Exclude arrow syntax from highlight syntax matching, namely `==>` and `<==`.
-//    -> (?<!<)==(?!>)
-//    Test examples:
-//      *  ==A ==> B and B <== C==
-// 2. Skip over `==` signs in LaTeX math blocks or code blocks.
-//    -> For LaTeX: (?:.*?\${1,2}[^$]*?==[^$]*?\${1,2}.*?)*?
-//    -> For code blocks: (?:.*?`[^`]*?==[^`]*?`.*?)*?
-//    Test Examples:
-//      *  ==$$A == B \land B == C$$ and $$B == C \land C == D$$==
-//      *  ==$A == B \land B == C$ and $B == C \land C == D$==
-//      *  ==`A == B && B == C` and `B == C && C == D`==
-const highlightRegex = new RegExp(
-  /(?<!<)==(?!>)((?:.*?\${1,2}[^$]*?==[^$]*?\${1,2}.*?)*?|(?:.*?`[^`]*?==[^`]*?`.*?)*?|.+?)(?<!<)==(?!>)/g,
-)
+/*
+Exclude arrow syntax from highlight syntax matching, namely `==>` and `<==`.
+  -> (?<!<)==(?!>)
+  Test examples:
+    *  ==A ==> B and B <== C==
+Note that `==` within LaTeX and code blocks are not supported, apply <span class="text-highlight"> instead
+for the following edge cases:
+  *  ==$$A == B \land B == C$$ and $$B == C \land C == D$$!==
+  *  ==$A == B \land B == C$ and $B == C \land C == D$!==
+  *  ==`A == B && B == C` and `B == C && C == D`!==
+*/
+const highlightRegex = new RegExp(/(?<!<)==(?!>)(.+?)(?<!<)==(?!>)/gm)
 const commentRegex = new RegExp(/%%[\s\S]*?%%/g)
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
 const calloutRegex = new RegExp(/^\[\!([\w-]+)\|?(.+?)?\]([+-]?)/)
