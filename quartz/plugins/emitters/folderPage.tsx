@@ -26,7 +26,7 @@ interface FolderPageOptions extends FullPageLayout {
   /**
    * If set, generates a virtual global folder page with the given title
    * at the root of the site containing all non-generated posts.
-   * 
+   *
    * Make sure the folder name does not conflict with existing absolute paths.
    */
   globalFolderTitle?: string
@@ -74,13 +74,11 @@ function computeFolderInfo(
   userOpts?: Partial<FolderPageOptions>,
 ): Record<SimpleSlug, ProcessedContent> {
   // Fail fast if global folder slug conflicts with existing folders
-  const globalFolderSlug = userOpts?.globalFolderTitle?.toLowerCase()
-    .replaceAll(" ", "-") as SimpleSlug ?? null
+  const globalFolderSlug =
+    (userOpts?.globalFolderTitle?.toLowerCase().replaceAll(" ", "-") as SimpleSlug) ?? null
   if (globalFolderSlug) {
     if (folders.has(globalFolderSlug)) {
-      throw new Error(
-        `Global folder path "${globalFolderSlug}" conflicts with existing folder's.`,
-      )
+      throw new Error(`Global folder path "${globalFolderSlug}" conflicts with existing folder's.`)
     }
   }
 
