@@ -16,6 +16,9 @@ The pages are displayed using the `defaultListPageLayout` in `quartz.layouts.ts`
 This plugin accepts the following configuration options:
 
 - `sort`: A function of type `(f1: QuartzPluginData, f2: QuartzPluginData) => number{:ts}` used to sort entries. Defaults to sorting by date and tie-breaking on lexographical order.
+- `globalFolderTitle`: If set, the title of a virtual global folder under website root that lists all user-created public posts. This can be used in conjunction with [[features/recent-notes | Recent Notes]]'s 'See more' link feature for site navigation.
+
+  As an example, if it's set to "All Posts", a global folder page will be created on `<baseUrl>/all-posts/`. An exception is thrown on build if it conflicts with an existing folder.
 
 ## API
 
