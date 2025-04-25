@@ -9,6 +9,10 @@ function toggleCallout(this: HTMLElement) {
   let current = outerBlock
   let parent = outerBlock.parentElement
   while (parent) {
+    if (parent.classList.contains("callout-content")) {
+      parent = parent.parentElement
+      continue
+    }
     if (!parent.classList.contains("callout")) {
       return
     }
