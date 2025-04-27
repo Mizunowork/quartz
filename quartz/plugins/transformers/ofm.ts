@@ -27,6 +27,7 @@ import { toHast } from "mdast-util-to-hast"
 import { toHtml } from "hast-util-to-html"
 import { capitalize } from "../../util/lang"
 import { PluggableList } from "unified"
+import { imageExtsToOptimize, targetOptimizedImageExt } from "../emitters/assets"
 
 export interface Options {
   comments: boolean
@@ -146,6 +147,18 @@ const wikilinkImageEmbedRegex = new RegExp(
   /^(?<alt>(?!^\d*x?\d*$).*?)?(\|?\s*?(?<width>\d+)(x(?<height>\d+))?)?$/,
 )
 
+const supportedImageExts: ReadonlySet<string> = new Set([
+  ".png",
+  ".jpg",
+  ".jpeg",
+  ".gif",
+  ".gifv",
+  ".bmp",
+  ".svg",
+  ".webp",
+  ".avif",
+])
+
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
 
@@ -228,16 +241,12 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                 if (value.startsWith("!")) {
                   const ext: string = path.extname(fp).toLowerCase()
                   let url = slugifyFilePath(fp as FilePath)
-                  if (
-                    [".png", ".jpg", ".jpeg", ".gif", ".gifv", ".bmp", ".svg", ".webp"].includes(
-                      ext,
-                    )
-                  ) {
-                    // Replace extension of eligible image files with ".webp" if image optimization is enabled.
+                  if (supportedImageExts.has(ext)) {
+                    // Replace extension of eligible image files with target extension if image optimization is enabled.
                     url =
-                      ctx.cfg.configuration.optimizeImages &&
-                      [".png", ".jpg", ".jpeg"].includes(ext)
-                        ? ((slugifyFilePath(fp as FilePath, true) + ".webp") as FullSlug)
+                      ctx.cfg.configuration.optimizeImages && imageExtsToOptimize.has(ext)
+                        ? ((slugifyFilePath(fp as FilePath, true) +
+                            targetOptimizedImageExt) as FullSlug)
                         : url
                     const match = wikilinkImageEmbedRegex.exec(alias ?? "")
                     const alt = match?.groups?.alt ?? ""

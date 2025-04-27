@@ -7,12 +7,14 @@ import { Argv } from "../../util/ctx"
 import { QuartzConfig } from "../../cfg"
 import sharp from "sharp"
 
-// Sharp doesn't support BMP input out of the box:
-//   https://github.com/lovell/sharp/issues/543
-// GIF processing can be very slow or ineffective (larger file size when CPU effort is
-// set to a low number); only enable after testing:
-//   https://github.com/lovell/sharp/issues/3176
-const imageExtsToOptimize: Set<string> = new Set([".png", ".jpg", ".jpeg"])
+// - Sharp doesn't support BMP input out of the box:
+//     https://github.com/lovell/sharp/issues/543
+// - GIF / GIFV processing can be very slow or ineffective (larger file size when
+//   CPU effort is set to a low number); only enable after testing:
+//     https://github.com/lovell/sharp/issues/3176
+export const imageExtsToOptimize: ReadonlySet<string> = new Set([".png", ".jpg", ".jpeg"])
+// Remember to also update sharp to use the right extension.
+export const targetOptimizedImageExt = ".webp"
 
 const filesToCopy = async (argv: Argv, cfg: QuartzConfig) => {
   // glob all non MD files in content folder and copy it over
@@ -26,7 +28,7 @@ const copyFile = async (argv: Argv, cfg: QuartzConfig, fp: FilePath) => {
   const doOptimizeImage = cfg.configuration.optimizeImages && imageExtsToOptimize.has(srcExt)
 
   const name = doOptimizeImage
-    ? ((slugifyFilePath(fp, true) + ".webp") as FullSlug)
+    ? ((slugifyFilePath(fp, true) + targetOptimizedImageExt) as FullSlug)
     : slugifyFilePath(fp)
   const dest = joinSegments(argv.output, name) as FilePath
 
@@ -44,10 +46,10 @@ const copyFile = async (argv: Argv, cfg: QuartzConfig, fp: FilePath) => {
 
 async function processImage(src: FilePath, dest: FilePath) {
   const originalFile = await fs.promises.readFile(src)
-  const convertedFile = await sharp(originalFile)
+  await sharp(originalFile, { animated: false })
     .webp({ quality: 90, smartSubsample: true, effort: 6 })
-    .toBuffer()
-  await fs.promises.writeFile(dest, convertedFile)
+    // .avif({ quality: 90, effort: 9, chromaSubsampling: "4:2:0", bitdepth: 8 })
+    .toFile(dest)
 }
 
 export const Assets: QuartzEmitterPlugin = () => {
@@ -70,7 +72,7 @@ export const Assets: QuartzEmitterPlugin = () => {
           const doOptimizeImage =
             ctx.cfg.configuration.optimizeImages && imageExtsToOptimize.has(ext)
           const name = doOptimizeImage
-            ? ((slugifyFilePath(changeEvent.path, true) + ".webp") as FullSlug)
+            ? ((slugifyFilePath(changeEvent.path, true) + targetOptimizedImageExt) as FullSlug)
             : slugifyFilePath(changeEvent.path)
           const dest = joinSegments(ctx.argv.output, name) as FilePath
           await fs.promises.unlink(dest)
