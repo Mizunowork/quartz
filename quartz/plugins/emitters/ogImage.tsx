@@ -12,6 +12,8 @@ import { BuildCtx } from "../../util/ctx"
 import { QuartzPluginData } from "../vfile"
 import fs from "node:fs/promises"
 import chalk from "chalk"
+import { getExtFromUrl } from "../../util/url"
+import { imageExtsToOptimize, targetOptimizedImageExt } from "./assets"
 
 const defaultOptions: SocialImageOptions = {
   colorScheme: "lightMode",
@@ -151,6 +153,17 @@ export const CustomOgImages: QuartzEmitterPlugin<Partial<SocialImageOptions>> = 
               userDefinedOgImagePath = isAbsoluteURL(userDefinedOgImagePath)
                 ? userDefinedOgImagePath
                 : `https://${baseUrl}/static/${userDefinedOgImagePath}`
+
+              // Replace extension of eligible image files with target extension if image optimization is enabled.
+              if (ctx.cfg.configuration.optimizeImages) {
+                const ext = getExtFromUrl(userDefinedOgImagePath)?.toLowerCase()
+                if (ext && imageExtsToOptimize.has(ext)) {
+                  userDefinedOgImagePath = userDefinedOgImagePath.replace(
+                    ext,
+                    targetOptimizedImageExt,
+                  )
+                }
+              }
             }
 
             const generatedOgImagePath = isRealFile
