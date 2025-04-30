@@ -18,6 +18,10 @@ By default, Quartz will title the page `Folder: <folder name>` and no descriptio
 
 For example, for the folder `content/posts`, you can add another file `content/posts/index.md` to add a specific description for it.
 
+## Global Folder Listings (Optional)
+
+After configuring in the [[FolderPage]] plugin, Quartz can generate a virtual global folder under the website root for all the user-created public pages, sorted based on folder page sorting rules. This can be used in conjunction with [[features/recent-notes | Recent Notes]]'s 'See more' link feature for site navigation.
+
 ## Tag Listings
 
 Quartz will also create an index page for each unique tag in your vault and render a list of all notes with that tag.

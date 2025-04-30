@@ -8,7 +8,8 @@ import { i18n } from "../../i18n"
 import { QuartzPluginData } from "../../plugins/vfile"
 import { ComponentChildren } from "preact"
 import { concatenateResources } from "../../util/resources"
-import { trieFromAllFiles } from "../../util/ctx"
+import { BuildTimeTrieData, trieFromAllFiles } from "../../util/ctx"
+import { FileTrieNode } from "../../util/fileTrie"
 
 interface FolderContentOptions {
   /**
@@ -31,63 +32,67 @@ export default ((opts?: Partial<FolderContentOptions>) => {
     const { tree, fileData, allFiles, cfg } = props
 
     const trie = (props.ctx.trie ??= trieFromAllFiles(allFiles))
-    const folder = trie.findNode(fileData.slug!.split("/"))
-    if (!folder) {
-      return null
+    let folder: FileTrieNode<BuildTimeTrieData> | undefined
+    if (!fileData.isGlobalFolder) {
+      folder = trie.findNode(fileData.slug!.split("/"))
+      if (!folder) {
+        return null
+      }
     }
 
-    const allPagesInFolder: QuartzPluginData[] =
-      folder.children
-        .map((node) => {
-          // regular file, proceed
-          if (node.data) {
-            return node.data
-          }
+    const allPagesInFolder: QuartzPluginData[] = fileData.isGlobalFolder
+      ? allFiles
+      : (folder!.children
+          .map((node) => {
+            // regular file, proceed
+            if (node.data) {
+              return node.data
+            }
 
-          if (node.isFolder && options.showSubfolders) {
-            // folders that dont have data need synthetic files
-            const getMostRecentDates = (): QuartzPluginData["dates"] => {
-              let maybeDates: QuartzPluginData["dates"] | undefined = undefined
-              for (const child of node.children) {
-                if (child.data?.dates) {
-                  // compare all dates and assign to maybeDates if its more recent or its not set
-                  if (!maybeDates) {
-                    maybeDates = { ...child.data.dates }
-                  } else {
-                    if (child.data.dates.created > maybeDates.created) {
-                      maybeDates.created = child.data.dates.created
-                    }
+            if (node.isFolder && options.showSubfolders) {
+              // folders that dont have data need synthetic files
+              const getMostRecentDates = (): QuartzPluginData["dates"] => {
+                let maybeDates: QuartzPluginData["dates"] | undefined = undefined
+                for (const child of node.children) {
+                  if (child.data?.dates) {
+                    // compare all dates and assign to maybeDates if its more recent or its not set
+                    if (!maybeDates) {
+                      maybeDates = { ...child.data.dates }
+                    } else {
+                      if (child.data.dates.created > maybeDates.created) {
+                        maybeDates.created = child.data.dates.created
+                      }
 
-                    if (child.data.dates.modified > maybeDates.modified) {
-                      maybeDates.modified = child.data.dates.modified
-                    }
+                      if (child.data.dates.modified > maybeDates.modified) {
+                        maybeDates.modified = child.data.dates.modified
+                      }
 
-                    if (child.data.dates.published > maybeDates.published) {
-                      maybeDates.published = child.data.dates.published
+                      if (child.data.dates.published > maybeDates.published) {
+                        maybeDates.published = child.data.dates.published
+                      }
                     }
                   }
                 }
+                return (
+                  maybeDates ?? {
+                    created: new Date(),
+                    modified: new Date(),
+                    published: new Date(),
+                  }
+                )
               }
-              return (
-                maybeDates ?? {
-                  created: new Date(),
-                  modified: new Date(),
-                  published: new Date(),
-                }
-              )
-            }
 
-            return {
-              slug: node.slug,
-              dates: getMostRecentDates(),
-              frontmatter: {
-                title: node.displayName,
-                tags: [],
-              },
+              return {
+                slug: node.slug,
+                dates: getMostRecentDates(),
+                frontmatter: {
+                  title: node.displayName,
+                  tags: [],
+                },
+              }
             }
-          }
-        })
-        .filter((page) => page !== undefined) ?? []
+          })
+          .filter((page) => page !== undefined) ?? [])
     const cssClasses: string[] = fileData.frontmatter?.cssclasses ?? []
     const classes = cssClasses.join(" ")
     const listProps = {

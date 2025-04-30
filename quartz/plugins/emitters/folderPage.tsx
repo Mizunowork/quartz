@@ -20,8 +20,16 @@ import { write } from "./helpers"
 import { i18n, TRANSLATIONS } from "../../i18n"
 import { BuildCtx } from "../../util/ctx"
 import { StaticResources } from "../../util/resources"
+
 interface FolderPageOptions extends FullPageLayout {
   sort?: (f1: QuartzPluginData, f2: QuartzPluginData) => number
+  /**
+   * If set, generates a virtual global folder page with the given title
+   * at the root of the site containing all non-generated posts.
+   *
+   * Make sure the folder name does not conflict with existing absolute paths.
+   */
+  globalFolderTitle?: string
 }
 
 async function* processFolderInfo(
@@ -63,7 +71,17 @@ function computeFolderInfo(
   folders: Set<SimpleSlug>,
   content: ProcessedContent[],
   locale: keyof typeof TRANSLATIONS,
+  userOpts?: Partial<FolderPageOptions>,
 ): Record<SimpleSlug, ProcessedContent> {
+  // Fail fast if global folder slug conflicts with existing folders
+  const globalFolderSlug =
+    (userOpts?.globalFolderTitle?.toLowerCase().replaceAll(" ", "-") as SimpleSlug) ?? null
+  if (globalFolderSlug) {
+    if (folders.has(globalFolderSlug)) {
+      throw new Error(`Global folder path "${globalFolderSlug}" conflicts with existing folder's.`)
+    }
+  }
+
   // Create default folder descriptions
   const folderInfo: Record<SimpleSlug, ProcessedContent> = Object.fromEntries(
     [...folders].map((folder) => [
@@ -77,6 +95,18 @@ function computeFolderInfo(
       }),
     ]),
   )
+
+  // Add metadata for the global folder
+  if (globalFolderSlug) {
+    folderInfo[globalFolderSlug] = defaultProcessedContent({
+      slug: joinSegments(globalFolderSlug, "index") as FullSlug,
+      frontmatter: {
+        title: userOpts?.globalFolderTitle!,
+        tags: [],
+      },
+      isGlobalFolder: true,
+    })
+  }
 
   // Update with actual content if available
   for (const [tree, file] of content) {
@@ -142,7 +172,7 @@ export const FolderPage: QuartzEmitterPlugin<Partial<FolderPageOptions>> = (user
         }),
       )
 
-      const folderInfo = computeFolderInfo(folders, content, cfg.locale)
+      const folderInfo = computeFolderInfo(folders, content, cfg.locale, userOpts)
       yield* processFolderInfo(ctx, folderInfo, allFiles, opts, resources)
     },
     async *partialEmit(ctx, content, resources, changeEvents) {
