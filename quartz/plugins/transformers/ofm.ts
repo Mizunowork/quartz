@@ -126,7 +126,18 @@ export const tableRegex = new RegExp(/^\|([^\n])+\|\n(\|)( ?:?-{3,}:? ?\|)+\n(\|
 // matches any wikilink, only used for escaping wikilinks inside tables
 export const tableWikilinkRegex = new RegExp(/(!?\[\[[^\]]*?\]\]|\[\^[^\]]*?\])/g)
 
-const highlightRegex = new RegExp(/==([^=]+)==/g)
+/*
+Exclude arrow syntax from highlight syntax matching, namely `==>` and `<==`.
+  -> (?<!<)==(?!>)
+  Test examples:
+    *  ==A ==> B and B <== C==
+Note that `==` within LaTeX and code blocks are not supported, apply <span class="text-highlight"> instead
+for the following edge cases:
+  *  ==$$A == B \land B == C$$ and $$B == C \land C == D$$!==
+  *  ==$A == B \land B == C$ and $B == C \land C == D$!==
+  *  ==`A == B && B == C` and `B == C && C == D`!==
+*/
+const highlightRegex = new RegExp(/(?<!<)==(?!>)(.+?)(?<!<)==(?!>)/gms)
 const commentRegex = new RegExp(/%%[\s\S]*?%%/g)
 // from https://github.com/escwxyz/remark-obsidian-callout/blob/main/src/index.ts
 const calloutRegex = new RegExp(/^\[\!([\w-]+)\|?(.+?)?\]([+-]?)/)
@@ -202,6 +213,11 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
 
           return `${embedDisplay}[[${fp}${displayAnchor}${displayAlias}]]`
         })
+      }
+
+      // pre-transform highlights
+      if (opts.highlight) {
+        src = src.replace(highlightRegex, `<span class="text-highlight">$1</span>`)
       }
 
       return src
@@ -287,19 +303,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                       value: alias ?? fp,
                     },
                   ],
-                }
-              },
-            ])
-          }
-
-          if (opts.highlight) {
-            replacements.push([
-              highlightRegex,
-              (_value: string, ...capture: string[]) => {
-                const [inner] = capture
-                return {
-                  type: "html",
-                  value: `<span class="text-highlight">${inner}</span>`,
                 }
               },
             ])
