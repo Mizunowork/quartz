@@ -41,6 +41,7 @@ export interface Options {
   enableYouTubeEmbed: boolean
   enableVideoEmbed: boolean
   enableCheckbox: boolean
+  enableInlineFootnotes: boolean
 }
 
 const defaultOptions: Options = {
@@ -56,6 +57,7 @@ const defaultOptions: Options = {
   enableYouTubeEmbed: true,
   enableVideoEmbed: true,
   enableCheckbox: false,
+  enableInlineFootnotes: true,
 }
 
 const calloutMapping = {
@@ -146,6 +148,13 @@ const wikilinkImageEmbedRegex = new RegExp(
   /^(?<alt>(?!^\d*x?\d*$).*?)?(\|?\s*?(?<width>\d+)(x(?<height>\d+))?)?$/,
 )
 
+const inlineFootnoteRegex = new RegExp(/\^\[((?:[^\[\]]|\[(?:[^\[\]]|\[[^\[\]]*\])*\])*)\]/g)
+// match inline footnotes where content can contain any properly nested brackets
+// \^\[...\] -> matches ^[inline footnote's] brackets
+// (?:...) -> does not capture any of the following:
+//   [^\[\]] -> any character that is not a bracket
+//   \[(?:[^\[\]]|\[[^\[\]]*\])*\] -> a properly nested set of brackets
+
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
 
@@ -202,6 +211,36 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
 
           return `${embedDisplay}[[${fp}${displayAnchor}${displayAlias}]]`
         })
+      }
+
+      if (opts.enableInlineFootnotes) {
+        // Replaces ^[inline] footnotes with regular footnotes [^1]:
+        const footnotes: Record<string, string> = {}
+        let counter = 0
+
+        // Replace inline footnotes with references and collect definitions
+        const result = (src as string).replace(
+          inlineFootnoteRegex,
+          (_match: string, content: string) => {
+            const id = `generated-inline-footnote-${counter++}`
+            footnotes[id] = content.trim()
+            return `[^${id}]`
+          },
+        )
+
+        // Append footnote definitions if any are found
+        if (Object.keys(footnotes).length > 0) {
+          return (
+            result +
+            "\n\n" +
+            Object.entries(footnotes)
+              .map(([id, content]) => `[^${id}]: ${content}`)
+              .join("\n") +
+            "\n"
+          )
+        }
+
+        return result
       }
 
       return src
