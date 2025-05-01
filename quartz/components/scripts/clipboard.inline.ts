@@ -3,6 +3,7 @@ const svgCopy =
 const svgCheck =
   '<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"><path fill-rule="evenodd" fill="rgb(63, 185, 80)" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path></svg>'
 
+// Code block copy button
 document.addEventListener("nav", () => {
   const els = document.getElementsByTagName("pre")
   for (let i = 0; i < els.length; i++) {
@@ -32,6 +33,31 @@ document.addEventListener("nav", () => {
       button.addEventListener("click", onClick)
       window.addCleanup(() => button.removeEventListener("click", onClick))
       els[i].prepend(button)
+    }
+  }
+})
+
+// Header anchor copy button
+document.addEventListener("nav", () => {
+  const els = document.querySelectorAll("a[role=anchor]")
+  for (let i = 0; i < els.length; i++) {
+    const href = els[i].getAttribute("href")
+    if (href) {
+      const anchorLink = new URL(href, window.location.href).toString()
+      const svgAnchor = els[i].innerHTML
+      function onClick() {
+        navigator.clipboard.writeText(anchorLink).then(
+          () => {
+            els[i].innerHTML = svgCheck
+            setTimeout(() => {
+              els[i].innerHTML = svgAnchor
+            }, 2000)
+          },
+          (error) => console.error(error),
+        )
+      }
+      els[i].addEventListener("click", onClick)
+      window.addCleanup(() => els[i].removeEventListener("click", onClick))
     }
   }
 })
