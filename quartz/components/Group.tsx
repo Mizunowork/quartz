@@ -7,9 +7,7 @@ interface GroupConfig {
 
 export default ((config: GroupConfig) => {
   const Group: QuartzComponent = (props: QuartzComponentProps) =>
-    config.components
-      .map((c: QuartzComponent) => ({ component: c }))
-      .map((it: { component: QuartzComponent }) => <it.component {...props} />)
+    config.components.map((C: QuartzComponent) => <C {...props} />)
 
   Group.afterDOMLoaded = concatenateResources(...config.components.map((c) => c.afterDOMLoaded))
   Group.beforeDOMLoaded = concatenateResources(...config.components.map((c) => c.beforeDOMLoaded))
