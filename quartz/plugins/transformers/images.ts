@@ -55,7 +55,7 @@ export const Images: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
  * HAST plugin that updates image tags of supported formats to serve
  * optimized images.
  *
- * For example, given `<img src="./image.png" />`, it generates:
+ * For example, given `<img src="./image.png" data-slug="image.png" />`, it generates:
  *
  * ```html
  * <a href="./image.webp" class="preview-image-link" data-no-popover="true" data-router-ignore="true">
