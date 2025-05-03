@@ -6,11 +6,9 @@ import { imageExtsToOptimize, previewImageMap, targetOptimizedImageExt } from ".
 import { FullSlug, getFileExtension, isAbsoluteURL, RelativeURL } from "../../util/path"
 import { parseSelector } from "hast-util-parse-selector"
 
-export interface Options {
-}
+export interface Options {}
 
-const defaultOptions: Options = {
-}
+const defaultOptions: Options = {}
 
 /**
  * File extensions of all supported image format. Files with an extension
@@ -36,6 +34,7 @@ export const supportedImageExts: ReadonlySet<string> = new Set([
  * Add this plugin after all Markdown parser plugins in quartz.config.
  */
 export const Images: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
+  //@ts-ignore
   const opts = { ...defaultOptions, ...userOpts }
 
   return {

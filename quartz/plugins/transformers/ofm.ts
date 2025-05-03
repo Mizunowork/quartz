@@ -228,7 +228,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                 // embed cases
                 if (value.startsWith("!")) {
                   const ext: string = path.extname(fp).toLowerCase()
-                  let url = slugifyFilePath(fp as FilePath)
+                  const url = slugifyFilePath(fp as FilePath)
 
                   // Handle images
                   if (supportedImageExts.has(ext)) {
@@ -250,13 +250,13 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                         },
                       },
                     }
-                  // Handle videos
+                    // Handle videos
                   } else if ([".mp4", ".webm", ".ogv", ".mov", ".mkv"].includes(ext)) {
                     return {
                       type: "html",
                       value: `<video src="${url}" controls></video>`,
                     }
-                  // Handle audio
+                    // Handle audio
                   } else if (
                     [".mp3", ".webm", ".wav", ".m4a", ".ogg", ".3gp", ".flac"].includes(ext)
                   ) {
@@ -264,7 +264,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                       type: "html",
                       value: `<audio src="${url}" controls></audio>`,
                     }
-                  // Handle documents
+                    // Handle documents
                   } else if ([".pdf"].includes(ext)) {
                     return {
                       type: "html",
