@@ -51,5 +51,5 @@ export {
   Comments,
   Flex,
   ConditionalRender,
-  Group
+  Group,
 }
