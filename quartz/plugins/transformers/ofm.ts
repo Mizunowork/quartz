@@ -236,8 +236,6 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                     const alt = match?.groups?.alt ?? ""
                     const width = match?.groups?.width ?? "auto"
                     const height = match?.groups?.height ?? "auto"
-                    // Pass full slug to the HTML <image> transformer "Images"
-                    const fullSlug = slugifyFilePath(fp as FilePath, false)
                     return {
                       type: "image",
                       url,
@@ -246,7 +244,8 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                           width,
                           height,
                           alt,
-                          dataSlug: fullSlug,
+                          // Pass full slug to the HTML <image> transformer "Images"
+                          dataSlug: url,
                         },
                       },
                     }
