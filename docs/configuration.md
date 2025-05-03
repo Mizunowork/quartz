@@ -57,7 +57,12 @@ This part of the configuration concerns anything that can affect the whole site.
     - `tertiary`: hover states and visited [[graph view|graph]] nodes
     - `highlight`: internal link background, highlighted text, [[syntax highlighting|highlighted lines of code]]
     - `textHighlight`: markdown highlighted text background
-- `optimizeImages`: whether to optimize images for web serving when building Quartz. If `true`, JPEG and PNG images will be stripped all metadata and converted to WebP format, and associated image links in [[wikilinks]] will be updated with the new file extension.
+- `optimizeImages`: whether to optimize images for web serving when building Quartz. If this is set to `true`:
+  - JPEG and PNG images will be stripped all metadata and converted to WebP format, and associated image links in [[wikilinks]] will be updated with the new file extension.
+  - A resized preview image will replace every local image that have custom dimensions defined either in their [wikilink](https://help.obsidian.md/syntax#External+images) or <img> tag. The original image (optimized or not) will still be assessable as a link on the preview image.
+
+  ![[images/engelbart.jpeg | 200]]<br/>
+  _An example optimized preview image of [Douglas Engelbart](https://awards.acm.org/award_winners/engelbart_5078811). Clicking on it opens an originally sized optimized image._
 
 ## Plugins
 
