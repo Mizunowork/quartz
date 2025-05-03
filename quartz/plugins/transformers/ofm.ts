@@ -13,7 +13,7 @@ import { ReplaceFunction, findAndReplace as mdastFindReplace } from "mdast-util-
 import rehypeRaw from "rehype-raw"
 import { SKIP, visit } from "unist-util-visit"
 import path from "path"
-import { FullSlug, splitAnchor } from "../../util/path"
+import { splitAnchor } from "../../util/path"
 import { JSResource, CSSResource } from "../../util/resources"
 // @ts-ignore
 import calloutScript from "../../components/scripts/callout.inline"
@@ -27,7 +27,7 @@ import { toHast } from "mdast-util-to-hast"
 import { toHtml } from "hast-util-to-html"
 import { capitalize } from "../../util/lang"
 import { PluggableList } from "unified"
-import { imageExtsToOptimize, targetOptimizedImageExt } from "../emitters/assets"
+import { supportedImageExts } from "./images"
 
 export interface Options {
   comments: boolean
@@ -147,18 +147,6 @@ const wikilinkImageEmbedRegex = new RegExp(
   /^(?<alt>(?!^\d*x?\d*$).*?)?(\|?\s*?(?<width>\d+)(x(?<height>\d+))?)?$/,
 )
 
-const supportedImageExts: ReadonlySet<string> = new Set([
-  ".png",
-  ".jpg",
-  ".jpeg",
-  ".gif",
-  ".gifv",
-  ".bmp",
-  ".svg",
-  ".webp",
-  ".avif",
-])
-
 export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
   const opts = { ...defaultOptions, ...userOpts }
 
@@ -219,7 +207,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
 
       return src
     },
-    markdownPlugins(ctx) {
+    markdownPlugins(_ctx) {
       const plugins: PluggableList = []
 
       // regex replacements
@@ -241,17 +229,15 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                 if (value.startsWith("!")) {
                   const ext: string = path.extname(fp).toLowerCase()
                   let url = slugifyFilePath(fp as FilePath)
+
+                  // Handle images
                   if (supportedImageExts.has(ext)) {
-                    // Replace extension of eligible image files with target extension if image optimization is enabled.
-                    url =
-                      ctx.cfg.configuration.optimizeImages && imageExtsToOptimize.has(ext)
-                        ? ((slugifyFilePath(fp as FilePath, true) +
-                            targetOptimizedImageExt) as FullSlug)
-                        : url
                     const match = wikilinkImageEmbedRegex.exec(alias ?? "")
                     const alt = match?.groups?.alt ?? ""
                     const width = match?.groups?.width ?? "auto"
                     const height = match?.groups?.height ?? "auto"
+                    // Pass full slug to the HTML <image> transformer "Images"
+                    const fullSlug = slugifyFilePath(fp as FilePath, false)
                     return {
                       type: "image",
                       url,
@@ -260,14 +246,17 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                           width,
                           height,
                           alt,
+                          dataSlug: fullSlug,
                         },
                       },
                     }
+                  // Handle videos
                   } else if ([".mp4", ".webm", ".ogv", ".mov", ".mkv"].includes(ext)) {
                     return {
                       type: "html",
                       value: `<video src="${url}" controls></video>`,
                     }
+                  // Handle audio
                   } else if (
                     [".mp3", ".webm", ".wav", ".m4a", ".ogg", ".3gp", ".flac"].includes(ext)
                   ) {
@@ -275,6 +264,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                       type: "html",
                       value: `<audio src="${url}" controls></audio>`,
                     }
+                  // Handle documents
                   } else if ([".pdf"].includes(ext)) {
                     return {
                       type: "html",
