@@ -38,9 +38,9 @@ When `optimizeImages` in [[configuration#General-Configuration|General Configura
 
 If an image has custom dimensions set, this plugin registers corresponding preview image spec with the [[Assets]] emitter so that the latter generates an additional preview image that matches the aspect ratio but with a small resolution bump. Note that [[Assets]] never upscales an image, so preview image file sizes are never larger than the originally sized optimized images.
 
-Update the [[Assets]] emitter source code if you want to tweak the image format conversion or/and resizing logic. Here are a few things you could do:
+Update the [[Assets]] emitter source code if you want to tweak the image format conversion or/and resizing logic with [`sharp`](https://github.com/lovell/sharp). Here are a couple things you could do following code comments:
 
-- Make image optimization emit [AVIF](https://caniuse.com/avif) images instead, which is considered a mainstream successor to the [WebP](https://caniuse.com/webp) format, has better compression ratio and image feature sets (such as HDR support), but currently has narrower browser support and may be slower in image processing.
+- Make `sharp` emit [AVIF](https://caniuse.com/avif) images instead, which is considered a mainstream successor to the [WebP](https://caniuse.com/webp) format, has better compression ratio and image feature sets (such as HDR support), but currently has narrower browser support and may be slower in image processing.
 
 - Enable optimization for animated GIF / GIFV images. Note that animated image processing can be very slow, only use it after testing!
 
