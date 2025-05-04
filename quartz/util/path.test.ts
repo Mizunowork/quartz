@@ -1,7 +1,7 @@
-import test, { describe } from "node:test"
+import test, { describe, it } from "node:test"
 import * as path from "./path"
 import assert from "node:assert"
-import { FullSlug, TransformOptions, SimpleSlug } from "./path"
+import { FullSlug, TransformOptions, SimpleSlug, getExtFromUrl } from "./path"
 
 describe("typeguards", () => {
   test("isSimpleSlug", () => {
@@ -359,5 +359,31 @@ describe("resolveRelative", () => {
     assert.strictEqual(path.resolveRelative("abc/def" as FullSlug, "" as SimpleSlug), "../")
     assert.strictEqual(path.resolveRelative("abc/def" as FullSlug, "ghi" as SimpleSlug), "../ghi")
     assert.strictEqual(path.resolveRelative("abc/def" as FullSlug, "ghi/" as SimpleSlug), "../ghi/")
+  })
+})
+
+describe("getExtFromUrl", () => {
+  it("should return the correct file extension from a URL", () => {
+    const url = "https://example.com/image.jpg"
+    const ext = getExtFromUrl(url)
+    assert.strictEqual(ext, ".jpg")
+  })
+
+  it("should return undefined for URLs without an extension", () => {
+    const url = "https://example.com/image"
+    const ext = getExtFromUrl(url)
+    assert.strictEqual(ext, undefined)
+  })
+
+  it("should handle URLs with query parameters", () => {
+    const url = "https://example.com/image.jpg?size=large"
+    const ext = getExtFromUrl(url)
+    assert.strictEqual(ext, ".jpg")
+  })
+
+  it("should handle URLs with hash fragments", () => {
+    const url = "https://example.com/image.jpg#section1"
+    const ext = getExtFromUrl(url)
+    assert.strictEqual(ext, ".jpg")
   })
 })
