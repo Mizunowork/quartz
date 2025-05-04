@@ -101,7 +101,7 @@ async function processImage(
       previewImageInfo.height ? Math.round(previewImageInfo.height * 1.2) : undefined,
       {
         fit: "cover",
-        position: "centre",
+        position: "center",
         withoutEnlargement: true, // Don't upscale
         fastShrinkOnLoad: true,
       },
