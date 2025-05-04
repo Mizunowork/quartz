@@ -6,9 +6,16 @@ import { imageExtsToOptimize, previewImageMap, targetOptimizedImageExt } from ".
 import { FullSlug, getFileExtension, isAbsoluteURL, RelativeURL } from "../../util/path"
 import { parseSelector } from "hast-util-parse-selector"
 
-export interface Options {}
+export interface Options {
+  /**
+   * If true, opens image links in a new tab.
+   */
+  openLinksInNewTab: boolean
+}
 
-const defaultOptions: Options = {}
+const defaultOptions: Options = {
+  openLinksInNewTab: false,
+}
 
 /**
  * File extensions of all supported image format. Files with an extension
@@ -34,7 +41,6 @@ export const supportedImageExts: ReadonlySet<string> = new Set([
  * Add this plugin after all Markdown parser plugins in quartz.config.
  */
 export const Images: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
-  //@ts-ignore
   const opts = { ...defaultOptions, ...userOpts }
 
   return {
@@ -43,7 +49,7 @@ export const Images: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
       const plugins: PluggableList = []
 
       if (ctx.cfg.configuration.optimizeImages) {
-        plugins.push(OptimizeImages)
+        plugins.push([OptimizeImages, opts])
       }
 
       return plugins
@@ -63,7 +69,7 @@ export const Images: QuartzTransformerPlugin<Partial<Options>> = (userOpts) => {
  * </a>
  * ```
  */
-const OptimizeImages: Plugin<[], HtmlRoot> = () => {
+const OptimizeImages: Plugin<[Options], HtmlRoot> = (opts: Options) => {
   const transformer: Transformer<HtmlRoot> = (tree: HtmlRoot) => {
     visit(tree, "element", (node, index, parent) => {
       if (node.tagName === "img" && typeof node.properties.src === "string") {
@@ -115,6 +121,9 @@ const OptimizeImages: Plugin<[], HtmlRoot> = () => {
           // Disable SPA router click event that always forces link redirection
           // (to make image links compatible with lightbox plugins)
           wrapper.properties["data-router-ignore"] = true
+          if (opts.openLinksInNewTab) {
+            wrapper.properties["target"] = "_blank"
+          }
           wrapper.children = [node]
           parent!.children[index!] = wrapper
 
