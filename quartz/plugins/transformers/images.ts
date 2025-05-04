@@ -77,10 +77,6 @@ const OptimizeImages: Plugin<[Options], HtmlRoot> = (opts: Options) => {
         if (isAbsoluteURL(src)) return // Skip External images
         const ext = getFileExtension(src)
         if (!ext || !supportedImageExts.has(ext)) return
-        // `data-slug` is set by the OFM markdown transformer.
-        // This is the absolute file path compared to `src`, which can be relative.
-        const fullSlug = node.properties["dataSlug"] as FullSlug
-        if (!fullSlug) return
 
         const width =
           node.properties.width && node.properties.width !== "auto"
@@ -100,6 +96,11 @@ const OptimizeImages: Plugin<[Options], HtmlRoot> = (opts: Options) => {
 
         // Replace original image source with preview image if custom dimension is defined
         if (width || height) {
+          // `data-slug` is set by the OFM markdown transformer.
+          // This is the absolute file path compared to `src`, which can be relative.
+          const fullSlug = node.properties["dataSlug"] as FullSlug
+          if (!fullSlug) return
+
           node.properties.src = src.replace(
             new RegExp(`(?:${ext}|${targetOptimizedImageExt})$`),
             `-preview${shouldOptimizeImage ? targetOptimizedImageExt : ext}`,
