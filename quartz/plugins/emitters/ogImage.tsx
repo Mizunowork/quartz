@@ -1,7 +1,14 @@
 import { QuartzEmitterPlugin } from "../types"
 import { i18n } from "../../i18n"
 import { unescapeHTML } from "../../util/escape"
-import { FullSlug, getExtFromUrl, getFileExtension, isAbsoluteURL, joinSegments, QUARTZ } from "../../util/path"
+import {
+  FullSlug,
+  getExtFromUrl,
+  getFileExtension,
+  isAbsoluteURL,
+  joinSegments,
+  QUARTZ,
+} from "../../util/path"
 import { ImageOptions, SocialImageOptions, defaultImage, getSatoriFonts } from "../../util/og"
 import sharp from "sharp"
 import satori, { SatoriOptions } from "satori"
