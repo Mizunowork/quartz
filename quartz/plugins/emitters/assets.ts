@@ -109,7 +109,8 @@ async function processImage(
   }
 
   if (!(previewImageInfo?.resizeOnly ?? false)) {
-    pipeline = pipeline.webp({ quality: 90, smartSubsample: true, effort: 6 })
+    // @ts-expect-error TS2353 till https://github.com/lovell/sharp/pull/4387 is merged.
+    pipeline = pipeline.webp({ quality: 90, smartSubsample: true, smartDeblock: true, effort: 6 })
     // .avif({ quality: 90, effort: 9, chromaSubsampling: "4:2:0", bitdepth: 8 })
   }
 
