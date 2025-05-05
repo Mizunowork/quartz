@@ -16,7 +16,7 @@ This plugin parses and rewrites HTML image tags to support image related feature
 
 When `optimizeImages` in [[configuration#General-Configuration|General Configuration]] is set to `true`:
 
-- JPEG and PNG images will be stripped all metadata and converted to WebP format, and associated image links in [[wikilinks]] will be updated with the new file extension.
+- JPEG and PNG images will be stripped all metadata and converted to [WebP](https://caniuse.com/webp) format, and associated image links in [[wikilinks]] will be updated with the new file extension.
 
 - A resized preview image will replace every local image that have custom dimensions defined either in their [wikilink](https://help.obsidian.md/syntax#External+images) or <img> tag. The original image (optimized or not) will still be assessable as a link on the preview image.
 
@@ -38,7 +38,9 @@ When `optimizeImages` in [[configuration#General-Configuration|General Configura
 
 If an image has custom dimensions set, this plugin registers corresponding preview image spec with the [[Assets]] emitter so that the latter generates an additional preview image that matches the aspect ratio but with a small resolution bump. Note that [[Assets]] never upscales an image, so preview image file sizes are never larger than the originally sized optimized images.
 
-Update the [[Assets]] emitter source code if you want to tweak the image format conversion or/and resizing logic with [`sharp`](https://github.com/lovell/sharp). Here are a couple things you could do following code comments:
+Update the [[Assets]] emitter source code if you want to tweak the image format conversion or/and resizing logic with [`sharp`](https://github.com/lovell/sharp). Here are a few things you could do following code comments:
+
+- Make `sharp` generate [WebP images](https://sharp.pixelplumbing.com/api-output/#webp) with lossless or near-lossless compression (may dramatically increase output file sizes).
 
 - Make `sharp` emit [AVIF](https://caniuse.com/avif) images instead, which is considered a mainstream successor to the [WebP](https://caniuse.com/webp) format, has better compression ratio and image feature sets (such as HDR support), but currently has narrower browser support and may be slower in image processing.
 
