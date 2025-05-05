@@ -57,6 +57,7 @@ This part of the configuration concerns anything that can affect the whole site.
     - `tertiary`: hover states and visited [[graph view|graph]] nodes
     - `highlight`: internal link background, highlighted text, [[syntax highlighting|highlighted lines of code]]
     - `textHighlight`: markdown highlighted text background
+- `optimizeImages`: whether to optimize images for web serving when building Quartz. Consider turning it off in local testing to speed up build time. See [[Web-Image-Optimization|Web Image Optimization]] for more information.
 
 ## Plugins
 

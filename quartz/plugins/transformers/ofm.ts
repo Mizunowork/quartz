@@ -27,6 +27,7 @@ import { toHast } from "mdast-util-to-hast"
 import { toHtml } from "hast-util-to-html"
 import { capitalize } from "../../util/lang"
 import { PluggableList } from "unified"
+import { supportedImageExts } from "./images"
 
 export interface Options {
   comments: boolean
@@ -228,7 +229,9 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                 if (value.startsWith("!")) {
                   const ext: string = path.extname(fp).toLowerCase()
                   const url = slugifyFilePath(fp as FilePath)
-                  if ([".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg", ".webp"].includes(ext)) {
+
+                  // Handle images
+                  if (supportedImageExts.has(ext)) {
                     const match = wikilinkImageEmbedRegex.exec(alias ?? "")
                     const alt = match?.groups?.alt ?? ""
                     const width = match?.groups?.width ?? "auto"
@@ -241,14 +244,18 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                           width,
                           height,
                           alt,
+                          // Pass full slug to the HTML <image> transformer "Images"
+                          dataSlug: url,
                         },
                       },
                     }
+                    // Handle videos
                   } else if ([".mp4", ".webm", ".ogv", ".mov", ".mkv"].includes(ext)) {
                     return {
                       type: "html",
                       value: `<video src="${url}" controls></video>`,
                     }
+                    // Handle audio
                   } else if (
                     [".mp3", ".webm", ".wav", ".m4a", ".ogg", ".3gp", ".flac"].includes(ext)
                   ) {
@@ -256,6 +263,7 @@ export const ObsidianFlavoredMarkdown: QuartzTransformerPlugin<Partial<Options>>
                       type: "html",
                       value: `<audio src="${url}" controls></audio>`,
                     }
+                    // Handle documents
                   } else if ([".pdf"].includes(ext)) {
                     return {
                       type: "html",

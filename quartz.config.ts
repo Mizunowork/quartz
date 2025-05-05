@@ -52,6 +52,8 @@ const config: QuartzConfig = {
         },
       },
     },
+    // Disable `optimizeImages` to speed up build time
+    optimizeImages: true,
   },
   plugins: {
     transformers: [
@@ -72,6 +74,7 @@ const config: QuartzConfig = {
       Plugin.CrawlLinks({ markdownLinkResolution: "shortest" }),
       Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),
+      Plugin.Images({ openLinksInNewTab: true }),
     ],
     filters: [Plugin.RemoveDrafts()],
     emitters: [

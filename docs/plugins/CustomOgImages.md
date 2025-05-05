@@ -64,6 +64,8 @@ The following properties can be used to customize your link previews:
 
 The `socialImage` property should contain a link to an image either relative to `quartz/static`, or a full URL. If you have a folder for all your images in `quartz/static/my-images`, an example for `socialImage` could be `"my-images/cover.png"`. Alternatively, you can use a fully qualified URL like `"https://example.com/cover.png"`.
 
+The `socialImage` link respects the `optimizeImages` configuration in [[configuration#General-Configuration|General Configuration]] and is automatically rewritten if web image optimization is turned on.
+
 > [!info] Info
 >
 > The priority for what image will be used for the cover image looks like the following: `frontmatter property > generated image (if enabled) > default image`.
